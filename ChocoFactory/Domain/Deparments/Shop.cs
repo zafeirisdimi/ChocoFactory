@@ -34,7 +34,7 @@ namespace ChocoFactory.Domain
            
         }
 
-        public void EndDay()
+        public void AdvanceDay()
         {
             DailyReport();
             SendDailyEarnings();
