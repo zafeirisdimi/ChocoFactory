@@ -34,13 +34,30 @@ namespace ChocoFactory.Domain
 
 
         //methods
-        public void SellProduct(string productName)
+        public decimal SellProduct(string productName)
         {
             Product productToSell = Products.Find(x => x.Description == productName);
-            DailyEarnings += (decimal)productToSell.Price;
+            decimal productPrice = (decimal)productToSell.Price;
+            DailyEarnings += productPrice;
             Products.Remove(productToSell);
             DailyProductsSold[productName]++;
 
+            return productPrice;
+        }
+
+        public decimal ServeCustomer(List<string> productsToSell)
+        {
+            decimal totalCost = 0;
+            foreach (string product in productsToSell)
+            {
+                totalCost += SellProduct(product);
+            }
+
+            if (totalCost >= 30)
+            {
+                //give gift
+            }
+            return totalCost;
         }
 
         public void DailyActions(DateTime date)

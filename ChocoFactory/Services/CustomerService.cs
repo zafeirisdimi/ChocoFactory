@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ChocoFactory.Domain;
 
 namespace ChocoFactory.Services
 {
@@ -21,26 +22,32 @@ namespace ChocoFactory.Services
             "HazelnutMilkSchocolate"
         };
 
-        public void BuyRandomProducts()
+        private void DailyPurchases(Shop shop)
+        {
+            int numberOfCustomers = rnd.Next(maxCustomers + 1);
+
+            for (int i = 0; i < numberOfCustomers; i++)
+            {
+                List<string> products = ProductsToBuy();
+                shop.ServeCustomer(products);
+            }
+        }
+
+
+        private List<string> ProductsToBuy()
         {
             int randomNumberOfProducts = rnd.Next(maxProducts + 1);
+            List<string> products = new List<string>();
 
             for (int i = 0; i < randomNumberOfProducts; i++)
             {
                 string randomProduct = productNames[rnd.Next(productNames.Length)];
-                Shop.SellProduct(randomProduct);
+                products.Add(randomProduct);
             }
+
+            return products;
         }
 
-        public void RandomCustomers()
-        {
-            int randomNumberOfCustomers = rnd.Next(maxCustomers + 1);
-
-            for (int i = 0; i < randomNumberOfCustomers; i++)
-            {
-                BuyRandomProducts();
-            }
-        }
 
     }
 }

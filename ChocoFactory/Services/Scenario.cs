@@ -11,6 +11,7 @@ namespace ChocoFactory.Services
     internal class Scenario
     {
         Company company = new Company(); // create Company object
+        CustomerService customerService = new CustomerService();
 
         private int discountDayOccurences = 0;
 
@@ -63,6 +64,7 @@ namespace ChocoFactory.Services
             foreach (Shop shop in company.Shops)
             {
                 shop.Discount = IsDiscountDay() ? company.CompanyPolicy.ShopDiscount : 0;
+                customerService.DailyPurchases(shop);
                 shop.DailyActions(CurrentDate);
             }
 
