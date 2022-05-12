@@ -30,11 +30,13 @@ namespace ChocoFactory.Domain
         {
             SuppliesInKilo += Supplier.SendSupplies();
         }
+
         public int SendSupplies(int kilos)//called from Production
         {
             SuppliesInKilo -= kilos;
             return kilos;
         }
+
         public void GetProduct(string productName)
         {
             Product newProduct = Factory.Production.SendProduct();
@@ -42,6 +44,7 @@ namespace ChocoFactory.Domain
             ProductQuantity[productName]++;
 
         }
+
         public Product SendProduct(string productName)
         {
             Product productToSend = Products.Find(x => x.Description == productName);
@@ -49,6 +52,7 @@ namespace ChocoFactory.Domain
             ProductQuantity[productName]--;
             return productToSend;
         }
+
         public bool AreSuppliesLow()//check for 10% of supplies
         {
             return (SuppliesInKilo * companyPolicy.LowSuppliesThresholdPercent <= Supplier.Offer.Quantity);
