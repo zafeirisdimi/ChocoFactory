@@ -12,11 +12,17 @@ namespace ChocoFactory.Services
     {
         Company company = new Company(); // create Company object
 
-        private DateTime StartingDate = DateTime.Now;
-        private DateTime CurrentDate = DateTime.Now;
-        Calendar calendar = CultureInfo.InvariantCulture.Calendar;
+        public DateTime StartingDate { get; set; } = DateTime.Now;
+        public DateTime EndingDate { get; set; }
 
-        
+        private DateTime currentDate = DateTime.Now;
+        public DateTime CurrentDate
+        {
+            get { return currentDate; }
+        }
+        private DateTime newYear = new DateTime();
+
+        public Calendar Calendar { get; } = CultureInfo.InvariantCulture.Calendar;        
 
         public void Initialization()
         {
@@ -27,18 +33,30 @@ namespace ChocoFactory.Services
             company.Shops.Add(shop);
         }
 
+        public void AdvanceTime()
+        {
+            while (StartingDate != EndingDate)
+            {
+                if (CurrentDate.Day == 1 && CurrentDate.Month == 1) // Do this on the first day of the year.
+                {
+                    YearlyActions();
+                }
 
+                DailyActions();
 
-        public void AdvanceDay()
+                currentDate = Calendar.AddDays(CurrentDate, 1); // Advance Time by one day.
+            }
+
+        }
+
+        public void DailyActions()
         {
             Shop.AdvanceDay(); // Calculate earnings and remaining products, refills stock if products 25% of total.
             Factory.Production.AdvanceDay(); // Produce 500 products
             Factory.Warehouse.AdvanceDay(); // Send 50% of products produced to shop
-
-            CurrentDate = calendar.AddDays(CurrentDate, 1);
         }
 
-        public void AdvanceYear()
+        public void YearlyActions()
         {
             Factory.Accounting.GetOffers();
             
