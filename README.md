@@ -1,7 +1,10 @@
-----------------------------------------------------------------------------------------
 ![Logo](https://github.com/zafeirisdimi/ChocoFactory/blob/master/img/choco.png)
 
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
 # CHOCOFACTORY
+
 
 <details><summary><strong>Description(Greek)</strong></summary>
 <p>
@@ -24,60 +27,172 @@
 </details>
 
 
------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
 
+Table of contents
+=================
 
-## Table of contents
-* [App scenario](#CHOCOFACTORY)
-* [Domain](##Domain)
-* [Deparment](###Deparment)
-* [Human](###Human)
-* [Products](###Products)
-* [Interfaces](##Interfaces)
-* [Services](##Services)
-* [Screenshots](##Screenshots)
-* [Team](##Team)
-* [Technologies](##Technologies)
+<!--ts-->
+   * [Domain](#domain)
+   * [Deparments](#deparments)
+      * [Deparment](#deparment)
+      * [Account](#account)
+      * [Production](#production)
+      * [Warehouse](#warehouse)
+      * [Factory](#factory)
+      * [Shop](#shop)
+   * [Human](#human)
+      * [CEO](#ceo)
+      * [Customer](#customer)
+      * [Employee](#employee)
+      * [Human](#human)
+      * [Seller](#seller)
+      * [Supplier](#supplier)
+   * [Products](#products)
+   * [Interfaces](#Interfaces)
+   * [Screenshots](#Screenshots)
+      * 
+   * [Tests](#tests)
+   * [Dependency](#dependency)
+   * [Docker](#docker)
+     * [Team](#team)
+     * [Technologies](#technologies)
+<!--te-->
 
 
 ------------------------------------------------------------------------------------------
-## Domain
-#### Class Product
+# /Domain/
+
+
+# /Deparments/
 | Left-aligned | Center-aligned | Right-aligned |
 | :---         |     :---:      |          ---: |
 | git status   | git status     | git status    |
 | git diff     | git diff       | git diff      |
 
 
-
-#### Class Human
+# Deparment(abstract_Class)
 | Properties        | Methods                                                            |
 | ----------------- | ------------------------------------------------------------------ |
 | firstName | getFirstName , setFirstName |
 | lastName | getLastName , setLastName |
 
 
-
-#### Class Department
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of item to fetch |
-
-
-
-#### Class RawMaterial
-| Properties        | Methods                                                                |
+## Account
+| Properties        | Methods                                                            |
 | ----------------- | ------------------------------------------------------------------ |
-| title | getTitle , setTitle |
-
-### Deparment
-### Human
-### Products
+| firstName | getFirstName , setFirstName |
+| lastName | getLastName , setLastName |
 
 
-------------------------------------------------------------------------------------------
-## Services
-------------------------------------------------------------------------------------------
+## Production
+| Properties        | Methods                                                            |
+| ----------------- | ------------------------------------------------------------------ |
+| firstName | getFirstName , setFirstName |
+| lastName | getLastName , setLastName |
+
+
+## Warehouse
+| Properties        | Methods                                                            |
+| ----------------- | ------------------------------------------------------------------ |
+| firstName | getFirstName , setFirstName |
+| lastName | getLastName , setLastName |
+
+
+## Factory
+| Properties        | Methods                                                            |
+| ----------------- | ------------------------------------------------------------------ |
+| firstName | getFirstName , setFirstName |
+| lastName | getLastName , setLastName |
+
+## Shop
+| Properties        | Methods                                                            |
+| ----------------- | ------------------------------------------------------------------ |
+| firstName | getFirstName , setFirstName |
+| lastName | getLastName , setLastName |
+
+# /Human/
+
+## CEO
+| Properties        | Methods                                                            |
+| ----------------- | ------------------------------------------------------------------ |
+| firstName | getFirstName , setFirstName |
+| lastName | getLastName , setLastName |
+
+## Customer
+| Properties        | Methods                                                            |
+| ----------------- | ------------------------------------------------------------------ |
+| firstName | getFirstName , setFirstName |
+| lastName | getLastName , setLastName |
+
+## Employee
+| Properties        | Methods                                                            |
+| ----------------- | ------------------------------------------------------------------ |
+| firstName | getFirstName , setFirstName |
+| lastName | getLastName , setLastName |
+
+## Seller
+| Properties        | Methods                                                            |
+| ----------------- | ------------------------------------------------------------------ |
+| firstName | getFirstName , setFirstName |
+| lastName | getLastName , setLastName |
+
+## Supplier
+| Properties        | Methods                                                            |
+| ----------------- | ------------------------------------------------------------------ |
+| firstName | getFirstName , setFirstName |
+| lastName | getLastName , setLastName |
+
+
+# /Products/
+
+# Product(abstract Class)
+| Properties        | Methods                                                            |
+| ----------------- | ------------------------------------------------------------------ |
+| firstName | getFirstName , setFirstName |
+| lastName | getLastName , setLastName |
+
+## Chocolate(abstract Class)
+| Properties        | Methods                                                            |
+| ----------------- | ------------------------------------------------------------------ |
+| firstName | getFirstName , setFirstName |
+| lastName | getLastName , setLastName |
+
+### DarkChocolate
+| Properties        | Methods                                                            |
+| ----------------- | ------------------------------------------------------------------ |
+| firstName | getFirstName , setFirstName |
+| lastName | getLastName , setLastName |
+
+### WhiteChocolate
+| Properties        | Methods                                                            |
+| ----------------- | ------------------------------------------------------------------ |
+| firstName | getFirstName , setFirstName |
+| lastName | getLastName , setLastName |
+
+### MilkChocolate(abstract Class)
+| Properties        | Methods                                                            |
+| ----------------- | ------------------------------------------------------------------ |
+| firstName | getFirstName , setFirstName |
+| lastName | getLastName , setLastName |
+#### PlainMilkChocolate
+| Properties        | Methods                                                            |
+| ----------------- | ------------------------------------------------------------------ |
+| firstName | getFirstName , setFirstName |
+| lastName | getLastName , setLastName |
+
+#### AlmondMilkChocolate
+| Properties        | Methods                                                            |
+| ----------------- | ------------------------------------------------------------------ |
+| firstName | getFirstName , setFirstName |
+| lastName | getLastName , setLastName |
+
+#### HazelnutMilkChocolate
+| Properties        | Methods                                                            |
+| ----------------- | ------------------------------------------------------------------ |
+| firstName | getFirstName , setFirstName |
+| lastName | getLastName , setLastName |
+
 
 
 
