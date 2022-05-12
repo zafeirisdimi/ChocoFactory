@@ -12,14 +12,6 @@ namespace ChocoFactory.Domain
         //properties
         public int ID { get; set; }// SupplierID
 
-        //custom constructor
-        public Supplier(int id,Offer offer, int orderID)
-        {
-            ID = id;
-            Offer = offer;
-            OrderID = orderID;
-        }
-
         //methods
         public int SendSupplies(Order order)
         {
