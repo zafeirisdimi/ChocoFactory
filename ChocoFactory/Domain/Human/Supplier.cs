@@ -27,16 +27,10 @@ namespace ChocoFactory.Domain
             
             return supplies
         }
-        public Offer SendOffer()
+
+        public Offer SendOffer(decimal pricePerKilo, Quality quality, int suppliesKilos)
         {
-            do
-            {
-                //create new (decimal pricePerKilo, Quality quality, int quantity) with random data
-                Offer offer = new Offer(decimal pricePerKilo, Quality quality, int quantity);
-                //until the chancesToOffer = 0;
-                return offer;
-            } while (chancesToOffer == 3);
-            
+            return new Offer(pricePerKilo, quality, suppliesKilos);
         }
         
     }

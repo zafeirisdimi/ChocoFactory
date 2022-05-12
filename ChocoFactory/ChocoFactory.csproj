@@ -83,6 +83,7 @@
     <Compile Include="Services\ProductionPolicy.cs" />
     <Compile Include="Services\RandomGenerator.cs" />
     <Compile Include="Services\Scenario.cs" />
+    <Compile Include="Services\SupplierService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
