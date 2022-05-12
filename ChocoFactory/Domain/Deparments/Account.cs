@@ -9,11 +9,10 @@ namespace ChocoFactory.Domain
     class Account
     {
         //properties
-        List<Supplier> Suppliers = new List<Supplier>();//list of possible suppliers
         List<Employee> Employees = new List<Employee>();//list of possible employees of this deparment
         List<Offer> AvailableOffers = new List<Offer>();// list of available offers of possible suppliers
-        public Supplier supplierLast { get; set; }// the last supplier that send us offer
-
+        public Supplier LastSupplier { get; set; }// the last supplier that send us offer
+        public Order LastOrder { get; set; }
         public Factory Factory { get; set; }
 
         //methods
@@ -24,6 +23,7 @@ namespace ChocoFactory.Domain
             for (int i = 0; i < Factory.Company.CompanyPolicy.NumberOfOffers; i++)
             {
                 Supplier supplier = new Supplier();
+                Suppliers.Add(supplier);
             }
 
             Offer offerNew = Supplier.SendOffer();
