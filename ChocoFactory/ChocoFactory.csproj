@@ -80,6 +80,7 @@
     <Compile Include="Services\CompanyPolicy.cs" />
     <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\FakeDatabase.cs" />
+    <Compile Include="Services\ProductionPolicy.cs" />
     <Compile Include="Services\RandomGenerator.cs" />
     <Compile Include="Services\Scenario.cs" />
   </ItemGroup>

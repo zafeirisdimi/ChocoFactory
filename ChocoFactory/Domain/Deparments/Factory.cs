@@ -11,6 +11,7 @@ namespace ChocoFactory.Domain
         //properties
         public Warehouse Warehouse { get; set; }
         public Production Production { get; set; }
+        public Company Company { get; set; }
 
         public Account Accounting { get; set; }
 

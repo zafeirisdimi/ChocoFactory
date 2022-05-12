@@ -10,15 +10,16 @@ namespace ChocoFactory.Services
     {
         // Factory
         public int DailyProducts { get; set; } = 500;
+        public double LowSuppliesThresholdPercent { get; set; } = 0.10;
         public double MinimumRevenueToInvest { get; set; } = 0.25;
         public double RevenueYearlyGoal { get; set; } = 0.15;
 
         // Production Percent
-        public double BlackChocolatePercent { get; set; } = 0.5;
-        public double WhiteChocolatePercent { get; set; } = 0.2;
-        public double MilkChocolatePercent { get; set; } = 0.1;
-        public double AlmondMilkChocolatePercent { get; set; } = 0.1;
-        public double HazelnutMilkChocolatePercent { get; set; } = 0.1;
+        public double BlackChocolatePercent { get; set; } = 0.50;
+        public double WhiteChocolatePercent { get; set; } = 0.20;
+        public double MilkChocolatePercent { get; set; } = 0.10;
+        public double AlmondMilkChocolatePercent { get; set; } = 0.10;
+        public double HazelnutMilkChocolatePercent { get; set; } = 0.10;
 
         // Shop
         public double ProductsToShopPercent { get; set; } = 0.50;

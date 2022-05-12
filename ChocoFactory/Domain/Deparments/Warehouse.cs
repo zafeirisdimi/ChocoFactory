@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChocoFactory.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,12 +9,12 @@ namespace ChocoFactory.Domain
 {
     class Warehouse : Department
     {
-
         public Factory Factory { get; set; }
         public Supplier Supplier { get; set; }
 
         //properties
 
+        public List<Product> Products { get; set; }
         public Dictionary<string, int> ProductQuantity { get; set; } = new Dictionary<string, int>()
         {
             {"WhiteChocolate" , 0},
@@ -23,18 +24,19 @@ namespace ChocoFactory.Domain
             {"HazelnutMilkChocolate" , 0}
         };
         public int SuppliesInKilo { get; set; }
-        public List<Product> Products { get; set; }
 
         //methods
         public void GetSupplies()
         {
             SuppliesInKilo += Supplier.SendSupplies();
         }
+
         public int SendSupplies(int kilos)//called from Production
         {
             SuppliesInKilo -= kilos;
             return kilos;
         }
+
         public void GetProduct(string productName)
         {
             Product newProduct = Factory.Production.CreateProduct(productName);
@@ -42,26 +44,20 @@ namespace ChocoFactory.Domain
             ProductQuantity[productName]++;
 
         }
+
         public Product SendProduct(string productName)
         {
             Product productToSend = Products.Find(x => x.Description == productName);
             Products.Remove(productToSend);
             ProductQuantity[productName]--;
             return productToSend;
-
-
         }
+
         public bool AreSuppliesLow()//check for 10% of supplies
         {
-            if (SuppliesInKilo * 0.1 <= Supplier.Offer.Quantity)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return (SuppliesInKilo * companyPolicy.LowSuppliesThresholdPercent <= Supplier.Offer.Quantity);
         }
+
         private void RemoveExpiredProducts()
         {
             foreach (Product product in Products)

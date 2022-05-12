@@ -68,8 +68,13 @@ namespace ChocoFactory.Services
                 shop.DailyActions(CurrentDate);
             }
 
-            Factory.Production.AdvanceDay(); // Produce 500 products
-            Factory.Warehouse.AdvanceDay(); // Send 50% of products produced to shop
+            foreach (Factory factory in company.Factories)
+            {
+                factory.Warehouse.DailyActions(); // Send 50% of products produced to shop
+
+            }
+
+            //Factory.Production.AdvanceDay(); // Produce 500 products
 
         }
 
