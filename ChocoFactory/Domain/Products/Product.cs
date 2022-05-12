@@ -8,8 +8,6 @@ namespace ChocoFactory.Domain
 {
     public abstract class Product
     {
-        
-
         //properties
         public int ProductID { get; set; }
         public string Description { get; set; }
@@ -17,18 +15,26 @@ namespace ChocoFactory.Domain
         public DateTime ExpirationDate { get; set; }
         public double Price { get; set; }
 
-        //constructor
-        protected Product(int productID, string description, DateTime productionDate, DateTime expirationDate, double price)
+        //default constructor
+        public Product()
         {
-            ProductID = productID;
-            Description = description;
-            ProductionDate = productionDate;
-            ExpirationDate = expirationDate;
-            Price = price;
-        }
 
+        }
         //methods
 
+        public override string ToString()
+        {
+            return base.ToString();
+        }
 
+        public override bool Equals(object obj)
+        {
+            return base.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }
