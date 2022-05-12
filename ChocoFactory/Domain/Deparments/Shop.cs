@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChocoFactory.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,7 @@ namespace ChocoFactory.Domain
     public class Shop
     {
         public Company Company { get; set; }
+        public CompanyPolicy companyPolicy = new CompanyPolicy();
         public double Discount { get; set; } = 0;
         public List<Product> Products { get; set; } = new List<Product>();
         public List<Employee> Employees { get; set; }
@@ -30,8 +32,6 @@ namespace ChocoFactory.Domain
         {
             Company = company;
         }
-
-
 
         //methods
         public decimal SellProduct(string productName)
@@ -65,9 +65,11 @@ namespace ChocoFactory.Domain
             DailyReport();
             SendDailyEarnings();
             DailyEarnings = 0;
-            foreach (var productType in DailyProductsSold)
+            foreach (var productType in DailyProductsSold.Keys)
             {
-                productType.Value = 0;
+                DailyProductsSold[productType] = 0;
+
+                //productType.Value = 0;
             }
             RemoveExpiredProducts(date);
 
@@ -95,18 +97,9 @@ namespace ChocoFactory.Domain
             Company.Revenue += DailyEarnings;
         }
 
-
-
-        private bool IsProductQuantityLow()//
+        private bool IsProductQuantityLow()
         {
-            if (Products.Count <= 62)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return Products.Count <= companyPolicy.ShopRestockThreshold;
         }
 
 
@@ -116,7 +109,7 @@ namespace ChocoFactory.Domain
             {
                 Product newProduct = ReceiveProduct();
                 Products.Add(newProduct);
-            } while (Products.Count < 250);
+            } while (Products.Count < companyPolicy.ShopStockSize);
         }
 
         private Product ReceiveProduct()//

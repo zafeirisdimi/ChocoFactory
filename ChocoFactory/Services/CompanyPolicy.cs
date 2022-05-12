@@ -23,6 +23,14 @@ namespace ChocoFactory.Services
         // Shop
         public double ProductsToShopPercent { get; set; } = 0.50;
         public double ShopRestockPercent { get; set; } = 0.25;
+        public int ShopStockSize
+        {
+            get { return (int)Math.Floor(DailyProducts * ProductsToShopPercent); }
+        }
+        public int ShopRestockThreshold
+        {
+            get { return (int)Math.Floor(DailyProducts * ProductsToShopPercent * ShopRestockPercent)}
+        }
         public double ShopDiscount { get; set; } = 0.20;
         public DayOfWeek DiscountDay { get; set; } = DayOfWeek.Tuesday;
         public int DiscountDayOccurence { get; set; } = 2; // Every second Tuesday of each month.
