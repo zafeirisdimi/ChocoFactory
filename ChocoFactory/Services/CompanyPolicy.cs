@@ -13,6 +13,7 @@ namespace ChocoFactory.Services
         public double LowSuppliesThresholdPercent { get; set; } = 0.10;
         public double MinimumRevenueToInvest { get; set; } = 0.25;
         public double RevenueYearlyGoal { get; set; } = 0.15;
+        public int NumberOfOffers { get; set; } = 3;
 
         // Production Percent
         public double BlackChocolatePercent { get; set; } = 0.50;

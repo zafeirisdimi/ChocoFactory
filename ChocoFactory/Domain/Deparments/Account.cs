@@ -14,10 +14,18 @@ namespace ChocoFactory.Domain
         List<Offer> AvailableOffers = new List<Offer>();// list of available offers of possible suppliers
         public Supplier supplierLast { get; set; }// the last supplier that send us offer
 
+        public Factory Factory { get; set; }
+
         //methods
-        public void ReceiveOffer()
+        public void ReceiveOffers()
         {
             //service getSupplier
+
+            for (int i = 0; i < Factory.Company.CompanyPolicy.NumberOfOffers; i++)
+            {
+                Supplier supplier = new Supplier();
+            }
+
             Offer offerNew = Supplier.SendOffer();
             AvailableOffers.Add(offerNew);
             Console.WriteLine("[New offer from Supplier is delivered !!!]");
@@ -29,7 +37,7 @@ namespace ChocoFactory.Domain
         {
             AvailableOffers.Add(offer);
             //CheckBestOffer(). if the order is perfect
-            var offerToSupplier = this.CheckBestOffer();
+            var offerToSupplier = CheckBestOffer();
             //send this offer as order to supplier
             Order order = new OrderToSupplier(offerToSupplier.PricePerKilo, offerToSupplier.Quality, offerToSupplier.Quantity);
             Console.WriteLine("[Send order!!!]");
