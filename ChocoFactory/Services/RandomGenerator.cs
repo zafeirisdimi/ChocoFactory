@@ -8,5 +8,5 @@ namespace ChocoFactory.Services
 {
     class RandomGenerator
     {
-      
+    }
 }
