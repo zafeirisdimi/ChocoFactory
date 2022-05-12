@@ -9,7 +9,7 @@ namespace ChocoFactory.Domain
     public class Shop
     {
         public Company Company { get; set; }
-        public double Discount { get; set; }
+        public double Discount { get; set; } = 0;
         public List<Product> Products { get; set; } = new List<Product>();
         public List<Employee> Employees { get; set; }
 
@@ -22,7 +22,14 @@ namespace ChocoFactory.Domain
             {"HazelnutMilkChocolate" , 0}
         };
         public string Location { get; set; }
-        public double DailyEarnings { get; set; }
+        public decimal DailyEarnings { get; set; } = 0;
+
+        // Constructor
+
+        public Shop(Company company)
+        {
+            Company = company;
+        }
 
 
 
@@ -30,13 +37,13 @@ namespace ChocoFactory.Domain
         public void SellProduct(string productName)
         {
             Product productToSell = Products.Find(x => x.Description == productName);
-            DailyEarnings += productToSell.Price;
+            DailyEarnings += (decimal)productToSell.Price;
             Products.Remove(productToSell);
             DailyProductsSold[productName]++;
 
         }
 
-        public void AdvanceDay()
+        public void DailyActions(DateTime date)
         {
             DailyReport();
             SendDailyEarnings();
@@ -45,7 +52,8 @@ namespace ChocoFactory.Domain
             {
                 productType.Value = 0;
             }
-            RemoveExpiredProducts();
+            RemoveExpiredProducts(date);
+
             if (IsProductQuantityLow())
             {
                 RefillProducts();
@@ -53,7 +61,7 @@ namespace ChocoFactory.Domain
 
         }
 
-        private string DailyReport()
+        private void DailyReport()
         {
 
             Console.WriteLine($"Our shop at {Location} made {DailyEarnings} Euro today.");
@@ -72,9 +80,9 @@ namespace ChocoFactory.Domain
 
 
 
-        private void IsProductQuantityLow()//
+        private bool IsProductQuantityLow()//
         {
-            if (products.Count <= 62)
+            if (Products.Count <= 62)
             {
                 return true;
             }
@@ -90,19 +98,19 @@ namespace ChocoFactory.Domain
             do
             {
                 Product newProduct = ReceiveProduct();
-                products.Add(newProduct);
-            } while (products.Count < 250);
+                Products.Add(newProduct);
+            } while (Products.Count < 250);
         }
 
         private Product ReceiveProduct()//
         {
             return Company.Factory.Warehouse.SendProduct();
         }
-        private void RemoveExpiredProducts()
+        private void RemoveExpiredProducts(DateTime currentDate)
         {
             foreach (Product product in Products)
             {
-                if (product.ExpirationDate > DateTime.Now)
+                if (product.ExpirationDate > currentDate)
                 {
                     Products.Remove(product);
                 }
