@@ -32,12 +32,12 @@ namespace ChocoFactory.Domain
         }
         public int SendSupplies(int kilos)//called from Production
         {
-            SuppliesInKilo -= kilos
-            return kilos
+            SuppliesInKilo -= kilos;
+            return kilos;
         }
         public void GetProduct(string productName)
         {
-            Product newProduct = Factory.Production.SendProduct();
+            Product newProduct = Factory.Production.CreateProduct(productName);
             Products.Add(newProduct);
             ProductQuantity[productName]++;
 
@@ -47,7 +47,7 @@ namespace ChocoFactory.Domain
             Product productToSend = Products.Find(x => x.Description == productName);
             Products.Remove(productToSend);
             ProductQuantity[productName]--;
-            return productToSend
+            return productToSend;
 
 
         }
@@ -77,14 +77,14 @@ namespace ChocoFactory.Domain
         {
             if (AreSuppliesLow())
             {
-                Factory.Account.SendOrder(Supplier.offer);
+                Factory.Accounting.SendOrder(Supplier.Offer);
                 GetSupplies();
             }
             RefillProducts("BlackChocolate", Factory.Company.CompanyPolicy.BlackChocolatePercent);
             RefillProducts("WhiteChocolate", Factory.Company.CompanyPolicy.WhiteChocolatePercent);
             RefillProducts("PlainMilkChocolate", Factory.Company.CompanyPolicy.MilkChocolatePercent);
-            RefillProducts("AlmondMilkChocolate", Factory.Company.CompanyPolicy.AlmondMilkChocolate);
-            RefillProducts("HazelnutMilkChocolate", Factory.Company.CompanyPolicy.HazelnutMilkChocolate);
+            RefillProducts("AlmondMilkChocolate", Factory.Company.CompanyPolicy.AlmondMilkChocolatePercent);
+            RefillProducts("HazelnutMilkChocolate", Factory.Company.CompanyPolicy.HazelnutMilkChocolatePercent);
         }
 
         public void RefillProducts(string productName, double policyPercentage)

@@ -14,6 +14,7 @@ namespace ChocoFactory.Domain
 
         public Account Accounting { get; set; }
 
+        public Company Company { get; set; }
         //methods
 
     }
