@@ -12,6 +12,8 @@ namespace ChocoFactory.Services
     {
         Company company = new Company(); // create Company object
 
+        private int discountDayOccurences = 0;
+
         public DateTime StartingDate { get; set; } = DateTime.Now;
         public DateTime EndingDate { get; set; }
 
@@ -20,7 +22,7 @@ namespace ChocoFactory.Services
         {
             get { return currentDate; }
         }
-        private DateTime newYear = new DateTime();
+
 
         public Calendar Calendar { get; } = CultureInfo.InvariantCulture.Calendar;        
 
@@ -42,7 +44,7 @@ namespace ChocoFactory.Services
                     YearlyActions();
                 }
 
-                DailyActions();
+                DailyActions(); // Do this everyday.
 
                 currentDate = Calendar.AddDays(CurrentDate, 1); // Advance Time by one day.
             }
@@ -54,6 +56,8 @@ namespace ChocoFactory.Services
             Shop.AdvanceDay(); // Calculate earnings and remaining products, refills stock if products 25% of total.
             Factory.Production.AdvanceDay(); // Produce 500 products
             Factory.Warehouse.AdvanceDay(); // Send 50% of products produced to shop
+
+            Shop.Discount = company.CompanyPolicy.ShopDiscount;
         }
 
         public void YearlyActions()
@@ -68,9 +72,19 @@ namespace ChocoFactory.Services
             
         }
 
-        public bool CheckIfSecondTuesday()
+        public bool CheckIfDiscountDay()
         {
-            throw new NotImplementedException();
+            if (CurrentDate.DayOfWeek == company.CompanyPolicy.DiscountDay)
+            {
+                discountDayOccurences++;
+            }
+
+            bool isDiscountDay = (discountDayOccurences == company.CompanyPolicy.DiscountDayOccurence);
+
+            if (isDiscountDay)
+                discountDayOccurences = 0;
+
+            return isDiscountDay;
         }
 
     }
