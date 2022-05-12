@@ -77,7 +77,7 @@ namespace ChocoFactory.Services
             
             if (company.RevenueGoalAchieved)
             {
-                Shop shop = new Shop();
+                Shop shop = new Shop(company);
                 company.Shops.Add(shop);
             }
             
