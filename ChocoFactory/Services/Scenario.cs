@@ -53,11 +53,12 @@ namespace ChocoFactory.Services
 
         public void DailyActions()
         {
+            Shop.Discount = IsDiscountDay() ? company.CompanyPolicy.ShopDiscount : 0;
+
             Shop.AdvanceDay(); // Calculate earnings and remaining products, refills stock if products 25% of total.
             Factory.Production.AdvanceDay(); // Produce 500 products
             Factory.Warehouse.AdvanceDay(); // Send 50% of products produced to shop
 
-            Shop.Discount = company.CompanyPolicy.ShopDiscount;
         }
 
         public void YearlyActions()
@@ -72,7 +73,7 @@ namespace ChocoFactory.Services
             
         }
 
-        public bool CheckIfDiscountDay()
+        public bool IsDiscountDay()
         {
             if (CurrentDate.DayOfWeek == company.CompanyPolicy.DiscountDay)
             {
