@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChocoFactory.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,12 +9,12 @@ namespace ChocoFactory.Domain
 {
     class Warehouse : Department
     {
-
         public Factory Factory { get; set; }
         public Supplier Supplier { get; set; }
 
         //properties
 
+        public List<Product> Products { get; set; }
         public Dictionary<string, int> ProductQuantity { get; set; } = new Dictionary<string, int>()
         {
             {"WhiteChocolate" , 0},
@@ -23,7 +24,6 @@ namespace ChocoFactory.Domain
             {"HazelnutMilkChocolate" , 0}
         };
         public int SuppliesInKilo { get; set; }
-        public List<Product> Products { get; set; }
 
         //methods
         public void GetSupplies()
@@ -32,8 +32,8 @@ namespace ChocoFactory.Domain
         }
         public int SendSupplies(int kilos)//called from Production
         {
-            SuppliesInKilo -= kilos
-            return kilos
+            SuppliesInKilo -= kilos;
+            return kilos;
         }
         public void GetProduct(string productName)
         {
@@ -47,21 +47,13 @@ namespace ChocoFactory.Domain
             Product productToSend = Products.Find(x => x.Description == productName);
             Products.Remove(productToSend);
             ProductQuantity[productName]--;
-            return productToSend
-
-
+            return productToSend;
         }
         public bool AreSuppliesLow()//check for 10% of supplies
         {
-            if (SuppliesInKilo * 0.1 <= Supplier.Offer.Quantity)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return (SuppliesInKilo * companyPolicy.LowSuppliesThresholdPercent <= Supplier.Offer.Quantity);
         }
+
         private void RemoveExpiredProducts()
         {
             foreach (Product product in Products)
@@ -83,8 +75,8 @@ namespace ChocoFactory.Domain
             RefillProducts("BlackChocolate", Factory.Company.CompanyPolicy.BlackChocolatePercent);
             RefillProducts("WhiteChocolate", Factory.Company.CompanyPolicy.WhiteChocolatePercent);
             RefillProducts("PlainMilkChocolate", Factory.Company.CompanyPolicy.MilkChocolatePercent);
-            RefillProducts("AlmondMilkChocolate", Factory.Company.CompanyPolicy.AlmondMilkChocolate);
-            RefillProducts("HazelnutMilkChocolate", Factory.Company.CompanyPolicy.HazelnutMilkChocolate);
+            RefillProducts("AlmondMilkChocolate", Factory.Company.CompanyPolicy.AlmondMilkChocolatePercent);
+            RefillProducts("HazelnutMilkChocolate", Factory.Company.CompanyPolicy.HazelnutMilkChocolatePercent);
         }
 
         public void RefillProducts(string productName, double policyPercentage)
