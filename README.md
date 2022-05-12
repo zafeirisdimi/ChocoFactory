@@ -1,3 +1,4 @@
+
 ![Logo](https://github.com/zafeirisdimi/ChocoFactory/blob/master/img/choco.png)
 
 
@@ -49,21 +50,17 @@ Table of contents
       * [Seller](#seller)
       * [Supplier](#supplier)
    * [Products](#products)
-      * [Product(abstract Class)](#product)
-      * [Chocolate(abstract Class)](#chocolate)
-      * [MilkChocolate(abstract Class)](#milkchocolate)
-      * [Customer](#customer)
-      * [Employee](#employee)
-      * [Seller](#seller)
-      * [Supplier](#supplier)
+      * [Product (abstract Class)](#product)
+      * [Chocolate (abstract Class)](#chocolate)
+      * [WhiteChocolate](#whitechocolate)
+      * [MilkChocolate (abstract Class)](#milkchocolate)
+      * [PlainMilkChocolate](#plainMilkChocolate)
+      * [AlmondMilkChocolate](#almondMilkChocolate)
+      * [HazelnutMilkChocolate](#hazelnutMilkChocolate)
    * [Interfaces](#Interfaces)
    * [Screenshots](#Screenshots)
-      * 
-   * [Tests](#tests)
-   * [Dependency](#dependency)
-   * [Docker](#docker)
-     * [Team](#team)
-     * [Technologies](#technologies)
+   * [Team](#team)
+   * [Technologies](#technologies)
 <!--te-->
 
 
@@ -79,7 +76,7 @@ Table of contents
 | git diff     | git diff       | git diff      |
 
 
-## Deparment(abstract_Class)
+## Deparment
 | Properties        | Methods                                                            |
 | ----------------- | ------------------------------------------------------------------ |
 | firstName | getFirstName , setFirstName |
@@ -123,7 +120,7 @@ Table of contents
 # /Human/
 
 
-## Human (abstract Class)
+## Human 
 | Properties        | Methods                                                            |
 | ----------------- | ------------------------------------------------------------------ |
 | firstName | getFirstName , setFirstName |
@@ -164,21 +161,21 @@ Table of contents
 # /Products/
 
 
-# Product(abstract Class)
+## Product
 | Properties        | Methods                                                            |
 | ----------------- | ------------------------------------------------------------------ |
 | firstName | getFirstName , setFirstName |
 | lastName | getLastName , setLastName |
 
 
-# Chocolate(abstract Class)
+## Chocolate 
 | Properties        | Methods                                                            |
 | ----------------- | ------------------------------------------------------------------ |
 | firstName | getFirstName , setFirstName |
 | lastName | getLastName , setLastName |
 
 
-# DarkChocolate
+## DarkChocolate
 | Properties        | Methods                                                            |
 | ----------------- | ------------------------------------------------------------------ |
 | firstName | getFirstName , setFirstName |
@@ -191,24 +188,24 @@ Table of contents
 | firstName | getFirstName , setFirstName |
 | lastName | getLastName , setLastName |
 
-## MilkChocolate(abstract Class)
+## MilkChocolate
 | Properties        | Methods                                                            |
 | ----------------- | ------------------------------------------------------------------ |
 | firstName | getFirstName , setFirstName |
 | lastName | getLastName , setLastName |
-#### PlainMilkChocolate
-| Properties        | Methods                                                            |
-| ----------------- | ------------------------------------------------------------------ |
-| firstName | getFirstName , setFirstName |
-| lastName | getLastName , setLastName |
-
-#### AlmondMilkChocolate
+### PlainMilkChocolate
 | Properties        | Methods                                                            |
 | ----------------- | ------------------------------------------------------------------ |
 | firstName | getFirstName , setFirstName |
 | lastName | getLastName , setLastName |
 
-#### HazelnutMilkChocolate
+### AlmondMilkChocolate
+| Properties        | Methods                                                            |
+| ----------------- | ------------------------------------------------------------------ |
+| firstName | getFirstName , setFirstName |
+| lastName | getLastName , setLastName |
+
+### HazelnutMilkChocolate
 | Properties        | Methods                                                            |
 | ----------------- | ------------------------------------------------------------------ |
 | firstName | getFirstName , setFirstName |
@@ -225,13 +222,19 @@ Table of contents
 
 ------------------------------------------------------------------------------------------
 ## Technologies
-C#
-
+- Programming Language C#
+- Framework .NET 4.7.3
+- Visual Studio Community Edition 2019
+- Console Application
 ------------------------------------------------------------------------------------------
 ## Team
 - [@ioannis-thyris](https://github.com/ioannis-thyris)
 - [@GitEmm](https://github.com/GitEmm)
 - [@zafeirisdimi](https://github.com/zafeirisdimi)
 - [@StaurosGouleas](https://www.github.com/StaurosGouleas)
+
+
+
+
 
 
