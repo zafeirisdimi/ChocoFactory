@@ -39,7 +39,7 @@ namespace ChocoFactory.Domain
 
         public void GetProduct(string productName)
         {
-            Product newProduct = Factory.Production.SendProduct();
+            Product newProduct = Factory.Production.CreateProduct(productName);
             Products.Add(newProduct);
             ProductQuantity[productName]++;
 
@@ -73,7 +73,7 @@ namespace ChocoFactory.Domain
         {
             if (AreSuppliesLow())
             {
-                Factory.Account.SendOrder(Supplier.offer);
+                Factory.Accounting.SendOrder(Supplier.Offer);
                 GetSupplies();
             }
             RefillProducts("BlackChocolate", Factory.Company.CompanyPolicy.BlackChocolatePercent);

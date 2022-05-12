@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChocoFactory.Domain
 {
-     class DarkChocolate : Chocolate
+     class BlackChocolate : Chocolate
     {
     }
 }
