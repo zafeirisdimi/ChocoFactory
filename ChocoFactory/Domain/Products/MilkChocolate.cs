@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChocoFactory.Domain
 {
-    class MilkSchocolate
+    abstract class MilkChocolate:Chocolate
     {
     }
 }

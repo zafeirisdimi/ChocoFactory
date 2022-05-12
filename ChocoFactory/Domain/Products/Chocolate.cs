@@ -7,17 +7,8 @@ using System.Threading.Tasks;
 
 namespace ChocoFactory.Domain
 {
-    public abstract class Schocolate : IProductModel
+    public abstract class Chocolate: Product 
     {
-        //properties
-
-        //default constructor
-        //custom constructor
-        //methods
-        public int ID;
-
-        public string Description ;
-
-        public DateTime dateTime;
+   
     }
 }
