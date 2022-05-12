@@ -9,7 +9,7 @@ namespace ChocoFactory.Domain
     public class Shop
     {
         //properties
-        public List<Product> Products { get; set; }
+        public List<Product> Products { get; set; } = new List<Product>();
         public List<Employee> Employees { get; set; }
         public Dictionary<string, int> DailyProductsSold { get; set; } = new Dictionary<string, int>()
         {
