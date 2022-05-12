@@ -9,16 +9,17 @@ namespace ChocoFactory.Services
 {
     internal class Scenario
     {
+        Company company = new Company(); // create Company object
         public void Initialization()
         {
-            Company company = new Company(); // create Company object
-
             Factory factory = new Factory();
             company.Factories.Add(factory);
             
             Shop shop = new Shop();
             company.Shops.Add(shop);
         }
+
+
 
         public void AdvanceDay()
         {
@@ -30,8 +31,14 @@ namespace ChocoFactory.Services
         public void AdvanceYear()
         {
             Factory.Accounting.GetOffers();
+            
+            if (company.RevenueGoalAchieved)
+            {
+                Shop shop = new Shop();
+                company.Shops.Add(shop);
+            }
+            
         }
-
 
 
     }
