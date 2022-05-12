@@ -27,7 +27,7 @@ namespace ChocoFactory.Domain
         public int SendSupplies(Order order)
         {
             //send the order form supplier to Production
-
+            
             return supplies
         }
         public static Offer SendOffer()

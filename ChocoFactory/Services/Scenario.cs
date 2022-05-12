@@ -61,6 +61,12 @@ namespace ChocoFactory.Services
 
         public void DailyActions()
         {
+            foreach (Factory factory in company.Factories)
+            {
+                factory.Warehouse.DailyActions(); // Send 50% of products produced to shop
+
+            }
+
             foreach (Shop shop in company.Shops)
             {
                 shop.Discount = IsDiscountDay() ? company.CompanyPolicy.ShopDiscount : 0;
@@ -68,11 +74,6 @@ namespace ChocoFactory.Services
                 shop.DailyActions(CurrentDate);
             }
 
-            foreach (Factory factory in company.Factories)
-            {
-                factory.Warehouse.DailyActions(); // Send 50% of products produced to shop
-
-            }
 
             //Factory.Production.AdvanceDay(); // Produce 500 products
 
