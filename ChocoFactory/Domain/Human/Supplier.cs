@@ -15,9 +15,7 @@ namespace ChocoFactory.Domain
         //methods
         public int SendSupplies(Order order)
         {
-            //send the order form supplier to Production
-            
-            return supplies
+            return order.Quantity;
         }
 
         public Offer SendOffer(decimal pricePerKilo, Quality quality, int suppliesKilos)
