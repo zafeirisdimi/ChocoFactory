@@ -8,20 +8,21 @@ namespace ChocoFactory.Domain
 {
     public class Shop
     {
-        //properties
+        public Company Company { get; set; }
+        public double Discount { get; set; }
         public List<Product> Products { get; set; } = new List<Product>();
         public List<Employee> Employees { get; set; }
+
         public Dictionary<string, int> DailyProductsSold { get; set; } = new Dictionary<string, int>()
         {
-            {"WhiteSchocolate" , 0},
-            {"BlackSchocolate" , 0},
-            {"PlainMilkSchocolate" , 0},
-            {"AlmondMilkSchocolate" , 0},
-            {"HazelnutMilkSchocolate" , 0}
+            {"WhiteChocolate" , 0},
+            {"BlackChocolate" , 0},
+            {"PlainMilkChocolate" , 0},
+            {"AlmondMilkChocolate" , 0},
+            {"HazelnutMilkChocolate" , 0}
         };
-
-        public double DailyEarnings { get; set; }
         public string Location { get; set; }
+        public double DailyEarnings { get; set; }
 
 
 
@@ -32,7 +33,7 @@ namespace ChocoFactory.Domain
             DailyEarnings += productToSell.Price;
             Products.Remove(productToSell);
             DailyProductsSold[productName]++;
-           
+
         }
 
         public void AdvanceDay()
@@ -44,6 +45,7 @@ namespace ChocoFactory.Domain
             {
                 productType.Value = 0;
             }
+            RemoveExpiredProducts();
             if (IsProductQuantityLow())
             {
                 RefillProducts();
@@ -51,8 +53,9 @@ namespace ChocoFactory.Domain
 
         }
 
-        private void DailyReport()
+        private string DailyReport()
         {
+
             Console.WriteLine($"Our shop at {Location} made {DailyEarnings} Euro today.");
             Console.WriteLine("Products Sold:");
             foreach (var productType in DailyProductsSold)
@@ -64,14 +67,14 @@ namespace ChocoFactory.Domain
 
         private void SendDailyEarnings()
         {
-            company.Capital += DailyEarnings;
+            Company.Revenue += DailyEarnings;
         }
 
 
-       
-        private void IsProductQuantityLow()
+
+        private void IsProductQuantityLow()//
         {
-            if (Products.Count <= 62)
+            if (products.Count <= 62)
             {
                 return true;
             }
@@ -80,20 +83,30 @@ namespace ChocoFactory.Domain
                 return false;
             }
         }
-        
+
 
         private void RefillProducts()
         {
             do
             {
                 Product newProduct = ReceiveProduct();
-                Products.Add(newProduct);
-            } while (Products.Count < 250);
+                products.Add(newProduct);
+            } while (products.Count < 250);
         }
 
         private Product ReceiveProduct()//
         {
-            return Factory.Warehouse.SendProduct();
+            return Company.Factory.Warehouse.SendProduct();
+        }
+        private void RemoveExpiredProducts()
+        {
+            foreach (Product product in Products)
+            {
+                if (product.ExpirationDate > DateTime.Now)
+                {
+                    Products.Remove(product);
+                }
+            }
         }
     }
 }
