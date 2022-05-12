@@ -224,8 +224,9 @@ Table of contents
 ## Technologies
 - Programming Language C#
 - Framework .NET 4.7.3
-- Visual Studio Community Edition 2019
 - Console Application
+- [Visual Studio Community Edition 2019](https://visualstudio.microsoft.com/downloads/)
+- [Microsoft technical documentation](https://docs.microsoft.com/en-us/)
 ------------------------------------------------------------------------------------------
 ## Team
 - [@ioannis-thyris](https://github.com/ioannis-thyris)
