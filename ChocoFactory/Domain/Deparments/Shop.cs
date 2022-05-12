@@ -37,7 +37,7 @@ namespace ChocoFactory.Domain
         public decimal SellProduct(string productName)
         {
             Product productToSell = Products.Find(x => x.Description == productName);
-            decimal productPrice = (decimal)productToSell.Price;
+            decimal productPrice = productToSell.Price;
             DailyEarnings += productPrice;
             Products.Remove(productToSell);
             DailyProductsSold[productName]++;

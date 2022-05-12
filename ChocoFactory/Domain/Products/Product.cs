@@ -15,10 +15,10 @@ namespace ChocoFactory.Domain
         public string Description { get; set; }
         public DateTime ProductionDate { get; set; }
         public DateTime ExpirationDate { get; set; }
-        public double Price { get; set; }
+        public decimal Price { get; set; }
 
         //constructor
-        protected Product(int productID, string description, DateTime productionDate, DateTime expirationDate, double price)
+        protected Product(int productID, string description, DateTime productionDate, DateTime expirationDate, decimal price)
         {
             ProductID = productID;
             Description = description;

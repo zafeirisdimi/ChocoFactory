@@ -32,8 +32,6 @@ namespace ChocoFactory.Services
                 shop.ServeCustomer(products);
             }
         }
-
-
         private List<string> ProductsToBuy()
         {
             int randomNumberOfProducts = rnd.Next(maxProducts + 1);
