@@ -1,5 +1,5 @@
 ----------------------------------------------------------------------------------------
-![Logo](https://github.com/zafeirisdimi/TeamCS_bootcamp/blob/main/choco.png)
+![Logo](https://github.com/zafeirisdimi/ChocoFactory/blob/master/img/choco.png)
 
 # CHOCOFACTORY
 
