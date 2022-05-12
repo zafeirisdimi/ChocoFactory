@@ -15,19 +15,52 @@ namespace ChocoFactory.Domain
 
         public Product CreateProduct(string productName)
         {
+            Product createdProduct = null;
 
             switch (productName)
             {
-                case "BlackChocolate": return new BlackChocolate();
-                case "WhiteChocolate": return new WhiteChocolate();
-                case "PlainMilkChocolate": return new PlainMilkChocolate();
-                case "AlmondMilkChocolate": return new AlmondMilkChocolate();
-                case "HazelnutMilkChocolate": return new HazelnutMilkChocolate();
+                case "BlackChocolate": 
+                    createdProduct = new BlackChocolate();
+                    createdProduct.Description = "BlackChocolate";
+                    createdProduct.ProductionDate = DateTime.Now;
+                    createdProduct.ExpirationDate = DateTime.Now.AddDays(90);
+                    createdProduct.Price = Factory.Company.CompanyPolicy.BlackChocolatePrice;
+                    break;
+                case "WhiteChocolate": 
+                    createdProduct = new WhiteChocolate();
+                    createdProduct.Description = "WhiteChocolate";
+                    createdProduct.ProductionDate = DateTime.Now;
+                    createdProduct.ExpirationDate = DateTime.Now.AddDays(60);
+                    createdProduct.Price = Factory.Company.CompanyPolicy.WhiteChocolatePrice;
+                    break;
+                case "PlainMilkChocolate": 
+                    createdProduct = new PlainMilkChocolate();
+                    createdProduct.Description = "PlainMilkChocolate";
+                    createdProduct.ProductionDate = DateTime.Now;
+                    createdProduct.ExpirationDate = DateTime.Now.AddDays(75);
+                    createdProduct.Price = Factory.Company.CompanyPolicy.MilkChocolatePrice;
+                    break;
+                case "AlmondMilkChocolate": 
+                    createdProduct = new AlmondMilkChocolate();
+                    createdProduct.Description = "AlmondMilkChocolate";
+                    createdProduct.ProductionDate = DateTime.Now;
+                    createdProduct.ExpirationDate = DateTime.Now.AddDays(75);
+                    createdProduct.Price = Factory.Company.CompanyPolicy.AlmondMilkChocolatePrice;
+                    break;
+                case "HazelnutMilkChocolate": 
+                    createdProduct = new HazelnutMilkChocolate();
+                    createdProduct.Description = "HazelnutMilkChocolate";
+                    createdProduct.ProductionDate = DateTime.Now;
+                    createdProduct.ExpirationDate = DateTime.Now.AddDays(75);
+                    createdProduct.Price = Factory.Company.CompanyPolicy.HazelnutMilkChocolatePrice;
+                    break;
                 default:
                     Console.WriteLine("Error creating product");
-                    return null;
+                    break;
+                   
                
             }
+            return createdProduct;
             
         }
 
