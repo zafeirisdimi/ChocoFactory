@@ -16,11 +16,11 @@ namespace ChocoFactory.Domain
         public List<Employee> Employees { get; set; } = new List<Employee>();
         public CompanyPolicy CompanyPolicy { get; set; }
 
-
-        public bool RevenueGoalAchieved()
+        public bool RevenueGoalAchieved
         {
-            return Revenue > (decimal)CompanyPolicy.RevenueYearlyGoal * Revenue;
+            get { return Revenue > (decimal)CompanyPolicy.RevenueYearlyGoal * Revenue; ; }
         }
+
 
     }
 }
