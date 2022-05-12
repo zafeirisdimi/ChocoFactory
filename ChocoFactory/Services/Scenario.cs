@@ -11,6 +11,7 @@ namespace ChocoFactory.Services
     internal class Scenario
     {
         Company company = new Company(); // create Company object
+        CustomerService customerService = new CustomerService();
 
         private int discountDayOccurences = 0;
 
@@ -38,7 +39,7 @@ namespace ChocoFactory.Services
             Factory factory = new Factory();
             company.Factories.Add(factory);
             
-            Shop shop = new Shop();
+            Shop shop = new Shop(company);
             company.Shops.Add(shop);
         }
 
@@ -60,9 +61,13 @@ namespace ChocoFactory.Services
 
         public void DailyActions()
         {
-            Shop.Discount = IsDiscountDay() ? company.CompanyPolicy.ShopDiscount : 0;
+            foreach (Shop shop in company.Shops)
+            {
+                shop.Discount = IsDiscountDay() ? company.CompanyPolicy.ShopDiscount : 0;
+                customerService.DailyPurchases(shop);
+                shop.DailyActions(CurrentDate);
+            }
 
-            Shop.AdvanceDay(); // Calculate earnings and remaining products, refills stock if products 25% of total.
             Factory.Production.AdvanceDay(); // Produce 500 products
             Factory.Warehouse.AdvanceDay(); // Send 50% of products produced to shop
 
@@ -74,7 +79,7 @@ namespace ChocoFactory.Services
             
             if (company.RevenueGoalAchieved)
             {
-                Shop shop = new Shop();
+                Shop shop = new Shop(company);
                 company.Shops.Add(shop);
             }
             
