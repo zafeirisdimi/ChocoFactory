@@ -9,42 +9,93 @@ namespace ChocoFactory.Domain
     class Warehouse : Department
     {
 
+        public Factory Factory { get; set; }
+        public Supplier Supplier { get; set; }
+
         //properties
-        public Dictionary<string, int> ProductQuantity { get; set; } = new Dictionary<string, int>() 
+
+        public Dictionary<string, int> ProductQuantity { get; set; } = new Dictionary<string, int>()
         {
-            {"WhiteSchocolate" , 0},
-            {"BlackSchocolate" , 0},
-            {"MilkSchocolate" , 0}
+            {"WhiteChocolate" , 0},
+            {"BlackChocolate" , 0},
+            {"PlainMilkChocolate" , 0},
+            {"AlmondMilkChocolate" , 0},
+            {"HazelnutMilkChocolate" , 0}
         };
         public int SuppliesInKilo { get; set; }
-        List<Product> products;
+        public List<Product> Products { get; set; }
 
-        public GetSupplies(Supplies supplies) 
+        //methods
+        public void GetSupplies()
         {
-            //Supplies.SendSupplies()
+            SuppliesInKilo += Supplier.SendSupplies();
         }
         public int SendSupplies(int kilos)//called from Production
         {
-            //SuppliesInKilo -= kilos;
-            //return
+            SuppliesInKilo -= kilos
+            return kilos
         }
         public void GetProduct(string productName)
         {
-            
-            //Production.CreateProduct();
-            //products.Add(productName);
-            //Update Dictionary;
+            Product newProduct = Factory.Production.SendProduct();
+            Products.Add(newProduct);
+            ProductQuantity[productName]++;
+
         }
         public Product SendProduct(string productName)
         {
-            //products.Remove()
-            //Update Dictionary;
-            //return product;
+            Product productToSend = Products.Find(x => x.Description == productName);
+            Products.Remove(productToSend);
+            ProductQuantity[productName]--;
+            return productToSend
+
+
         }
-        public CheckSupplies()//check for 10% of supplies
+        public bool AreSuppliesLow()//check for 10% of supplies
         {
-            //if supplies < 10% of supplies,
+            if (SuppliesInKilo * 0.1 <= Supplier.Offer.Quantity)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
+        private void RemoveExpiredProducts()
+        {
+            foreach (Product product in Products)
+            {
+                if (product.ExpirationDate > DateTime.Now)
+                {
+                    ProductQuantity[product.Description]--;
+                    Products.Remove(product);
+                }
+            }
+        }
+        public void DailyActions()
+        {
+            if (AreSuppliesLow())
+            {
+                Factory.Account.SendOrder(Supplier.offer);
+                GetSupplies();
+            }
+            RefillProducts("BlackChocolate", Factory.Company.CompanyPolicy.BlackChocolatePercent);
+            RefillProducts("WhiteChocolate", Factory.Company.CompanyPolicy.WhiteChocolatePercent);
+            RefillProducts("PlainMilkChocolate", Factory.Company.CompanyPolicy.MilkChocolatePercent);
+            RefillProducts("AlmondMilkChocolate", Factory.Company.CompanyPolicy.AlmondMilkChocolate);
+            RefillProducts("HazelnutMilkChocolate", Factory.Company.CompanyPolicy.HazelnutMilkChocolate);
+        }
+
+        public void RefillProducts(string productName, double policyPercentage)
+        {
+            for (int i = 1; i <= policyPercentage * 100; i++)
+            {
+                GetProduct(productName);
+               
+            }
+        }
+
 
     }
 }
