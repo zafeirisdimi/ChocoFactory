@@ -70,7 +70,7 @@ namespace ChocoFactory.Domain
        
         private void IsProductQuantityLow()//
         {
-            if (products.Count <= 62)
+            if (Products.Count <= 62)
             {
                 return true;
             }
@@ -86,8 +86,8 @@ namespace ChocoFactory.Domain
             do
             {
                 Product newProduct = ReceiveProduct();
-                products.Add(newProduct);
-            } while (products.Count < 250);
+                Products.Add(newProduct);
+            } while (Products.Count < 250);
         }
 
         private Product ReceiveProduct()//
