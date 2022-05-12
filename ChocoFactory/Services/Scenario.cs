@@ -19,8 +19,6 @@ namespace ChocoFactory.Services
             company.Shops.Add(shop);
         }
 
-
-
         public void AdvanceDay()
         {
             Shop.AdvanceDay(); // Calculate earnings and remaining products, refills stock if products 25% of total.
@@ -40,6 +38,10 @@ namespace ChocoFactory.Services
             
         }
 
+        public bool CheckIfSecondTuesday()
+        {
+            throw new NotImplementedException();
+        }
 
     }
 }
