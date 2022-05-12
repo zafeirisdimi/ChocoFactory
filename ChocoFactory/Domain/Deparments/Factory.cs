@@ -13,7 +13,7 @@ namespace ChocoFactory.Domain
         public Production Production { get; set; }
         public Company Company { get; set; }
 
-        public Account Accounting { get; set; }
+        public Accounting Accounting { get; set; }
 
         
         //methods

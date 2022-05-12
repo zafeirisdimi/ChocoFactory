@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChocoFactory.Domain
 {
-    class Account
+    class Accounting
     {
         //properties
         List<Employee> Employees = new List<Employee>();//list of possible employees of this deparment

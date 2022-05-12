@@ -44,7 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domain\Company.cs" />
-    <Compile Include="Domain\Deparments\Account.cs" />
+    <Compile Include="Domain\Deparments\Accounting.cs" />
     <Compile Include="Domain\Human\CEO.cs" />
     <Compile Include="Domain\Human\Customer.cs" />
     <Compile Include="Domain\Deparments\Deparment.cs" />
