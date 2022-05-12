@@ -9,33 +9,90 @@ namespace ChocoFactory.Domain
     public class Shop
     {
         //properties
-        List<Product> ProductsOnSale;
-        public Dictionary<string, int> ProductQuantity { get; set; } = new Dictionary<string, int>()
+        public List<Product> Products { get; set; }
+        public List<Employee> Employees { get; set; }
+        public Dictionary<string, int> DailyProductsSold { get; set; } = new Dictionary<string, int>()
         {
             {"WhiteSchocolate" , 0},
             {"BlackSchocolate" , 0},
-            {"MilkSchocolate" , 0}
+            {"PlainMilkSchocolate" , 0},
+            {"AlmondMilkSchocolate" , 0},
+            {"HazelnutMilkSchocolate" , 0}
         };
-        List<Customer> Customers = new List<Customer>();
+
+        public double DailyEarnings { get; set; }
+
 
 
         //methods
-        public SellProduct(string productName)
+        public void SellProduct(string productName)
         {
-            //Update productsSale
-            //Update ProductQuantity
-            //
-        }
-        public void ReceiveProduct(Product p)//
-        {
-            //if productsQuantity is low,
-            Factory.Warehouse.SendProduct();
-            //else{}
+            Product productToSell = Products.Find(x => x.Description == productName);
+            DailyEarnings += productToSell.Price;
+            Products.Remove(productToSell);
+            DailyProductsSold[productName]++;
+           
         }
 
-        public void CheckProduct()//
+        public void EndDay()
         {
+            DailyReport();
+            SendDailyEarnings();
+            DailyEarnings = 0;
+            foreach (var productType in DailyProductsSold)
+            {
+                productType.Value = 0;
+            }
+            if (IsProductQuantityLow())
+            {
+                RefillProducts();
+            }
 
+        }
+
+        private void DailyReport()
+        {
+            Console.WriteLine($"ChocoFactory made {DailyEarnings}$ today.");
+            Console.WriteLine("Products Sold:");
+            foreach (var productType in DailyProductsSold)
+            {
+                Console.WriteLine($"\t{productType.Key}:{productType.Value}");
+            }
+        }
+
+
+        private void SendDailyEarnings()
+        {
+            company.Money += DailyEarnings;
+        }
+
+
+       
+        private void IsProductQuantityLow()//
+        {
+            if (products.Count <= 62)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        
+
+        private void RefillProducts()
+        {
+            do
+            {
+                Product newProduct = ReceiveProduct();
+                products.Add(newProduct);
+            } while (products.Count < 250);
+        }
+
+        private Product ReceiveProduct()//
+        {
+            return Factory.Warehouse.SendProduct();
         }
     }
 }
