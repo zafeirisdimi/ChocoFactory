@@ -9,21 +9,10 @@ namespace ChocoFactory.Services
     internal class CustomerService
     {
         Random rnd = new Random();
-
-        private int expectedValueProducts = 10;
-        private int varianceProducts = 10;
         private int maxProducts = 50;
+        private int maxCustomers = 100;
 
-        //private int GaussianDistribution(int max, int expectedValue, int variance)
-        //{
-        //    int randomNumber = rnd.Next();
-        //    int test = max * Math.Exp(-Math.Pow(randomNumber - expectedValue, 2) / (2 * Math.Pow(variance, 2)));
-        //}
-
-
-
-
-        string[] productNames = new string[]
+        private string[] productNames = new string[]
         {
             "WhiteSchocolate",
             "BlackSchocolate",
@@ -42,5 +31,16 @@ namespace ChocoFactory.Services
                 Shop.SellProduct(randomProduct);
             }
         }
+
+        public void RandomCustomers()
+        {
+            int randomNumberOfCustomers = rnd.Next(maxCustomers + 1);
+
+            for (int i = 0; i < randomNumberOfCustomers; i++)
+            {
+                BuyRandomProducts();
+            }
+        }
+
     }
 }
