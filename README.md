@@ -65,7 +65,7 @@ Table of contents
 
 
 ------------------------------------------------------------------------------------------
-
+![factorydiagram](https://github.com/zafeirisdimi/ChocoFactory/blob/master/img/ChocoFactoryDiagram.jpg)
 # /Domain/
 
 
