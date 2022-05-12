@@ -26,6 +26,13 @@ namespace ChocoFactory.Services
 
         public Calendar Calendar { get; } = CultureInfo.InvariantCulture.Calendar;        
 
+        public void Start()
+        {
+            Initialization();
+            AdvanceTime();
+        }
+
+
         public void Initialization()
         {
             Factory factory = new Factory();
