@@ -22,7 +22,7 @@ namespace ChocoFactory.Services
             "HazelnutMilkSchocolate"
         };
 
-        private void DailyPurchases(Shop shop)
+        public void DailyPurchases(Shop shop)
         {
             int numberOfCustomers = rnd.Next(maxCustomers + 1);
 
