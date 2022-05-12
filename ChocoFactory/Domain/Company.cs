@@ -14,7 +14,7 @@ namespace ChocoFactory.Domain
         public List<Factory> Factories { get; set; } = new List<Factory>();
         public List<Shop> Shops { get; set; } = new List<Shop>();
         public List<Employee> Employees { get; set; } = new List<Employee>();
-        public CompanyPolicy CompanyPolicy { get; set; }
+        public CompanyPolicy CompanyPolicy { get; set; } = new CompanyPolicy();
         public bool RevenueGoalAchieved
         {
             get { return Revenue > (decimal)CompanyPolicy.RevenueYearlyGoal * Revenue; ; }
