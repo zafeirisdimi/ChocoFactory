@@ -13,6 +13,7 @@ namespace ChocoFactory.Services
         public double ShopRestockPercent { get; set; } = 0.25;
         public double ShopDiscount { get; set; } = 0.20;
         public decimal GiftMinimumPrice { get; set; } = 30;
+        public DayOfWeek DayOfGift { get; set; } = DayOfWeek.Tuesday;
         public double MinimumRevenueToInvest { get; set; } = 0.25;
         public double RevenueYearlyGoal { get; set; } = 0.15;
 
