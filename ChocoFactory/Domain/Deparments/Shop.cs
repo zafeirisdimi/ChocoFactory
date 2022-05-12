@@ -21,6 +21,7 @@ namespace ChocoFactory.Domain
         };
 
         public double DailyEarnings { get; set; }
+        public string Location { get; set; }
 
 
 
@@ -52,7 +53,7 @@ namespace ChocoFactory.Domain
 
         private void DailyReport()
         {
-            Console.WriteLine($"ChocoFactory made {DailyEarnings}$ today.");
+            Console.WriteLine($"Our shop at {Location} made {DailyEarnings} Euro today.");
             Console.WriteLine("Products Sold:");
             foreach (var productType in DailyProductsSold)
             {
@@ -63,12 +64,12 @@ namespace ChocoFactory.Domain
 
         private void SendDailyEarnings()
         {
-            company.Money += DailyEarnings;
+            company.Capital += DailyEarnings;
         }
 
 
        
-        private void IsProductQuantityLow()//
+        private void IsProductQuantityLow()
         {
             if (Products.Count <= 62)
             {
