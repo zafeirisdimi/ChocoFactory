@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,13 @@ namespace ChocoFactory.Services
     internal class Scenario
     {
         Company company = new Company(); // create Company object
+
+        private DateTime StartingDate = DateTime.Now;
+        private DateTime CurrentDate = DateTime.Now;
+        Calendar calendar = CultureInfo.InvariantCulture.Calendar;
+
+        
+
         public void Initialization()
         {
             Factory factory = new Factory();
@@ -19,11 +27,15 @@ namespace ChocoFactory.Services
             company.Shops.Add(shop);
         }
 
+
+
         public void AdvanceDay()
         {
             Shop.AdvanceDay(); // Calculate earnings and remaining products, refills stock if products 25% of total.
             Factory.Production.AdvanceDay(); // Produce 500 products
             Factory.Warehouse.AdvanceDay(); // Send 50% of products produced to shop
+
+            CurrentDate = calendar.AddDays(CurrentDate, 1);
         }
 
         public void AdvanceYear()
