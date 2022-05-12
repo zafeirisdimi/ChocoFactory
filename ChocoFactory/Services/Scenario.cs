@@ -44,9 +44,9 @@ namespace ChocoFactory.Services
 
         public void AdvanceTime()
         {
-            while (StartingDate != EndingDate)
+            while (CurrentDate != EndingDate)
             {
-                if (CurrentDate.Day == 1 && CurrentDate.Month == 1) // Do this on the first day of the year.
+                if ((CurrentDate.Day == 1 && CurrentDate.Month == 1) || CurrentDate == StartingDate) // Do this on the first day of the year.
                 {
                     YearlyActions();
                 }
@@ -89,7 +89,7 @@ namespace ChocoFactory.Services
 
             bool isDiscountDay = (discountDayOccurences == company.CompanyPolicy.DiscountDayOccurence);
 
-            if (isDiscountDay)
+            if (isDiscountDay || CurrentDate.Day == 1)
                 discountDayOccurences = 0;
 
             return isDiscountDay;
