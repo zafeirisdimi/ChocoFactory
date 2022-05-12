@@ -35,20 +35,27 @@ Table of contents
 <!--ts-->
    * [Domain](#domain)
    * [Deparments](#deparments)
-      * [Deparment](#deparment)
+      * [Deparment(abstract Class)](#deparment)
       * [Account](#account)
       * [Production](#production)
       * [Warehouse](#warehouse)
       * [Factory](#factory)
       * [Shop](#shop)
    * [Human](#human)
+      * [Human(abstract Class)](#human)
       * [CEO](#ceo)
       * [Customer](#customer)
       * [Employee](#employee)
-      * [Human](#human)
       * [Seller](#seller)
       * [Supplier](#supplier)
    * [Products](#products)
+      * [Product(abstract Class)](#product)
+      * [Chocolate(abstract Class)](#chocolate)
+      * [MilkChocolate(abstract Class)](#milkchocolate)
+      * [Customer](#customer)
+      * [Employee](#employee)
+      * [Seller](#seller)
+      * [Supplier](#supplier)
    * [Interfaces](#Interfaces)
    * [Screenshots](#Screenshots)
       * 
@@ -61,6 +68,7 @@ Table of contents
 
 
 ------------------------------------------------------------------------------------------
+
 # /Domain/
 
 
@@ -71,7 +79,7 @@ Table of contents
 | git diff     | git diff       | git diff      |
 
 
-# Deparment(abstract_Class)
+## Deparment(abstract_Class)
 | Properties        | Methods                                                            |
 | ----------------- | ------------------------------------------------------------------ |
 | firstName | getFirstName , setFirstName |
@@ -111,7 +119,15 @@ Table of contents
 | firstName | getFirstName , setFirstName |
 | lastName | getLastName , setLastName |
 
+
 # /Human/
+
+
+## Human (abstract Class)
+| Properties        | Methods                                                            |
+| ----------------- | ------------------------------------------------------------------ |
+| firstName | getFirstName , setFirstName |
+| lastName | getLastName , setLastName |
 
 ## CEO
 | Properties        | Methods                                                            |
@@ -124,6 +140,7 @@ Table of contents
 | ----------------- | ------------------------------------------------------------------ |
 | firstName | getFirstName , setFirstName |
 | lastName | getLastName , setLastName |
+
 
 ## Employee
 | Properties        | Methods                                                            |
@@ -146,31 +163,35 @@ Table of contents
 
 # /Products/
 
+
 # Product(abstract Class)
 | Properties        | Methods                                                            |
 | ----------------- | ------------------------------------------------------------------ |
 | firstName | getFirstName , setFirstName |
 | lastName | getLastName , setLastName |
 
-## Chocolate(abstract Class)
+
+# Chocolate(abstract Class)
 | Properties        | Methods                                                            |
 | ----------------- | ------------------------------------------------------------------ |
 | firstName | getFirstName , setFirstName |
 | lastName | getLastName , setLastName |
 
-### DarkChocolate
+
+# DarkChocolate
 | Properties        | Methods                                                            |
 | ----------------- | ------------------------------------------------------------------ |
 | firstName | getFirstName , setFirstName |
 | lastName | getLastName , setLastName |
 
-### WhiteChocolate
+
+## WhiteChocolate
 | Properties        | Methods                                                            |
 | ----------------- | ------------------------------------------------------------------ |
 | firstName | getFirstName , setFirstName |
 | lastName | getLastName , setLastName |
 
-### MilkChocolate(abstract Class)
+## MilkChocolate(abstract Class)
 | Properties        | Methods                                                            |
 | ----------------- | ------------------------------------------------------------------ |
 | firstName | getFirstName , setFirstName |
