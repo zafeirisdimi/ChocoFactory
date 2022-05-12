@@ -14,6 +14,7 @@ namespace ChocoFactory.Services
         public double ShopDiscount { get; set; } = 0.20;
         public decimal GiftMinimumPrice { get; set; } = 30;
         public double MinimumRevenueToInvest { get; set; } = 0.25;
+        public double RevenueYearlyGoal { get; set; } = 0.15;
 
 
     }
