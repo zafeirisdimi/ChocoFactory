@@ -8,6 +8,20 @@ namespace ChocoFactory.Services
 {
     internal class CustomerService
     {
+        Random rnd = new Random();
+        string[] productNames = new string[]
+        {
+            "WhiteSchocolate",
+            "BlackSchocolate",
+            "PlainMilkSchocolate",
+            "AlmondMilkSchocolate",
+            "HazelnutMilkSchocolate"
+        };
 
+
+        public void BuyRandomProduct()
+        {
+
+        }
     }
 }
