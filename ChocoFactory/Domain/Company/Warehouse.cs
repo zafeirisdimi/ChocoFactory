@@ -26,10 +26,10 @@ namespace ChocoFactory.Domain
         public int SuppliesInKilo { get; set; }
 
         //methods
-        public int SendSupplies(int kilos)//called from Production
+        public void SendSupplies(int kilos)//called from Production
         {
             SuppliesInKilo -= kilos;
-            return kilos;
+            
         }
 
         public void GetProduct(string productName)
@@ -53,19 +53,20 @@ namespace ChocoFactory.Domain
             return SuppliesInKilo * Factory.Company.CompanyPolicy.LowSuppliesThresholdPercent <= Factory.Accounting.LastOrder.Quantity;
         }
 
-        private void RemoveExpiredProducts()
+        private void RemoveExpiredProducts(DateTime currentDate)
         {
             foreach (Product product in Products)
             {
-                if (product.ExpirationDate > DateTime.Now)
+                if (product.ExpirationDate > currentDate)
                 {
                     ProductQuantity[product.Description]--;
                     Products.Remove(product);
                 }
             }
         }
-        public void DailyActions()
+        public void DailyActions(DateTime currentDate)
         {
+            RemoveExpiredProducts(currentDate);
             if (AreSuppliesLow())
             {
                 Factory.Accounting.SendOrder(Factory.Accounting.LastOrder);

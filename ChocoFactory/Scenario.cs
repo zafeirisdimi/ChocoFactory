@@ -25,7 +25,7 @@ namespace ChocoFactory.Services
         }
 
 
-        public Calendar Calendar { get; } = CultureInfo.InvariantCulture.Calendar;        
+        public Calendar Calendar { get; } = CultureInfo.InvariantCulture.Calendar;
 
         public void Start()
         {
@@ -38,7 +38,7 @@ namespace ChocoFactory.Services
         {
             Factory factory = new Factory();
             company.Factories.Add(factory);
-            
+
             Shop shop = new Shop(company);
             company.Shops.Add(shop);
         }
@@ -63,7 +63,7 @@ namespace ChocoFactory.Services
         {
             foreach (Factory factory in company.Factories)
             {
-                factory.Warehouse.DailyActions();          
+                factory.Warehouse.DailyActions(currentDate);
             }
 
             foreach (Shop shop in company.Shops)
@@ -78,22 +78,23 @@ namespace ChocoFactory.Services
         {
             foreach (Factory factory in company.Factories)
             {
-                if (factory.Warehouse.SuppliesInKilo>)
+                while (factory.Warehouse.SuppliesInKilo >= factory.Production.ProductionPolicy.ExperimentalChocolateSupplies)
                 {
-
+                    factory.Shops
                 }
+                
 
             }
             foreach (Factory factory in company.Factories)
             {
                 factory.Accounting.ReceiveOffers();
             }
-            
+
             if (company.RevenueGoalAchieved)
             {
                 Shop shop = new Shop(company);
                 company.Shops.Add(shop);
-            }           
+            }
         }
 
         public bool IsDiscountDay()
