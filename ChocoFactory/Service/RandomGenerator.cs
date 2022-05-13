@@ -27,7 +27,7 @@ namespace ChocoFactory.Services
         public static int Quantity()       //create a random Quantity number with limitis [300-1000]
         {
             Thread.Sleep(1);
-            int num = rnd.Next(50000, 100001);
+            int num = rnd.Next(10000, 30001);
             return num;
         }
 
