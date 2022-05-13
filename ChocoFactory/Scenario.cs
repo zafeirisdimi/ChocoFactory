@@ -39,8 +39,10 @@ namespace ChocoFactory.Services
             Factory factory = new Factory();
             company.Factories.Add(factory);
 
-            Shop shop = new Shop(company);
+            Shop shop = new Shop(company, factory);
             company.Shops.Add(shop);
+
+            factory.Shops.Add(shop);
         }
 
         public void AdvanceTime()
@@ -92,7 +94,8 @@ namespace ChocoFactory.Services
 
             if (company.RevenueGoalAchieved)
             {
-                Shop shop = new Shop(company);
+                
+                Shop shop = new Shop(company, DataGenerator.RandomFactory(company));
                 company.Shops.Add(shop);
             }
         }
