@@ -136,26 +136,22 @@ Table of contents
 | Company            | Company     | get, set   |
 | List of Product        | Products      | get, set    |
 | List of Employee            | Employees        | get, set    |
-| Dictionary string, int            | DailyProductsSold        | {"WhiteChocolate" , 0},
-            {"BlackChocolate" , 0},
-            {"PlainMilkChocolate" , 0},
-            {"AlmondMilkChocolate" , 0},
-            {"HazelnutMilkChocolate" , 0}   |
+| Dictionary (string, int )   | DailyProductsSold        | {"WhiteChocolate" ,"BlackChocolate" ,"PlainMilkChocolate" ,"AlmondMilkChocolate" ,"HazelnutMilkChocolate" } 
 | string            | Location        | get, set    |
 | decimal            | DailyEarnings        | get, set    |
    
 
 | Extra Methods         |      Description                                                      |
 | ----------------- | ------------------------------------------------------------------ |
-| decimal SellProduct(string productName) | |
-| decimal ServeCustomer(List string productsToSell) |  |
-| void DailyActions(DateTime date) |  |
-| void DailyReport() |  |
-| void SendDailyEarnings() |  |
-| bool IsProductQuantityLow() |  |
-| void RefillProducts() |  |
-| Product ReceiveProduct() |  |
-| RemoveExpiredProducts(DateTime currentDate) |  |
+| decimal SellProduct(string productName) | Sell Product, add the price Of Product in Daily, increase DailyProductsSold|
+| decimal ServeCustomer(List string productsToSell) | Get the order of Customer and check if the products have value more than 30 euro|
+| void DailyActions(DateTime date) | What do extactly every day the object Shop |
+| void DailyReport() | Daily report of sales and earnings|
+| void SendDailyEarnings() |  The Shop send the daily earnings to object Company|
+| bool IsProductQuantityLow() | Check the Avalaible Quantity of Products of Shop|
+| void RefillProducts() | Refill Products,if the IsProductQuantityLow() is true |
+| Product ReceiveProduct() | Receive Product from Warehouse |
+| RemoveExpiredProducts(DateTime currentDate) | Check if the Products have passed the ExpiredDate and it throws away.|
 
 
 
@@ -275,29 +271,9 @@ Table of contents
 ##### [Back to >Top<](#chocofactory)
 
 ## PlainMilkChocolate
-| Type           | Properties       | Methods |
-| :---:          |     :---:        |  :---:  |
-| int            | DepartmentID     | get, set   |
-| string         | Description      | get, set    |
-| int            | ManagerID        | get, set    |
-
-##### [Back to >Top<](#chocofactory)
-
 ## AlmondMilkChocolate
-| Type           | Properties       | Methods |
-| :---:          |     :---:        |  :---:  |
-| int            | DepartmentID     | get, set   |
-| string         | Description      | get, set    |
-| int            | ManagerID        | get, set    |
-
-##### [Back to >Top<](#chocofactory)
-
 ## HazelnutMilkChocolate
-| Type           | Properties       | Methods |
-| :---:          |     :---:        |  :---:  |
-| int            | DepartmentID     | get, set   |
-| string         | Description      | get, set    |
-| int            | ManagerID        | get, set    |
+
 
 
 
