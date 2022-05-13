@@ -77,6 +77,7 @@ Table of contents
 
 
 ## Deparment
+### (abstract Class)
 | Properties        | Methods                                                            |
 | ----------------- | ------------------------------------------------------------------ |
 | firstName | getFirstName , setFirstName |
@@ -120,7 +121,8 @@ Table of contents
 # /Human/
 
 
-## Human 
+## Human
+### (abstract Class)
 | Properties        | Methods                                                            |
 | ----------------- | ------------------------------------------------------------------ |
 | firstName | getFirstName , setFirstName |
@@ -162,6 +164,7 @@ Table of contents
 
 
 ## Product
+### (abstract Class)
 | Properties        | Methods                                                            |
 | ----------------- | ------------------------------------------------------------------ |
 | firstName | getFirstName , setFirstName |
@@ -188,24 +191,30 @@ Table of contents
 | firstName | getFirstName , setFirstName |
 | lastName | getLastName , setLastName |
 
+
 ## MilkChocolate
-| Properties        | Methods                                                            |
-| ----------------- | ------------------------------------------------------------------ |
-| firstName | getFirstName , setFirstName |
-| lastName | getLastName , setLastName |
-### PlainMilkChocolate
-| Properties        | Methods                                                            |
-| ----------------- | ------------------------------------------------------------------ |
-| firstName | getFirstName , setFirstName |
-| lastName | getLastName , setLastName |
-
-### AlmondMilkChocolate
+### (abstract Class)
 | Properties        | Methods                                                            |
 | ----------------- | ------------------------------------------------------------------ |
 | firstName | getFirstName , setFirstName |
 | lastName | getLastName , setLastName |
 
-### HazelnutMilkChocolate
+
+## PlainMilkChocolate
+| Properties        | Methods                                                            |
+| ----------------- | ------------------------------------------------------------------ |
+| firstName | getFirstName , setFirstName |
+| lastName | getLastName , setLastName |
+
+
+## AlmondMilkChocolate
+| Properties        | Methods                                                            |
+| ----------------- | ------------------------------------------------------------------ |
+| firstName | getFirstName , setFirstName |
+| lastName | getLastName , setLastName |
+
+
+## HazelnutMilkChocolate
 | Properties        | Methods                                                            |
 | ----------------- | ------------------------------------------------------------------ |
 | firstName | getFirstName , setFirstName |
