@@ -4,7 +4,7 @@
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 
-# CHOCOFACTORY
+# 🏭CHOCOFACTORY
 
 
 <details><summary><strong>Description(Greek)</strong></summary>
@@ -30,10 +30,11 @@
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Table of contents
+📋Table of contents
 =================
 
 <!--ts-->
+
    * [Domain](#domain)
    * [Deparments](#deparments)
       * [Deparment(abstract Class)](#deparment)
@@ -73,7 +74,7 @@ Table of contents
 
 ##### [Back to >Top<](#chocofactory)
 
-## Accounting
+## 🧮Accounting
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
 | List type of Supplier | Suppliers        | void ReceiveOffer()  |
@@ -83,7 +84,7 @@ Table of contents
 
 ##### [Back to >Top<](#chocofactory)
 
-## Production
+## 🏦Production
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
 | Factory            | Factory     | get, set   |
@@ -105,7 +106,7 @@ Table of contents
 
 ##### [Back to >Top<](#chocofactory)
 
-## Factory
+## 🏫Factory
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
 | Warehouse          | Warehouse     | get, set   |
@@ -115,7 +116,7 @@ Table of contents
 
 ##### [Back to >Top<](#chocofactory)
 
-## Shop
+## 🏪Shop
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
 | Company            | Company     | get, set   |
@@ -143,7 +144,7 @@ Table of contents
 
 # /Human/ 
 
-## Human
+## 🧑Human
 ### (abstract Class)
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
@@ -158,7 +159,7 @@ Table of contents
 - Employee
 - Seller
 
-## Supplier
+## 👴Supplier
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
 | int            | ID     | get, set   |
@@ -173,7 +174,7 @@ Table of contents
 # /Products/
 
 
-## Product
+## 🍫Product
 ### (abstract Class)
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
@@ -193,7 +194,7 @@ Table of contents
 
 ## Policy
 
-## CompanyPolicy
+## 👨‍💼CompanyPolicy
 
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
@@ -226,7 +227,7 @@ Table of contents
 | decimal      | HazelnutMilkChocolatePrice        | get, set    |
 
 
-## ProductionPolicy
+## 👩‍💼ProductionPolicy
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
 | int            | BlackChocolateSupplies     | get, set   |
@@ -237,13 +238,13 @@ Table of contents
 
 
 
-## Services
+## 🔨Services
 - CustomerService
 - SupplierService
 - RandomGenerator
 
 
-## Interfaces
+## ⏏️Interfaces
 (loading....)
 - IDeparmentModel
 - IFactoryModel
@@ -253,25 +254,33 @@ Table of contents
 - IOrderModel
 - IProductModel
 
+## 🏢Company
+| Type           | Properties       | Methods |
+| :---:          |     :---:        |  :---:  |
 
-## Business Logic Diagram
+
+## 📉Business Logic Diagram
 ------------------------------------------------------------------------------------------
 
 ![Business Logic](https://github.com/zafeirisdimi/ChocoFactory/blob/master/img/MicrosoftTeams-image%20(1).png)
 
 ------------------------------------------------------------------------------------------
+## 🎖️Tasks
 
-## Technologies + recourses
+## 🖥️Technologies + recourses
 - Programming Language C#
 - Framework .NET 4.7.3
 - Console Application
 - [Visual Studio Community Edition 2019](https://visualstudio.microsoft.com/downloads/)
 - [Microsoft technical documentation](https://docs.microsoft.com/en-us/)
+
+
 ##### [Back to >Top<](#chocofactory)
+
 ------------------------------------------------------------------------------------------
-## Team
-- [@ioannis-thyris](https://github.com/ioannis-thyris)
-- [@GitEmm](https://github.com/GitEmm)
-- [@zafeirisdimi](https://github.com/zafeirisdimi)
-- [@StaurosGouleas](https://www.github.com/StaurosGouleas)
+## 🤝Team
+- [👨@ioannis-thyris](https://github.com/ioannis-thyris)
+- [🧑@GitEmm](https://github.com/GitEmm)
+- [👨@zafeirisdimi](https://github.com/zafeirisdimi)
+- [🧔@StaurosGouleas](https://www.github.com/StaurosGouleas)
 
