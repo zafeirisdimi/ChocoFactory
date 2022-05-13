@@ -254,10 +254,10 @@ Table of contents
 - IProductModel
 
 
-## Screenshots
+## Business Logic Diagram
 ------------------------------------------------------------------------------------------
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![Business Logic](https://github.com/zafeirisdimi/ChocoFactory/blob/master/img/MicrosoftTeams-image%20(1).png)
 
 ------------------------------------------------------------------------------------------
 
