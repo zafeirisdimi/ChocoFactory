@@ -254,7 +254,7 @@ Table of contents
 - IProductModel
 
 
-## Screenshots
+## Business Logic Diagram
 ------------------------------------------------------------------------------------------
 
 ![Business Logic](https://github.com/zafeirisdimi/ChocoFactory/blob/master/img/MicrosoftTeams-image%20(1).png)
