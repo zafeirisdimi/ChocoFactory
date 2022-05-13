@@ -77,26 +77,9 @@ namespace ChocoFactory.Services
 
         public void YearlyActions()
         {
-            foreach (Factory factory in company.Factories)
-            {
-                while (factory.Warehouse.SuppliesInKilo >= factory.Production.ProductionPolicy.ExperimentalChocolateSupplies)
-                {
-                    factory.Warehouse.GetProduct("ExperimentalProduct");
-                   
-                }
-                while (factory.Warehouse.Products.Any(x=>x.Description=="ExperimentalProduct"))
-                {
-                    foreach (Shop shop in factory.Shops)
-                    {
-                        shop.ReceiveProduct("ExperimentalProduct");
-                    }
+            CreateAndDistributeExperimentalProducts();
 
-                }
-              
-                
 
-            }
-           
             foreach (Factory factory in company.Factories)
             {
                 factory.Accounting.ReceiveOffers();
@@ -122,6 +105,29 @@ namespace ChocoFactory.Services
                 discountDayOccurences = 0;
 
             return isDiscountDay;
+        }
+
+        public void CreateAndDistributeExperimentalProducts()
+        {
+            foreach (Factory factory in company.Factories)
+            {
+                while (factory.Warehouse.SuppliesInKilo >= factory.Production.ProductionPolicy.ExperimentalChocolateSupplies)
+                {
+                    factory.Warehouse.GetProduct("ExperimentalProduct");
+
+                }
+                while (factory.Warehouse.Products.Any(x => x.Description == "ExperimentalProduct"))
+                {
+                    foreach (Shop shop in factory.Shops)
+                    {
+                        shop.ReceiveProduct("ExperimentalProduct");
+                    }
+
+                }
+
+
+
+            }
         }
 
     }
