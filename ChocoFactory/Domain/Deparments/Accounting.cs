@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ChocoFactory.Services;
 
 namespace ChocoFactory.Domain
 {
     class Accounting
     {
+        // fields
+        SupplierService supplierService= new SupplierService();
+
         //properties
         public Factory Factory { get; set; }
-        List<Employee> Employees = new List<Employee>();//list of possible employees of this deparment
-        List<Offer> AvailableOffers = new List<Offer>();// list of available offers of possible suppliers
+        public List<Employee> Employees { get; set; } = new List<Employee>();//list of possible employees of this deparment
+        public List<Offer> AvailableOffers { get; set; } = new List<Offer>();// list of available offers of possible suppliers
         public Supplier LastSupplier { get; set; }// the last supplier that send us offer
         public Order LastOrder { get; set; }
 
@@ -19,13 +23,7 @@ namespace ChocoFactory.Domain
         public void ReceiveOffers()
         {
             //service getSupplier
-
-            for (int i = 0; i < Factory.Company.CompanyPolicy.NumberOfOffers; i++)
-            {
-                Supplier supplier = new Supplier();
-                Suppliers.Add(supplier);
-                Offer offerNew = Supplier.SendOffer();
-            }
+            AvailableOffers = new List<Offer>(supplierService.Offers(Factory));
 
             AvailableOffers.Add(offerNew);
             Console.WriteLine("[New offer from Supplier is delivered !!!]");

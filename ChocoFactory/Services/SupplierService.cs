@@ -10,7 +10,7 @@ namespace ChocoFactory.Services
     internal class SupplierService
     {
 
-        public List<Offer> GetOffers(Factory factory)
+        public List<Offer> Offers(Factory factory)
         {
             List<Offer> offers = new List<Offer>();
 
