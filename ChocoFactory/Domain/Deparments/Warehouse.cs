@@ -70,7 +70,7 @@ namespace ChocoFactory.Domain
             {
                 Factory.Accounting.SendOrder(Factory.Accounting.LastOrder);
             }
-            CreateDailyProducts();
+            GetDailyProducts();
         }
 
         public void RefillProduct(string productName, double policyPercentage)
@@ -81,7 +81,7 @@ namespace ChocoFactory.Domain
             }
         }
 
-        public void CreateDailyProducts()
+        public void GetDailyProducts()
         {
             RefillProduct("BlackChocolate", Factory.Company.CompanyPolicy.BlackChocolatePercent);
             RefillProduct("WhiteChocolate", Factory.Company.CompanyPolicy.WhiteChocolatePercent);
