@@ -63,8 +63,7 @@ namespace ChocoFactory.Services
         {
             foreach (Factory factory in company.Factories)
             {
-                factory.Warehouse.DailyActions(); // Send 50% of products produced to shop
-
+                factory.Warehouse.DailyActions();          
             }
 
             foreach (Shop shop in company.Shops)
@@ -73,22 +72,20 @@ namespace ChocoFactory.Services
                 customerService.DailyPurchases(shop);
                 shop.DailyActions(CurrentDate);
             }
-
-
-            //Factory.Production.AdvanceDay(); // Produce 500 products
-
         }
 
         public void YearlyActions()
         {
-            Factory.Accounting.GetOffers();
+            foreach (Factory factory in company.Factories)
+            {
+                factory.Accounting.ReceiveOffers();
+            }
             
             if (company.RevenueGoalAchieved)
             {
                 Shop shop = new Shop(company);
                 company.Shops.Add(shop);
-            }
-            
+            }           
         }
 
         public bool IsDiscountDay()
