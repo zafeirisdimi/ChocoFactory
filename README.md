@@ -44,19 +44,8 @@ Table of contents
       * [Shop](#shop)
    * [Human](#human)
       * [Human(abstract Class)](#human)
-      * [CEO](#ceo)
-      * [Customer](#customer)
-      * [Employee](#employee)
-      * [Seller](#seller)
       * [Supplier](#supplier)
    * [Products](#products)
-      * [Product (abstract Class)](#product)
-      * [Chocolate (abstract Class)](#chocolate)
-      * [WhiteChocolate](#whitechocolate)
-      * [MilkChocolate (abstract Class)](#milkchocolate)
-      * [PlainMilkChocolate](#plainMilkChocolate)
-      * [AlmondMilkChocolate](#almondMilkChocolate)
-      * [HazelnutMilkChocolate](#hazelnutMilkChocolate)
    * [Interfaces](#Interfaces)
    * [Screenshots](#Screenshots)
    * [Team](#team)
@@ -136,11 +125,7 @@ Table of contents
 | Company            | Company     | get, set   |
 | List of Product        | Products      | get, set    |
 | List of Employee            | Employees        | get, set    |
-| Dictionary string, int            | DailyProductsSold        | {"WhiteChocolate" , 0},
-            {"BlackChocolate" , 0},
-            {"PlainMilkChocolate" , 0},
-            {"AlmondMilkChocolate" , 0},
-            {"HazelnutMilkChocolate" , 0}   |
+| Dictionary string, int            | DailyProductsSold        | {"WhiteChocolate" ,"BlackChocolate" , "PlainMilkChocolate","AlmondMilkChocolate",HazelnutMilkChocolate |
 | string            | Location        | get, set    |
 | decimal            | DailyEarnings        | get, set    |
    
@@ -173,13 +158,10 @@ Table of contents
 | char            | Sex        | get, set    |
 
 
-## CEO
-
-## Customer
-
-## Employee
-
-## Seller
+- CEO
+- Customer
+- Employee
+- Seller
 
 ## Supplier
 | Type           | Properties       | Methods |
@@ -216,6 +198,15 @@ Table of contents
 
 ##### [Back to >Top<](#chocofactory)
 
+# Interfaces
+(loading....)
+- IDeparmentModel
+- IFactoryModel
+- IHumanModel
+- IMaterialModel
+- IOfferModel
+- IOrderModel
+- IProductModel
 
 ## Screenshots
 ------------------------------------------------------------------------------------------
