@@ -28,7 +28,7 @@ namespace ChocoFactory.Domain
 
         public  Order SendOrder(Offer offer)
         {
-            Offer bestOffer = CheckBestOffer();
+            Offer bestOffer = BestOffer();
             //send this offer as order to supplier
             Order order = new Order(bestOffer, Factory);
 
@@ -41,17 +41,22 @@ namespace ChocoFactory.Domain
             return order;
         }
 
-        public Offer CheckBestOffer()
+        public Offer BestOffer()
         {
-            Offer offer0 = AvailableOffers[0];
-            
-            foreach (var offer in AvailableOffers)//Criteria for best offer(lower price and higher quality)
+            double bestValue = 0;
+            Offer bestOffer = null;
+
+            foreach (Offer offer in AvailableOffers)
             {
-                if ((offer.PricePerKilo < offer0.PricePerKilo) && (offer.Quality > offer0.Quality)) // This only checks of the price as it is.
-                    offer0 = offer;
+                double value = OfferValue(offer);
+
+                if(value > bestValue)
+                {
+                    bestValue = value;
+                    bestOffer = offer;
+                }
             }
-            Console.WriteLine("[Check for the best price Offer is completed!]");
-            return offer0;
+            return bestOffer;
         }
 
         private double OfferValue(Offer offer)
