@@ -53,5 +53,12 @@ namespace ChocoFactory.Domain
             Console.WriteLine("[Check for the best price Offer is completed!]");
             return offer0;
         }
+
+        private double OfferValue(Offer offer)
+        {
+            int quality = (int)offer.Quality;
+            double pricePerKilo = (double)offer.PricePerKilo;
+            return quality / (quality + pricePerKilo);
+        }
     }
 }
