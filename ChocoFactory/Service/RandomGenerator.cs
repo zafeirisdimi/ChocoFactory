@@ -10,14 +10,14 @@ namespace ChocoFactory.Services
 {
     public  static class DataGenerator
     {
-        public  static decimal PricePerKiloFake()  //create a random Quality indicator with limits[1-20]
+        public  static decimal PricePerKilo()  //create a random Quality indicator with limits[1-20]
         {
             var random = new Random();
             Thread.Sleep(1);
             decimal number = random.Next(1, 21);
             return number;
         }
-        public  static Quality QualityFake()       //Create a random Object Quality
+        public  static Quality Quality()       //Create a random Object Quality
         {
             var rnd = new Random();
             Thread.Sleep(1);
@@ -25,7 +25,7 @@ namespace ChocoFactory.Services
             int index = rnd.Next(0, values.Length);
             return (Quality)values.GetValue(index);
         }
-        public static int QuantityFake()       //create a random Quantity number with limitis [0-1000]
+        public static int Quantity()       //create a random Quantity number with limitis [0-1000]
         {
             var r = new Random();
             Thread.Sleep(1);
