@@ -37,7 +37,7 @@ Table of contents
    * [Domain](#domain)
    * [Deparments](#deparments)
       * [Deparment(abstract Class)](#deparment)
-      * [Account](#account)
+      * [Account](#accounting)
       * [Production](#production)
       * [Warehouse](#warehouse)
       * [Factory](#factory)
@@ -63,13 +63,6 @@ Table of contents
 
 
 # /Deparments/
-| Left-aligned | Center-aligned | Right-aligned |
-| :---         |     :---:      |          ---: |
-| git status   | git status     | git status    |
-| git diff     | git diff       | git diff      |
-
-##### [Back to >Top<](#chocofactory)
-
 ## Deparment
 ### (abstract Class)
 | Type           | Properties       | Methods |
@@ -80,7 +73,7 @@ Table of contents
 
 ##### [Back to >Top<](#chocofactory)
 
-## Account
+## Accounting
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
 | List type of Supplier | Suppliers        | void ReceiveOffer()  |
@@ -168,14 +161,12 @@ Table of contents
 ## Supplier
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
-| int            | DepartmentID     | get, set   |
-| string         | Description      | get, set    |
-| int            | ManagerID        | get, set    |
+| int            | ID     | get, set   |
 
 | Extra Methods         |      Description                                                      |
 | ----------------- | ------------------------------------------------------------------ |
-| int SendSupplies(parameter Order) | Send Supplies from Supplier to Production|
-| Offer SendOffer() | Send Offer to Accounting Deparment |
+| void SendSupplies(Order order)| Send Supplies from Supplier to Production|
+| Offer SendOffer(decimal pricePerKilo, Quality quality, int suppliesKilos) | Send Offer to Accounting Deparment |
 
 ##### [Back to >Top<](#chocofactory)
 
