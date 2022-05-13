@@ -37,7 +37,7 @@ Table of contents
    * [Domain](#domain)
    * [Deparments](#deparments)
       * [Deparment(abstract Class)](#deparment)
-      * [Account](#account)
+      * [Account](#accounting)
       * [Production](#production)
       * [Warehouse](#warehouse)
       * [Factory](#factory)
@@ -63,13 +63,6 @@ Table of contents
 
 
 # /Deparments/
-| Left-aligned | Center-aligned | Right-aligned |
-| :---         |     :---:      |          ---: |
-| git status   | git status     | git status    |
-| git diff     | git diff       | git diff      |
-
-##### [Back to >Top<](#chocofactory)
-
 ## Deparment
 ### (abstract Class)
 | Type           | Properties       | Methods |
@@ -80,7 +73,7 @@ Table of contents
 
 ##### [Back to >Top<](#chocofactory)
 
-## Account
+## Accounting
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
 | List type of Supplier | Suppliers        | void ReceiveOffer()  |
