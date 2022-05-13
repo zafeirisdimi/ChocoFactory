@@ -47,11 +47,12 @@ Table of contents
       * [Supplier](#supplier)
    * [Products](#products)
    * [Policy](#policy)
+   * [Service](#service)
    * [Interfaces](#interfaces)
    * [Screenshots](#screenshots)
    * [Team](#team)
    * [Technologies](#technologies)
-   * 
+   
 <!--te-->
                                                                                                                
 
@@ -233,6 +234,7 @@ Table of contents
 | decimal      | AlmondMilkChocolatePrice        | get, set    |
 | decimal      | HazelnutMilkChocolatePrice        | get, set    |
 
+
 ## ProductionPolicy
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
@@ -243,7 +245,14 @@ Table of contents
 | int            | ExperimentalChocolateSupplies        | get, set    |
 
 
-# Interfaces
+
+## Services
+- CustomerService
+- SupplierService
+- RandomGenerator
+
+
+## Interfaces
 (loading....)
 - IDeparmentModel
 - IFactoryModel
