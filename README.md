@@ -62,10 +62,11 @@ Table of contents
    * [Team](#team)
    * [Technologies](#technologies)
 <!--te-->
+                                                                                                               
 
-
-------------------------------------------------------------------------------------------
 ![factorydiagram](https://github.com/zafeirisdimi/ChocoFactory/blob/master/img/ChocoFactoryDiagram.drawio.png)
+------------------------------------------------------------------------------------------------------------------------------
+
 # /Domain/
 
 
@@ -75,77 +76,104 @@ Table of contents
 | git status   | git status     | git status    |
 | git diff     | git diff       | git diff      |
 
+##### [Back to >Top<](#chocofactory)
 
 ## Deparment
 ### (abstract Class)
-| Properties        | Methods                                                            |
-| ----------------- | ------------------------------------------------------------------ |
-| firstName | getFirstName , setFirstName |
-| lastName | getLastName , setLastName |
+| Type           | Properties       | Methods |
+| :---:          |     :---:        |  :---:  |
+| int            | DepartmentID     | get, set   |
+| string         | Description      | get, set    |
+| int            | ManagerID        | get, set    |
 
+##### [Back to >Top<](#chocofactory)
 
 ## Account
-| Properties        | Methods                                                            |
-| ----------------- | ------------------------------------------------------------------ |
-| firstName | getFirstName , setFirstName |
-| lastName | getLastName , setLastName |
+| Type           | Properties       | Methods |
+| :---:          |     :---:        |  :---:  |
+| List<Supplier> | Suppliers        | void ReceiveOffer()  |
+| List<Employee> | Employees        | Order SendOrder(parameter Offer)   |
+| List<Offer>    | AvailableOffers  | Offer CheckBestOffer()    |
+| Supplier       | supplierLast     | ---- |
 
+##### [Back to >Top<](#chocofactory)
 
 ## Production
-| Properties        | Methods                                                            |
-| ----------------- | ------------------------------------------------------------------ |
-| firstName | getFirstName , setFirstName |
-| lastName | getLastName , setLastName |
+| Type           | Properties       | Methods |
+| :---:          |     :---:        |  :---:  |
+| int            | DepartmentID     | get, set   |
+| string         | Description      | get, set    |
+| int            | ManagerID        | get, set    |
 
+##### [Back to >Top<](#chocofactory)
 
 ## Warehouse
-| Properties        | Methods                                                            |
-| ----------------- | ------------------------------------------------------------------ |
-| firstName | getFirstName , setFirstName |
-| lastName | getLastName , setLastName |
+| Type           | Properties       | Methods |
+| :---:          |     :---:        |  :---:  |
+| int            | DepartmentID     | get, set   |
+| string         | Description      | get, set    |
+| int            | ManagerID        | get, set    |
 
+##### [Back to >Top<](#chocofactory)
 
 ## Factory
-| Properties        | Methods                                                            |
-| ----------------- | ------------------------------------------------------------------ |
-| firstName | getFirstName , setFirstName |
-| lastName | getLastName , setLastName |
+| Type           | Properties       | Methods |
+| :---:          |     :---:        |  :---:  |
+| int            | DepartmentID     | get, set   |
+| string         | Description      | get, set    |
+| int            | ManagerID        | get, set    |
+
+##### [Back to >Top<](#chocofactory)
 
 ## Shop
-| Properties        | Methods                                                            |
-| ----------------- | ------------------------------------------------------------------ |
-| firstName | getFirstName , setFirstName |
-| lastName | getLastName , setLastName |
+| Type           | Properties       | Methods |
+| :---:          |     :---:        |  :---:  |
+| int            | DepartmentID     | get, set   |
+| string         | Description      | get, set    |
+| int            | ManagerID        | get, set    |
 
+##### [Back to >Top<](#chocofactory)
 
-# /Human/
-
+# /Human/ 
 
 ## Human
 ### (abstract Class)
-| Properties        | Methods                                                            |
-| ----------------- | ------------------------------------------------------------------ |
-| firstName | getFirstName , setFirstName |
-| lastName | getLastName , setLastName |
+| Type           | Properties       | Methods |
+| :---:          |     :---:        |  :---:  |
+| string            | FirstName     | get, set   |
+| string         | LastName      | get, set    |
+| double            | PhoneNumber         | get, set    |
+| char            | Sex        | get, set    |
+
+##### [Back to >Top<](#chocofactory)
 
 ## CEO
-| Properties        | Methods                                                            |
-| ----------------- | ------------------------------------------------------------------ |
-| firstName | getFirstName , setFirstName |
-| lastName | getLastName , setLastName |
+| Type           | Properties       | Methods |
+| :---:          |     :---:        |  :---:  |
+| int            | DepartmentID     | get, set   |
+| string         | Description      | get, set    |
+| int            | ManagerID        | get, set    |
+
+##### [Back to >Top<](#chocofactory)
 
 ## Customer
-| Properties        | Methods                                                            |
-| ----------------- | ------------------------------------------------------------------ |
-| firstName | getFirstName , setFirstName |
-| lastName | getLastName , setLastName |
+| Type           | Properties       | Methods |
+| :---:          |     :---:        |  :---:  |
+| int            | DepartmentID     | get, set   |
+| string         | Description      | get, set    |
+| int            | ManagerID        | get, set    |
 
+##### [Back to >Top<](#chocofactory)
 
 ## Employee
-| Properties        | Methods                                                            |
-| ----------------- | ------------------------------------------------------------------ |
-| firstName | getFirstName , setFirstName |
-| lastName | getLastName , setLastName |
+| Type           | Properties       | Methods |
+| :---:          |     :---:        |  :---:  |
+| int            | ID     | get, set   |
+| decimal         | Salary      | get, set    |
+| int            | ManagerID        | get, set    |
+| int            | DeparmentID        | get, set    |
+
+##### [Back to >Top<](#chocofactory)
 
 ## Seller
 | Properties        | Methods                                                            |
@@ -153,74 +181,96 @@ Table of contents
 | firstName | getFirstName , setFirstName |
 | lastName | getLastName , setLastName |
 
-## Supplier
-| Properties        | Methods                                                            |
-| ----------------- | ------------------------------------------------------------------ |
-| firstName | getFirstName , setFirstName |
-| lastName | getLastName , setLastName |
+##### [Back to >Top<](#chocofactory)
 
+## Supplier
+| Type           | Properties       | Methods |
+| :---:          |     :---:        |  :---:  |
+| int            | DepartmentID     | get, set   |
+| string         | Description      | get, set    |
+| int            | ManagerID        | get, set    |
+
+| Extra Methods         |      Description                                                      |
+| ----------------- | ------------------------------------------------------------------ |
+| int SendSupplies(parameter Order) | Send Supplies from Supplier to Production|
+| Offer SendOffer() | Send Offer to Accounting Deparment |
+
+##### [Back to >Top<](#chocofactory)
 
 # /Products/
 
 
 ## Product
 ### (abstract Class)
-| Properties        | Methods                                                            |
-| ----------------- | ------------------------------------------------------------------ |
-| firstName | getFirstName , setFirstName |
-| lastName | getLastName , setLastName |
+| Type           | Properties       | Methods |
+| :---:          |     :---:        |  :---:  |
+| int            | ID     | get, set   |
+| Offer         | Offer      | get, set    |
+| int            | OrderID        | get, set    |
 
+##### [Back to >Top<](#chocofactory)
 
 ## Chocolate 
-| Properties        | Methods                                                            |
-| ----------------- | ------------------------------------------------------------------ |
-| firstName | getFirstName , setFirstName |
-| lastName | getLastName , setLastName |
+| Type           | Properties       | Methods |
+| :---:          |     :---:        |  :---:  |
+| int            | DepartmentID     | get, set   |
+| string         | Description      | get, set    |
+| int            | ManagerID        | get, set    |
 
+##### [Back to >Top<](#chocofactory)
 
 ## DarkChocolate
-| Properties        | Methods                                                            |
-| ----------------- | ------------------------------------------------------------------ |
-| firstName | getFirstName , setFirstName |
-| lastName | getLastName , setLastName |
+| Type           | Properties       | Methods |
+| :---:          |     :---:        |  :---:  |
+| int            | DepartmentID     | get, set   |
+| string         | Description      | get, set    |
+| int            | ManagerID        | get, set    |
 
+##### [Back to >Top<](#chocofactory)
 
 ## WhiteChocolate
-| Properties        | Methods                                                            |
-| ----------------- | ------------------------------------------------------------------ |
-| firstName | getFirstName , setFirstName |
-| lastName | getLastName , setLastName |
+| Type           | Properties       | Methods |
+| :---:          |     :---:        |  :---:  |
+| int            | DepartmentID     | get, set   |
+| string         | Description      | get, set    |
+| int            | ManagerID        | get, set    |
 
+##### [Back to >Top<](#chocofactory)
 
 ## MilkChocolate
 ### (abstract Class)
-| Properties        | Methods                                                            |
-| ----------------- | ------------------------------------------------------------------ |
-| firstName | getFirstName , setFirstName |
-| lastName | getLastName , setLastName |
+| Type           | Properties       | Methods |
+| :---:          |     :---:        |  :---:  |
+| int            | DepartmentID     | get, set   |
+| string         | Description      | get, set    |
+| int            | ManagerID        | get, set    |
 
+##### [Back to >Top<](#chocofactory)
 
 ## PlainMilkChocolate
-| Properties        | Methods                                                            |
-| ----------------- | ------------------------------------------------------------------ |
-| firstName | getFirstName , setFirstName |
-| lastName | getLastName , setLastName |
+| Type           | Properties       | Methods |
+| :---:          |     :---:        |  :---:  |
+| int            | DepartmentID     | get, set   |
+| string         | Description      | get, set    |
+| int            | ManagerID        | get, set    |
 
+##### [Back to >Top<](#chocofactory)
 
 ## AlmondMilkChocolate
-| Properties        | Methods                                                            |
-| ----------------- | ------------------------------------------------------------------ |
-| firstName | getFirstName , setFirstName |
-| lastName | getLastName , setLastName |
+| Type           | Properties       | Methods |
+| :---:          |     :---:        |  :---:  |
+| int            | DepartmentID     | get, set   |
+| string         | Description      | get, set    |
+| int            | ManagerID        | get, set    |
 
+##### [Back to >Top<](#chocofactory)
 
 ## HazelnutMilkChocolate
-| Properties        | Methods                                                            |
-| ----------------- | ------------------------------------------------------------------ |
-| firstName | getFirstName , setFirstName |
-| lastName | getLastName , setLastName |
-
-
+| Type           | Properties       | Methods |
+| :---:          |     :---:        |  :---:  |
+| int            | DepartmentID     | get, set   |
+| string         | Description      | get, set    |
+| int            | ManagerID        | get, set    |
 
 
 
@@ -230,18 +280,22 @@ Table of contents
 ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 
 ------------------------------------------------------------------------------------------
+
 ## Technologies
 - Programming Language C#
 - Framework .NET 4.7.3
 - Console Application
 - [Visual Studio Community Edition 2019](https://visualstudio.microsoft.com/downloads/)
 - [Microsoft technical documentation](https://docs.microsoft.com/en-us/)
+##### [Back to >Top<](#chocofactory)
 ------------------------------------------------------------------------------------------
 ## Team
 - [@ioannis-thyris](https://github.com/ioannis-thyris)
 - [@GitEmm](https://github.com/GitEmm)
 - [@zafeirisdimi](https://github.com/zafeirisdimi)
 - [@StaurosGouleas](https://www.github.com/StaurosGouleas)
+
+
 
 
 
