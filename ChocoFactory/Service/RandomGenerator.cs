@@ -25,11 +25,11 @@ namespace ChocoFactory.Services
             int index = rnd.Next(0, values.Length);
             return (Quality)values.GetValue(index);
         }
-        public static int Quantity()       //create a random Quantity number with limitis [0-1000]
+        public static int Quantity()       //create a random Quantity number with limitis [300-1000]
         {
             var r = new Random();
             Thread.Sleep(1);
-            int num = r.Next(0, 1001);
+            int num = r.Next(300, 1001);
             return num;
         }
 
