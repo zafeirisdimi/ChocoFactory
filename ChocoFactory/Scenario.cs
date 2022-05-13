@@ -38,6 +38,7 @@ namespace ChocoFactory.Services
         {
             Factory factory = new Factory();
             company.Factories.Add(factory);
+            
 
             Shop shop = new Shop(company);
             company.Shops.Add(shop);
@@ -80,11 +81,22 @@ namespace ChocoFactory.Services
             {
                 while (factory.Warehouse.SuppliesInKilo >= factory.Production.ProductionPolicy.ExperimentalChocolateSupplies)
                 {
-                    factory.Shops
+                    factory.Warehouse.GetProduct("ExperimentalProduct");
+                   
                 }
+                while (factory.Warehouse.Products.Any(x=>x.Description=="ExperimentalProduct"))
+                {
+                    foreach (Shop shop in factory.Shops)
+                    {
+                        shop.ReceiveProduct("ExperimentalProduct");
+                    }
+
+                }
+              
                 
 
             }
+           
             foreach (Factory factory in company.Factories)
             {
                 factory.Accounting.ReceiveOffers();

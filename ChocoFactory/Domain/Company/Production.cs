@@ -61,6 +61,14 @@ namespace ChocoFactory.Domain
                     createdProduct.ExpirationDate = DateTime.Now.AddDays(75);
                     createdProduct.Price = Factory.Company.CompanyPolicy.HazelnutMilkChocolatePrice;
                     break;
+                case "ExperimentalProduct":
+                    Factory.Warehouse.SendSupplies(ProductionPolicy.ExperimentalChocolateSupplies);
+                    createdProduct = new ExperimentalProduct();
+                    createdProduct.Description = "ExperimentalProduct";
+                    createdProduct.ProductionDate = DateTime.Now;
+                    createdProduct.ExpirationDate = DateTime.Now.AddDays(300);
+                    createdProduct.Price = 0;
+                    break;
                 default:
                     Console.WriteLine("Error creating product");
                     break;
@@ -70,6 +78,8 @@ namespace ChocoFactory.Domain
             return createdProduct;
             
         }
+
+     
 
 
 

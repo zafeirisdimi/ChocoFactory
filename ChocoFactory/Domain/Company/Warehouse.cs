@@ -13,7 +13,7 @@ namespace ChocoFactory.Domain
         public Supplier Supplier { get; set; }
 
         //properties
-
+        public List <Product> ExperimentalProducts { get; set; }
         public List<Product> Products { get; set; }
         public Dictionary<string, int> ProductQuantity { get; set; } = new Dictionary<string, int>()
         {
@@ -21,7 +21,8 @@ namespace ChocoFactory.Domain
             {"BlackChocolate" , 0},
             {"PlainMilkChocolate" , 0},
             {"AlmondMilkChocolate" , 0},
-            {"HazelnutMilkChocolate" , 0}
+            {"HazelnutMilkChocolate" , 0},
+            {"ExperimentalProduct", 0 }
         };
         public int SuppliesInKilo { get; set; }
 
@@ -90,6 +91,9 @@ namespace ChocoFactory.Domain
             RefillProduct("AlmondMilkChocolate", Factory.Company.CompanyPolicy.AlmondMilkChocolatePercent);
             RefillProduct("HazelnutMilkChocolate", Factory.Company.CompanyPolicy.HazelnutMilkChocolatePercent);
         }
+
+        
+
 
 
     }

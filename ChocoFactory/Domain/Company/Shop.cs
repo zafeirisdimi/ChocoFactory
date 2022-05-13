@@ -13,7 +13,7 @@ namespace ChocoFactory.Domain
         public Factory Factory { get; set; }
         public double Discount { get; set; } = 0;
         public List<Product> Products { get; set; } = new List<Product>();
-        public List<Product> ExperimentalProducts { get; set; } = new List<Product>();
+        
         public List<Employee> Employees { get; set; }
 
         public Dictionary<string, int> DailyProductsSold { get; set; } = new Dictionary<string, int>()
@@ -54,9 +54,9 @@ namespace ChocoFactory.Domain
                 totalCost += SellProduct(product);
             }
 
-            if (totalCost >= 30 && ExperimentalProducts.Count>0)
+            if (totalCost >= 30 && HasExperimentalProduct())
             {
-                ExperimentalProducts.Remove(ExperimentalProducts.First());
+                Products.Remove(Products.Find(x=>x.Description=="ExperimentalProduct"));
             }
             return totalCost;
         }
@@ -110,15 +110,17 @@ namespace ChocoFactory.Domain
             {
                 while (Products.Count < Company.CompanyPolicy.ShopStockSize)
                 {
-                    Product newProduct = ReceiveProduct(productName);
-                    Products.Add(newProduct);
+                    ReceiveProduct(productName);
+                    
                 }
             }
         }
 
-        private Product ReceiveProduct(string productName)//
+        public void ReceiveProduct(string productName)//
         {
-            return Factory.Warehouse.SendProduct(productName);
+            Product newProduct = Factory.Warehouse.SendProduct(productName);
+            Products.Add(newProduct);
+            
         }
         private void RemoveExpiredProducts(DateTime currentDate)
         {
@@ -129,6 +131,11 @@ namespace ChocoFactory.Domain
                     Products.Remove(product);
                 }
             }
+        }
+
+        private bool HasExperimentalProduct()
+        {
+            return Products.Any(x => x.Description == "ExperimentalProduct");
         }
     }
 }
