@@ -78,6 +78,14 @@ namespace ChocoFactory.Services
         {
             foreach (Factory factory in company.Factories)
             {
+                if (factory.Warehouse.SuppliesInKilo>)
+                {
+
+                }
+
+            }
+            foreach (Factory factory in company.Factories)
+            {
                 factory.Accounting.ReceiveOffers();
             }
             

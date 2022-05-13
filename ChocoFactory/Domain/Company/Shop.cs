@@ -10,7 +10,7 @@ namespace ChocoFactory.Domain
     internal class Shop
     {
         public Company Company { get; set; }
-        public CompanyPolicy companyPolicy = new CompanyPolicy();
+        public Factory Factory { get; set; }
         public double Discount { get; set; } = 0;
         public List<Product> Products { get; set; } = new List<Product>();
         public List<Employee> Employees { get; set; }
@@ -99,7 +99,7 @@ namespace ChocoFactory.Domain
 
         private bool IsProductQuantityLow()
         {
-            return Products.Count <= companyPolicy.ShopRestockThreshold;
+            return Products.Count <= Company.CompanyPolicy.ShopRestockThreshold;
         }
 
 
@@ -109,12 +109,12 @@ namespace ChocoFactory.Domain
             {
                 Product newProduct = ReceiveProduct();
                 Products.Add(newProduct);
-            } while (Products.Count < companyPolicy.ShopStockSize);
+            } while (Products.Count < Company.CompanyPolicy.ShopStockSize);
         }
 
-        private Product ReceiveProduct()//
+        private Product ReceiveProduct(string productName)//
         {
-            return Company.Factory.Warehouse.SendProduct();
+            return Factory.Warehouse.SendProduct(productName);
         }
         private void RemoveExpiredProducts(DateTime currentDate)
         {
