@@ -31,7 +31,7 @@ namespace ChocoFactory.Services
         }
         public int ShopRestockThreshold
         {
-            get { return (int)Math.Floor(DailyProducts * ProductsToShopPercent * ShopRestockPercent)}
+            get { return (int)Math.Floor(DailyProducts * ProductsToShopPercent * ShopRestockPercent); }
         }
         public double ShopDiscount { get; set; } = 0.20;
         public DayOfWeek DiscountDay { get; set; } = DayOfWeek.Tuesday;
