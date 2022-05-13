@@ -119,9 +119,10 @@ Table of contents
 ## Factory
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
-| int            | DepartmentID     | get, set   |
-| string         | Description      | get, set    |
-| int            | ManagerID        | get, set    |
+| Warehouse          | Warehouse     | get, set   |
+| Production         | Production      | get, set    |
+| Company            | Company        | get, set    |
+| Account            | Accounting        | get, set    |
 
 ##### [Back to >Top<](#chocofactory)
 
