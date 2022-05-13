@@ -28,11 +28,15 @@ namespace ChocoFactory.Domain
 
         public  Order SendOrder(Offer offer)
         {
-            AvailableOffers.Add(offer);
-            //CheckBestOffer(). if the order is perfect
-            var offerToSupplier = CheckBestOffer();
+            Offer bestOffer = CheckBestOffer();
             //send this offer as order to supplier
-            Order order = new OrderToSupplier(offerToSupplier.PricePerKilo, offerToSupplier.Quality, offerToSupplier.Quantity);
+            Order order = new Order(bestOffer);
+
+            order.Supplier.SendSupplies(order);
+           
+            LastOrder = order;
+            LastSupplier = order.Supplier;
+
             Console.WriteLine("[Send order!!!]");
             return order;
         }
@@ -43,7 +47,7 @@ namespace ChocoFactory.Domain
             
             foreach (var offer in AvailableOffers)//Criteria for best offer(lower price and higher quality)
             {
-                if ((offer.PricePerKilo < offer0.PricePerKilo) && (offer.Quality > offer0.Quality)) 
+                if ((offer.PricePerKilo < offer0.PricePerKilo) && (offer.Quality > offer0.Quality)) // This only checks of the price as it is.
                     offer0 = offer;
             }
             Console.WriteLine("[Check for the best price Offer is completed!]");
