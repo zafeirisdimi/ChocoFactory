@@ -22,13 +22,8 @@ namespace ChocoFactory.Domain
         //methods
         public void ReceiveOffers()
         {
-            //service getSupplier
             AvailableOffers = new List<Offer>(supplierService.Offers(Factory));
-
-            AvailableOffers.Add(offerNew);
             Console.WriteLine("[New offer from Supplier is delivered !!!]");
-
-            //add to list(offer)
          }
 
         public  Order SendOrder(Offer offer)
@@ -44,11 +39,6 @@ namespace ChocoFactory.Domain
 
         public Offer CheckBestOffer()
         {
-            //take the best offer base of PricePerKilo(min)
-            if (AvailableOffers.Count == 0)
-            {
-                throw new InvalidOperationException("[Empty list of available offers]");
-            }
             Offer offer0 = AvailableOffers[0];
             
             foreach (var offer in AvailableOffers)//Criteria for best offer(lower price and higher quality)
