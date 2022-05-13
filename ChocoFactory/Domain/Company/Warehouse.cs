@@ -10,11 +10,9 @@ namespace ChocoFactory.Domain
     class Warehouse : Department
     {
         public Factory Factory { get; set; }
-        public Supplier Supplier { get; set; }
 
         //properties
-        public List <Product> ExperimentalProducts { get; set; }
-        public List<Product> Products { get; set; }
+        public List<Product> Products { get; set; } = new List<Product>();
         public Dictionary<string, int> ProductQuantity { get; set; } = new Dictionary<string, int>()
         {
             {"WhiteChocolate" , 0},
@@ -25,6 +23,12 @@ namespace ChocoFactory.Domain
             {"ExperimentalProduct", 0 }
         };
         public int SuppliesInKilo { get; set; }
+
+        public Warehouse(Factory factory)
+        {
+            Factory = factory;
+        }
+
 
         //methods
         public void GetSupplies(int supplies)
@@ -56,7 +60,7 @@ namespace ChocoFactory.Domain
 
         public bool AreSuppliesLow()//check for 10% of supplies
         {
-            return SuppliesInKilo * Factory.Company.CompanyPolicy.LowSuppliesThresholdPercent <= Factory.Accounting.LastOrder.Quantity;
+            return SuppliesInKilo <= Factory.Accounting.LastOrder.Quantity * Factory.Company.CompanyPolicy.LowSuppliesThresholdPercent;
         }
 
         private void RemoveExpiredProducts(DateTime currentDate)

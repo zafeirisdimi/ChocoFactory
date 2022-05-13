@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ChocoFactory.Domain
 {
-    public class Employee : Human 
+    public class Employee
     {
        
         //properties

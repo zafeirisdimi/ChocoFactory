@@ -55,7 +55,7 @@ namespace ChocoFactory.Domain
                 totalCost += SellProduct(product);
             }
 
-            if (totalCost >= Company.CompanyPolicy.GiftMinimumPrice && ExperimentalProducts.Count>0)
+            if (totalCost >= Company.CompanyPolicy.GiftMinimumPrice && HasExperimentalProduct())
             {
                 Products.Remove(Products.Find(x=>x.Description=="ExperimentalProduct"));
             }
@@ -105,14 +105,35 @@ namespace ChocoFactory.Domain
         }
 
 
-        private void RefillProducts()
+        public void RefillProducts()
         {
             foreach (string productName in DailyProductsSold.Keys.ToList<string>())
             {
-                while (Products.Count < Company.CompanyPolicy.ShopStockSize)
+                int stockProducts = 0;
+
+                switch (productName)
                 {
-                    ReceiveProduct(productName);
-                    
+                    case "BlackChocolate":
+                        stockProducts = (int)Math.Floor(Company.CompanyPolicy.ShopStockSize * Company.CompanyPolicy.BlackChocolatePercent);
+                        break;
+                    case "WhiteChocolate":
+                        stockProducts = (int)Math.Floor(Company.CompanyPolicy.ShopStockSize * Company.CompanyPolicy.WhiteChocolatePercent);
+                        break;
+                    case "PlainMilkChocolate":
+                        stockProducts = (int)Math.Floor(Company.CompanyPolicy.ShopStockSize * Company.CompanyPolicy.MilkChocolatePercent);
+                        break;
+                    case "AlmondMilkChocolate":
+                        stockProducts = (int)Math.Floor(Company.CompanyPolicy.ShopStockSize * Company.CompanyPolicy.AlmondMilkChocolatePercent);
+                        break;
+                    case "HazelnutMilkChocolate":
+                        stockProducts = (int)Math.Floor(Company.CompanyPolicy.ShopStockSize * Company.CompanyPolicy.HazelnutMilkChocolatePercent);
+                        break;
+                    default:
+                        break;
+                }
+                while (Products.Count < stockProducts)
+                {
+                    ReceiveProduct(productName); 
                 }
             }
         }

@@ -19,6 +19,12 @@ namespace ChocoFactory.Domain
         public Supplier LastSupplier { get; set; }// the last supplier that send us offer
         public Order LastOrder { get; set; }
 
+
+        public Accounting(Factory factory)
+        {
+            Factory = factory;
+        }
+
         //methods
         public void ReceiveOffers()
         {
@@ -31,9 +37,9 @@ namespace ChocoFactory.Domain
             Offer bestOffer = BestOffer();
             //send this offer as order to supplier
             Order order = new Order(bestOffer, Factory);
-
+            
             order.Supplier.SendSupplies(order);
-           
+            
             LastOrder = order;
             LastSupplier = order.Supplier;
 

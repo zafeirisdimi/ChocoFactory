@@ -15,11 +15,11 @@ namespace ChocoFactory.Services
 
         private string[] productNames = new string[]
         {
-            "WhiteSchocolate",
-            "BlackSchocolate",
-            "PlainMilkSchocolate",
-            "AlmondMilkSchocolate",
-            "HazelnutMilkSchocolate"
+            "WhiteChocolate",
+            "BlackChocolate",
+            "PlainMilkChocolate",
+            "AlmondMilkChocolate",
+            "HazelnutMilkChocolate"
         };
 
         public void DailyPurchases(Shop shop)

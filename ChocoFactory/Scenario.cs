@@ -5,8 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ChocoFactory.Domain;
+using ChocoFactory.Services;
 
-namespace ChocoFactory.Services
+namespace ChocoFactory
 {
     internal class Scenario
     {
@@ -16,9 +17,9 @@ namespace ChocoFactory.Services
         private int discountDayOccurences = 0;
 
         public DateTime StartingDate { get; set; } = DateTime.Now;
-        public DateTime EndingDate { get; set; }
+        public DateTime EndingDate { get; set; } = new DateTime(2025, 5, 30);
 
-        private DateTime currentDate = DateTime.Now;
+        private DateTime currentDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
         public DateTime CurrentDate
         {
             get { return currentDate; }
@@ -38,11 +39,11 @@ namespace ChocoFactory.Services
         {
             Factory factory = new Factory();
             company.Factories.Add(factory);
-            
+            factory.Company = company;
 
             Shop shop = new Shop(company, factory);
+            shop.Company = company;
             company.Shops.Add(shop);
-
             factory.Shops.Add(shop);
         }
 
@@ -50,7 +51,12 @@ namespace ChocoFactory.Services
         {
             while (CurrentDate != EndingDate)
             {
-                if ((CurrentDate.Day == 1 && CurrentDate.Month == 1) || CurrentDate == StartingDate) // Do this on the first day of the year.
+                if (CurrentDate.Date == StartingDate.Date)
+                {
+                    DayOne();
+                }
+
+                if (CurrentDate.Day == 1 && CurrentDate.Month == 1) // Do this on the first day of the year.
                 {
                     YearlyActions();
                 }
@@ -75,6 +81,8 @@ namespace ChocoFactory.Services
                 customerService.DailyPurchases(shop);
                 shop.DailyActions(CurrentDate);
             }
+
+            Console.WriteLine("End of day");
         }
 
         public void YearlyActions()
@@ -85,6 +93,7 @@ namespace ChocoFactory.Services
             foreach (Factory factory in company.Factories)
             {
                 factory.Accounting.ReceiveOffers();
+                factory.Accounting.SendOrder(factory.Accounting.BestOffer());
             }
 
             if (company.RevenueGoalAchieved)
@@ -93,6 +102,25 @@ namespace ChocoFactory.Services
                 Shop shop = new Shop(company, DataGenerator.RandomFactory(company));
                 company.Shops.Add(shop);
             }
+        }
+
+        public void DayOne()
+        {
+            foreach (Factory factory in company.Factories)
+            {
+                factory.Accounting.ReceiveOffers();
+                factory.Accounting.SendOrder(factory.Accounting.BestOffer());
+                factory.Warehouse.GetDailyProducts();
+            }
+
+            foreach (Shop shop in company.Shops)
+            {
+                shop.Discount = IsDiscountDay() ? company.CompanyPolicy.ShopDiscount : 0;
+                shop.RefillProducts();
+                customerService.DailyPurchases(shop);
+            }
+
+
         }
 
         public bool IsDiscountDay()

@@ -10,7 +10,8 @@ namespace ChocoFactory
     {
         static void Main(string[] args)
         {
-            //1.serive creating 3 suppliers with random data
+            Scenario scenario = new Scenario();
+            scenario.Start();
 
         }
     }
