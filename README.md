@@ -136,7 +136,11 @@ Table of contents
 | Company            | Company     | get, set   |
 | List of Product        | Products      | get, set    |
 | List of Employee            | Employees        | get, set    |
-| Dictionary (string, int )   | DailyProductsSold        | {"WhiteChocolate" ,"BlackChocolate" ,"PlainMilkChocolate" ,"AlmondMilkChocolate" ,"HazelnutMilkChocolate" } 
+| Dictionary string, int            | DailyProductsSold        | {"WhiteChocolate" , 0},
+            {"BlackChocolate" , 0},
+            {"PlainMilkChocolate" , 0},
+            {"AlmondMilkChocolate" , 0},
+            {"HazelnutMilkChocolate" , 0}   |
 | string            | Location        | get, set    |
 | decimal            | DailyEarnings        | get, set    |
    
@@ -168,43 +172,14 @@ Table of contents
 | double            | PhoneNumber         | get, set    |
 | char            | Sex        | get, set    |
 
-##### [Back to >Top<](#chocofactory)
 
 ## CEO
-| Type           | Properties       | Methods |
-| :---:          |     :---:        |  :---:  |
-| int            | DepartmentID     | get, set   |
-| string         | Description      | get, set    |
-| int            | ManagerID        | get, set    |
-
-##### [Back to >Top<](#chocofactory)
 
 ## Customer
-| Type           | Properties       | Methods |
-| :---:          |     :---:        |  :---:  |
-| int            | DepartmentID     | get, set   |
-| string         | Description      | get, set    |
-| int            | ManagerID        | get, set    |
-
-##### [Back to >Top<](#chocofactory)
 
 ## Employee
-| Type           | Properties       | Methods |
-| :---:          |     :---:        |  :---:  |
-| int            | ID     | get, set   |
-| decimal         | Salary      | get, set    |
-| int            | ManagerID        | get, set    |
-| int            | DeparmentID        | get, set    |
-
-##### [Back to >Top<](#chocofactory)
 
 ## Seller
-| Properties        | Methods                                                            |
-| ----------------- | ------------------------------------------------------------------ |
-| firstName | getFirstName , setFirstName |
-| lastName | getLastName , setLastName |
-
-##### [Back to >Top<](#chocofactory)
 
 ## Supplier
 | Type           | Properties       | Methods |
@@ -231,50 +206,15 @@ Table of contents
 | Offer         | Offer      | get, set    |
 | int            | OrderID        | get, set    |
 
-##### [Back to >Top<](#chocofactory)
-
-## Chocolate 
-| Type           | Properties       | Methods |
-| :---:          |     :---:        |  :---:  |
-| int            | DepartmentID     | get, set   |
-| string         | Description      | get, set    |
-| int            | ManagerID        | get, set    |
-
-##### [Back to >Top<](#chocofactory)
-
-## DarkChocolate
-| Type           | Properties       | Methods |
-| :---:          |     :---:        |  :---:  |
-| int            | DepartmentID     | get, set   |
-| string         | Description      | get, set    |
-| int            | ManagerID        | get, set    |
+- Chocolate 
+- DarkChocolate
+- WhiteChocolate
+- MilkChocolate (abstract Class)
+- PlainMilkChocolate
+- AlmondMilkChocolate
+- HazelnutMilkChocolate
 
 ##### [Back to >Top<](#chocofactory)
-
-## WhiteChocolate
-| Type           | Properties       | Methods |
-| :---:          |     :---:        |  :---:  |
-| int            | DepartmentID     | get, set   |
-| string         | Description      | get, set    |
-| int            | ManagerID        | get, set    |
-
-##### [Back to >Top<](#chocofactory)
-
-## MilkChocolate
-### (abstract Class)
-| Type           | Properties       | Methods |
-| :---:          |     :---:        |  :---:  |
-| int            | DepartmentID     | get, set   |
-| string         | Description      | get, set    |
-| int            | ManagerID        | get, set    |
-
-##### [Back to >Top<](#chocofactory)
-
-## PlainMilkChocolate
-## AlmondMilkChocolate
-## HazelnutMilkChocolate
-
-
 
 
 ## Screenshots
