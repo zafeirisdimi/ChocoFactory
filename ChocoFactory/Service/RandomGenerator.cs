@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace ChocoFactory.Services
 {
-    public  static class DataGenerator
+    internal  static class DataGenerator
     {
-        public  static decimal PricePerKilo()  //create a random Quality indicator with limits[1-20]
+        public  static decimal PricePerKilo(Quality quality)  //create a random Quality indicator with limits[1-20]
         {
             var random = new Random();
             Thread.Sleep(1);
             decimal number = random.Next(1, 21);
-            return number;
+            return number * (int)quality;
         }
         public  static Quality Quality()       //Create a random Object Quality
         {
@@ -47,6 +47,13 @@ namespace ChocoFactory.Services
             Thread.Sleep(1);
             int x4 = x3.Next(1000, 2011);
             return x4;
+        }
+
+        public static Factory RandomFactory(Company company)
+        {
+            Random rnd = new Random();
+            Thread.Sleep(1);
+            return company.Factories[rnd.Next(company.Factories.Count)];
         }
 
 

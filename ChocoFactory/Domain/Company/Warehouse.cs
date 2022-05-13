@@ -27,6 +27,11 @@ namespace ChocoFactory.Domain
         public int SuppliesInKilo { get; set; }
 
         //methods
+        public void GetSupplies(int supplies)
+        {
+            SuppliesInKilo += supplies;
+        }
+
         public void SendSupplies(int kilos)//called from Production
         {
             SuppliesInKilo -= kilos;

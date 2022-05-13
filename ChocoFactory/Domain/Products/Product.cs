@@ -30,8 +30,6 @@ namespace ChocoFactory.Domain
             ExpirationDate = expirationDate;
             Price = price;
         }
-
-       
         //methods
 
 
