@@ -29,7 +29,8 @@ namespace ChocoFactory.Domain
                         ProductionDate = DateTime.Now,
                         ExpirationDate = DateTime.Now.AddDays(90),
                         Price = Factory.Company.CompanyPolicy.BlackChocolatePrice
-                    };
+
+                    };                   
                     break;
                 case "WhiteChocolate":
                     Factory.Warehouse.SendSupplies(ProductionPolicy.WhiteChocolateSupplies);

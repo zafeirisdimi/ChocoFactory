@@ -8,6 +8,12 @@ namespace ChocoFactory.Domain
 {
      class WhiteChocolate : Chocolate
     {
+        //fields and properties
+        public override decimal Price { get; set; }
+        
+        
+        //constructor(s)
 
+        //methods
     }
 }

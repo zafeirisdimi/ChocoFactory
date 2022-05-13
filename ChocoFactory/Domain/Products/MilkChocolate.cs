@@ -8,5 +8,11 @@ namespace ChocoFactory.Domain
 {
     abstract class MilkChocolate:Chocolate
     {
+
+        //fields and properties
+
+        //constructor(s)
+
+        //methods
     }
 }

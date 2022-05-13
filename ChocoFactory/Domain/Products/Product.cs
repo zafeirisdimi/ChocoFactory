@@ -15,7 +15,7 @@ namespace ChocoFactory.Domain
         public string Description { get; set; }
         public DateTime ProductionDate { get; set; }
         public DateTime ExpirationDate { get; set; }
-        public decimal Price { get; set; }
+        public virtual decimal Price { get; set; }
 
         //constructor
         public Product()

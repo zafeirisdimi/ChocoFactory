@@ -9,6 +9,22 @@ namespace ChocoFactory.Domain
 {
     public abstract class Chocolate: Product 
     {
-     
+        //fields and properties
+        //public override decimal Price { get; set; }
+        //constructor(s)
+
+        public Chocolate()
+        {
+
+        }
+
+        /*public Chocolate():
+         * base ()
+        {
+
+        }*/
+
+
+        //methods
     }
 }
