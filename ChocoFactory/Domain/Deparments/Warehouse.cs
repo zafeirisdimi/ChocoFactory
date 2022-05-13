@@ -79,10 +79,9 @@ namespace ChocoFactory.Domain
 
         public void RefillProducts(string productName, double policyPercentage)
         {
-            for (int i = 1; i <= policyPercentage * 100; i++)
+            for (int i = 1; i <= policyPercentage * Factory.Company.CompanyPolicy.DailyProducts; i++)
             {
-                GetProduct(productName);
-               
+                GetProduct(productName);              
             }
         }
 
