@@ -50,7 +50,7 @@ namespace ChocoFactory.Domain
 
         public bool AreSuppliesLow()//check for 10% of supplies
         {
-            return (SuppliesInKilo * Factory.Company.CompanyPolicy.LowSuppliesThresholdPercent <= Supplier.Offer.Quantity);
+            return SuppliesInKilo * Factory.Company.CompanyPolicy.LowSuppliesThresholdPercent <= Factory.Accounting.LastOrder.Quantity;
         }
 
         private void RemoveExpiredProducts()
