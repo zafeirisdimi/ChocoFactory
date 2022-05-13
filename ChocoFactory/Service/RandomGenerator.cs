@@ -10,12 +10,12 @@ namespace ChocoFactory.Services
 {
     public  static class DataGenerator
     {
-        public  static decimal PricePerKilo()  //create a random Quality indicator with limits[1-20]
+        public  static decimal PricePerKilo(Quality quality)  //create a random Quality indicator with limits[1-20]
         {
             var random = new Random();
             Thread.Sleep(1);
             decimal number = random.Next(1, 21);
-            return number;
+            return number * (int)quality;
         }
         public  static Quality Quality()       //Create a random Object Quality
         {

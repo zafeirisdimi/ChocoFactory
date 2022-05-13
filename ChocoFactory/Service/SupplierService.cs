@@ -17,6 +17,8 @@ namespace ChocoFactory.Services
             for (int i = 0; i < factory.Company.CompanyPolicy.NumberOfOffers; i++)
             {
                 Supplier supplier = new Supplier();
+
+                :
                 Offer offerNew = supplier.SendOffer(DataGenerator.PricePerKilo(), DataGenerator.Quality(), DataGenerator.Quantity());
 
                 offers.Add(offerNew);
