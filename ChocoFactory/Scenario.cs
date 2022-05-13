@@ -32,8 +32,12 @@ namespace ChocoFactory
         {
             Initialization();
             AdvanceTime();
-        }
 
+            Console.WriteLine("End of Scenario");
+
+            Console.WriteLine($"Final Company Capital: {company.Capital}");
+            Console.WriteLine($"Final Company Revenue: {company.Revenue}");
+        }
 
         public void Initialization()
         {
@@ -65,7 +69,7 @@ namespace ChocoFactory
 
                 currentDate = Calendar.AddDays(CurrentDate, 1); // Advance Time by one day.
 
-                Console.WriteLine($"End of day {currentDate}");
+                Console.WriteLine($"End of day {currentDate}\n");
             }
 
         }
@@ -83,8 +87,6 @@ namespace ChocoFactory
                 customerService.DailyPurchases(shop);
                 shop.DailyActions(CurrentDate);
             }
-
-            Console.WriteLine("End of day");
         }
 
         public void YearlyActions()

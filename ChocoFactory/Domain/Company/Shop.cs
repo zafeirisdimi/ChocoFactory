@@ -58,7 +58,7 @@ namespace ChocoFactory.Domain
                 }
                 catch (Exception)
                 {
-                    Console.WriteLine("The product not in shop.");
+                    Console.WriteLine("The shop hasn't got the product.");
                 }
             }
 
