@@ -16,7 +16,7 @@ namespace ChocoFactory.Domain
         public void SendSupplies(Order order)
         {
             Warehouse warehouseToSend = order.Factory.Warehouse;
-            warehouseToSend.SuppliesInKilo += order.Quantity;
+            warehouseToSend.GetSupplies(order.Quantity);
         }
 
         public Offer SendOffer(decimal pricePerKilo, Quality quality, int suppliesKilos)
