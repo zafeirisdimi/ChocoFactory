@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChocoFactory.Interfaces
+namespace ChocoFactory.Domain
 {
-    interface IOfferModel 
+    public enum Quality
     {
-         int OfferID { get; }
-         int OfferedPrice { get; }
+        Low,
+        Medium,
+        High
     }
 }
