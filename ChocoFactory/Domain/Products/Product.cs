@@ -1,4 +1,3 @@
-Shop_Implementation
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +8,7 @@ namespace ChocoFactory.Domain
 {
     public abstract class Product
     {
-        
+
 
         //properties
         public int ProductID { get; set; }
@@ -32,3 +31,4 @@ namespace ChocoFactory.Domain
 
 
     }
+}

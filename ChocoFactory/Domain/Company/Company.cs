@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ChocoFactory.Domain
 {
-    public class Company
+    internal class Company
     {
         public decimal Capital { get; set; } = 1000000;
         public decimal Revenue { get; set; }

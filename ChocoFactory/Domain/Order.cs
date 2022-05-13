@@ -6,49 +6,25 @@ using System.Threading.Tasks;
 
 namespace ChocoFactory.Domain
 {
-    public abstract class Order
+    class Order : Offer
     {
-        //properties of object Order
-        public int OrderID { get; set; }
-        public string ShortDescription { get; set; }
+        public Factory Factory { get; set; }
 
-        public List<Product> Products = new List<Product>();
-        public double FinalCost { get; set; }
-        public string PayMethod { get; set; }
-
-
-
-       
-        //custom constructor
-        protected Order(int orderID, string shortDescription, List<Product> products, double finalCost, string payMethod)
+        public Order(Offer offer)
         {
-            OrderID = orderID;
-            ShortDescription = shortDescription;
-            Products = products;
-            FinalCost = finalCost;
-            PayMethod = payMethod;
+            this.PricePerKilo = offer.PricePerKilo; 
+            this.Quality = offer.Quality;
+            this.Quantity = offer.Quantity;
+            this.Supplier = offer.Supplier;
         }
-
         
-
-
-        public override string ToString()
+        public Order(Offer offer, Factory factory)
         {
-            return base.ToString();
+            this.PricePerKilo = offer.PricePerKilo; 
+            this.Quality = offer.Quality;
+            this.Quantity = offer.Quantity;
+            this.Supplier = offer.Supplier;
+            Factory = factory;
         }
-
-        public override bool Equals(object obj)
-        {
-            return base.Equals(obj);
-        }
-
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }
-
-        //methods
-
-
     }
 }

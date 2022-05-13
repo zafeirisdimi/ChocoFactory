@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace ChocoFactory.Domain
 {
-    class Factory
+    internal class Factory
     {
         //properties
         public Warehouse Warehouse { get; set; }
         public Production Production { get; set; }
         public Company Company { get; set; }
 
-        public Account Accounting { get; set; }
+        public Accounting Accounting { get; set; }
 
         
         //methods

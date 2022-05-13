@@ -26,11 +26,6 @@ namespace ChocoFactory.Domain
         public int SuppliesInKilo { get; set; }
 
         //methods
-        public void GetSupplies()
-        {
-            SuppliesInKilo += Supplier.SendSupplies();
-        }
-
         public int SendSupplies(int kilos)//called from Production
         {
             SuppliesInKilo -= kilos;
@@ -55,7 +50,7 @@ namespace ChocoFactory.Domain
 
         public bool AreSuppliesLow()//check for 10% of supplies
         {
-            return (SuppliesInKilo * companyPolicy.LowSuppliesThresholdPercent <= Supplier.Offer.Quantity);
+            return SuppliesInKilo * Factory.Company.CompanyPolicy.LowSuppliesThresholdPercent <= Factory.Accounting.LastOrder.Quantity;
         }
 
         private void RemoveExpiredProducts()
@@ -73,23 +68,26 @@ namespace ChocoFactory.Domain
         {
             if (AreSuppliesLow())
             {
-                Factory.Accounting.SendOrder(Supplier.Offer);
-                GetSupplies();
+                Factory.Accounting.SendOrder(Factory.Accounting.LastOrder);
             }
-            RefillProducts("BlackChocolate", Factory.Company.CompanyPolicy.BlackChocolatePercent);
-            RefillProducts("WhiteChocolate", Factory.Company.CompanyPolicy.WhiteChocolatePercent);
-            RefillProducts("PlainMilkChocolate", Factory.Company.CompanyPolicy.MilkChocolatePercent);
-            RefillProducts("AlmondMilkChocolate", Factory.Company.CompanyPolicy.AlmondMilkChocolatePercent);
-            RefillProducts("HazelnutMilkChocolate", Factory.Company.CompanyPolicy.HazelnutMilkChocolatePercent);
+            GetDailyProducts();
         }
 
-        public void RefillProducts(string productName, double policyPercentage)
+        public void RefillProduct(string productName, double policyPercentage)
         {
-            for (int i = 1; i <= policyPercentage * 100; i++)
+            for (int i = 1; i <= policyPercentage * Factory.Company.CompanyPolicy.DailyProducts; i++) // I don't think this will work.
             {
-                GetProduct(productName);
-               
+                GetProduct(productName);              
             }
+        }
+
+        public void GetDailyProducts()
+        {
+            RefillProduct("BlackChocolate", Factory.Company.CompanyPolicy.BlackChocolatePercent);
+            RefillProduct("WhiteChocolate", Factory.Company.CompanyPolicy.WhiteChocolatePercent);
+            RefillProduct("PlainMilkChocolate", Factory.Company.CompanyPolicy.MilkChocolatePercent);
+            RefillProduct("AlmondMilkChocolate", Factory.Company.CompanyPolicy.AlmondMilkChocolatePercent);
+            RefillProduct("HazelnutMilkChocolate", Factory.Company.CompanyPolicy.HazelnutMilkChocolatePercent);
         }
 
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ChocoFactory.Domain
 {
-    public class Shop
+    internal class Shop
     {
         public Company Company { get; set; }
         public CompanyPolicy companyPolicy = new CompanyPolicy();

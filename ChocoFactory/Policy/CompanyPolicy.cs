@@ -13,6 +13,7 @@ namespace ChocoFactory.Services
         public double LowSuppliesThresholdPercent { get; set; } = 0.10;
         public double MinimumRevenueToInvest { get; set; } = 0.25;
         public double RevenueYearlyGoal { get; set; } = 0.15;
+        public int NumberOfOffers { get; set; } = 3;
 
         // Production Percent
         public double BlackChocolatePercent { get; set; } = 0.50;
@@ -30,7 +31,7 @@ namespace ChocoFactory.Services
         }
         public int ShopRestockThreshold
         {
-            get { return (int)Math.Floor(DailyProducts * ProductsToShopPercent * ShopRestockPercent)}
+            get { return (int)Math.Floor(DailyProducts * ProductsToShopPercent * ShopRestockPercent); }
         }
         public double ShopDiscount { get; set; } = 0.20;
         public DayOfWeek DiscountDay { get; set; } = DayOfWeek.Tuesday;
