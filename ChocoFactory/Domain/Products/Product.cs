@@ -22,7 +22,7 @@ namespace ChocoFactory.Domain
         {
 
         }
-        protected Product(int productID, string description, DateTime productionDate, DateTime expirationDate, decimal price)
+        public Product(int productID, string description, DateTime productionDate, DateTime expirationDate, decimal price)
         {
             ProductID = productID;
             Description = description;

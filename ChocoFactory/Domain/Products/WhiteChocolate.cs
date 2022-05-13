@@ -12,8 +12,19 @@ namespace ChocoFactory.Domain
         public override decimal Price { get; set; }
         
         
+        
         //constructor(s)
+        public WhiteChocolate()
+        {
 
+        }
+        
+        
+        public WhiteChocolate(int productID, string description, DateTime productionDate, DateTime expirationDate, decimal price) :
+            base(productID, description, productionDate, expirationDate, price)
+        {
+
+        }
         //methods
     }
 }

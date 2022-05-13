@@ -14,7 +14,16 @@ namespace ChocoFactory.Domain
 
 
         //constructor(s)
+        public BlackChocolate()
+        {
 
+        }
+
+        public BlackChocolate(int productID, string description, DateTime productionDate, DateTime expirationDate, decimal price) :
+            base(productID, description, productionDate, expirationDate, price)
+        {
+
+        }
         //methods
 
 

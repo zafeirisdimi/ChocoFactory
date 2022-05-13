@@ -11,20 +11,21 @@ namespace ChocoFactory.Domain
     {
         //fields and properties
         //public override decimal Price { get; set; }
+        
+        
         //constructor(s)
-
         public Chocolate()
         {
 
         }
 
-        /*public Chocolate():
-         * base ()
+
+        public Chocolate(int productID, string description, DateTime productionDate, DateTime expirationDate, decimal price):
+            base(productID, description, productionDate, expirationDate, price)
         {
 
-        }*/
-
-
+        }
+        
         //methods
     }
 }

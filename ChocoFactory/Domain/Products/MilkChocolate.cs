@@ -12,6 +12,18 @@ namespace ChocoFactory.Domain
         //fields and properties
 
         //constructor(s)
+        public MilkChocolate()
+        {
+
+        }
+
+
+        public MilkChocolate(int productID, string description, DateTime productionDate, DateTime expirationDate, decimal price) :
+            base(productID, description, productionDate, expirationDate, price)
+        {
+
+        }
+
 
         //methods
     }
