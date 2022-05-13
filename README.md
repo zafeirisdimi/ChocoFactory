@@ -46,10 +46,12 @@ Table of contents
       * [Human(abstract Class)](#human)
       * [Supplier](#supplier)
    * [Products](#products)
-   * [Interfaces](#Interfaces)
-   * [Screenshots](#Screenshots)
+   * [Policy](#policy)
+   * [Interfaces](#interfaces)
+   * [Screenshots](#screenshots)
    * [Team](#team)
    * [Technologies](#technologies)
+   * 
 <!--te-->
                                                                                                                
 
@@ -143,7 +145,6 @@ Table of contents
 | RemoveExpiredProducts(DateTime currentDate) | Check if the Products have passed the ExpiredDate and it throws away.|
 
 
-
 ##### [Back to >Top<](#chocofactory)
 
 # /Human/ 
@@ -198,6 +199,50 @@ Table of contents
 
 ##### [Back to >Top<](#chocofactory)
 
+## Policy
+
+## CompanyPolicy
+
+| Type           | Properties       | Methods |
+| :---:          |     :---:        |  :---:  |
+| //Factory                                     |
+| int            | DailyProducts     | get, set   |
+| double        | LowSuppliesThresholdPercent      | get, set    |
+| double            | MinimumRevenueToInvest        | get, set    |
+| double            | RevenueYearlyGoal        | get, set    |
+| int            | NumberOfOffers        | get, set    |
+| //Production Percent                                   |
+| double             | BlackChocolatePercent     | get, set   |
+| double        | WhiteChocolatePercent      | get, set    |
+| double            | MilkChocolatePercent        | get, set    |
+| double            | AlmondMilkChocolatePercent        | get, set    |
+| double            | HazelnutMilkChocolatePercent        | get, set    |
+| //Shop                                  |
+| double            | ProductsToShopPercent        | get, set    |
+| double            | ShopRestockPercent        | get, set    |
+| int            | ShopStockSize        | get, set    |
+| int            | ShopRestockThreshold        | get, set    |
+| double            | ShopDiscount        | get, set    |
+| DayOfWeek      | DiscountDay        | get, set    |
+| int      | DiscountDayOccurence        | get, set    |
+| decimal      | GiftMinimumPrice        | get, set    |
+| //Prices                                  |
+| decimal            | BlackChocolatePrice        | get, set    |
+| decimal           | WhiteChocolatePrice        | get, set    |
+| decimal      | MilkChocolatePrice        | get, set    |
+| decimal      | AlmondMilkChocolatePrice        | get, set    |
+| decimal      | HazelnutMilkChocolatePrice        | get, set    |
+
+## ProductionPolicy
+| Type           | Properties       | Methods |
+| :---:          |     :---:        |  :---:  |
+| int            | BlackChocolateSupplies     | get, set   |
+| int        | WhiteChocolateSupplies      | get, set    |
+| int            | AlmondMilkChocolateSupplies        | get, set    |
+| int            | HazelnutMilkChocolateSupplies        | get, set    |
+| int            | ExperimentalChocolateSupplies        | get, set    |
+
+
 # Interfaces
 (loading....)
 - IDeparmentModel
@@ -207,6 +252,7 @@ Table of contents
 - IOfferModel
 - IOrderModel
 - IProductModel
+
 
 ## Screenshots
 ------------------------------------------------------------------------------------------
