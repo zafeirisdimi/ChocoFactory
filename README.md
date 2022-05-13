@@ -215,7 +215,7 @@ Table of contents
 
 ------------------------------------------------------------------------------------------
 
-## Technologies
+## Technologies + recourses
 - Programming Language C#
 - Framework .NET 4.7.3
 - Console Application
