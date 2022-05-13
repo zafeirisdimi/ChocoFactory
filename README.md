@@ -161,14 +161,12 @@ Table of contents
 ## Supplier
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
-| int            | DepartmentID     | get, set   |
-| string         | Description      | get, set    |
-| int            | ManagerID        | get, set    |
+| int            | ID     | get, set   |
 
 | Extra Methods         |      Description                                                      |
 | ----------------- | ------------------------------------------------------------------ |
-| int SendSupplies(parameter Order) | Send Supplies from Supplier to Production|
-| Offer SendOffer() | Send Offer to Accounting Deparment |
+| void SendSupplies(Order order)| Send Supplies from Supplier to Production|
+| Offer SendOffer(decimal pricePerKilo, Quality quality, int suppliesKilos) | Send Offer to Accounting Deparment |
 
 ##### [Back to >Top<](#chocofactory)
 
