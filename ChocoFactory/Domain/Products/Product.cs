@@ -31,6 +31,10 @@ namespace ChocoFactory.Domain
             Price = price;
         }
 
+        public Product()
+        {
+
+        }
         //methods
 
 

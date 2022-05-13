@@ -13,6 +13,7 @@ namespace ChocoFactory.Domain
         public Factory Factory { get; set; }
         public double Discount { get; set; } = 0;
         public List<Product> Products { get; set; } = new List<Product>();
+        public List<Product> ExperimentalProducts { get; set; } = new List<Product>();
         public List<Employee> Employees { get; set; }
 
         public Dictionary<string, int> DailyProductsSold { get; set; } = new Dictionary<string, int>()
@@ -53,9 +54,9 @@ namespace ChocoFactory.Domain
                 totalCost += SellProduct(product);
             }
 
-            if (totalCost >= 30)
+            if (totalCost >= 30 && ExperimentalProducts.Count>0)
             {
-                //give gift
+                ExperimentalProducts.Remove(ExperimentalProducts.First());
             }
             return totalCost;
         }

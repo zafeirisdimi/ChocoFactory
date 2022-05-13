@@ -15,7 +15,9 @@ namespace ChocoFactory.Domain
 
         public Accounting Accounting { get; set; }
 
-        
+        public List<Shop> Shops { get; set; } = new List<Shop>();
+
+
         //methods
 
     }

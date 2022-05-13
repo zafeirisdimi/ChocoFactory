@@ -47,6 +47,7 @@
     <Compile Include="Domain\Company\Accounting.cs" />
     <Compile Include="Domain\Company\Department.cs" />
     <Compile Include="Domain\Human\Employee.cs" />
+    <Compile Include="Domain\Products\ExperimentalProduct.cs" />
     <Compile Include="Enum.cs" />
     <Compile Include="Domain\Company\Factory.cs" />
     <Compile Include="Domain\Human\Human.cs" />
