@@ -20,7 +20,7 @@ namespace ChocoFactory.Domain
 
         public Offer SendOffer(decimal pricePerKilo, Quality quality, int suppliesKilos)
         {
-            return new Offer(pricePerKilo, quality, suppliesKilos);
+            return new Offer(pricePerKilo, quality, suppliesKilos, this);
         }
         
     }

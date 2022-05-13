@@ -9,11 +9,11 @@ namespace ChocoFactory.Domain
     class Accounting
     {
         //properties
+        public Factory Factory { get; set; }
         List<Employee> Employees = new List<Employee>();//list of possible employees of this deparment
         List<Offer> AvailableOffers = new List<Offer>();// list of available offers of possible suppliers
         public Supplier LastSupplier { get; set; }// the last supplier that send us offer
         public Order LastOrder { get; set; }
-        public Factory Factory { get; set; }
 
         //methods
         public void ReceiveOffers()
@@ -24,9 +24,9 @@ namespace ChocoFactory.Domain
             {
                 Supplier supplier = new Supplier();
                 Suppliers.Add(supplier);
+                Offer offerNew = Supplier.SendOffer();
             }
 
-            Offer offerNew = Supplier.SendOffer();
             AvailableOffers.Add(offerNew);
             Console.WriteLine("[New offer from Supplier is delivered !!!]");
 
