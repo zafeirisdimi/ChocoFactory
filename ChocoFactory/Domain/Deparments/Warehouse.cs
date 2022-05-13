@@ -70,19 +70,24 @@ namespace ChocoFactory.Domain
             {
                 Factory.Accounting.SendOrder(Factory.Accounting.LastOrder);
             }
-            RefillProducts("BlackChocolate", Factory.Company.CompanyPolicy.BlackChocolatePercent);
-            RefillProducts("WhiteChocolate", Factory.Company.CompanyPolicy.WhiteChocolatePercent);
-            RefillProducts("PlainMilkChocolate", Factory.Company.CompanyPolicy.MilkChocolatePercent);
-            RefillProducts("AlmondMilkChocolate", Factory.Company.CompanyPolicy.AlmondMilkChocolatePercent);
-            RefillProducts("HazelnutMilkChocolate", Factory.Company.CompanyPolicy.HazelnutMilkChocolatePercent);
+            CreateDailyProducts();
         }
 
-        public void RefillProducts(string productName, double policyPercentage)
+        public void RefillProduct(string productName, double policyPercentage)
         {
-            for (int i = 1; i <= policyPercentage * Factory.Company.CompanyPolicy.DailyProducts; i++)
+            for (int i = 1; i <= policyPercentage * Factory.Company.CompanyPolicy.DailyProducts; i++) // I don't think this will work.
             {
                 GetProduct(productName);              
             }
+        }
+
+        public void CreateDailyProducts()
+        {
+            RefillProduct("BlackChocolate", Factory.Company.CompanyPolicy.BlackChocolatePercent);
+            RefillProduct("WhiteChocolate", Factory.Company.CompanyPolicy.WhiteChocolatePercent);
+            RefillProduct("PlainMilkChocolate", Factory.Company.CompanyPolicy.MilkChocolatePercent);
+            RefillProduct("AlmondMilkChocolate", Factory.Company.CompanyPolicy.AlmondMilkChocolatePercent);
+            RefillProduct("HazelnutMilkChocolate", Factory.Company.CompanyPolicy.HazelnutMilkChocolatePercent);
         }
 
 
