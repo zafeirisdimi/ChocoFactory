@@ -39,7 +39,9 @@ namespace ChocoFactory.Domain
             Order order = new Order(bestOffer, Factory);
             
             order.Supplier.SendSupplies(order);
-            
+
+            Factory.Company.Capital -= order.PricePerKilo;
+
             LastOrder = order;
             LastSupplier = order.Supplier;
 
