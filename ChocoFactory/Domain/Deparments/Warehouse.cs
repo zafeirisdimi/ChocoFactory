@@ -26,11 +26,6 @@ namespace ChocoFactory.Domain
         public int SuppliesInKilo { get; set; }
 
         //methods
-        public void GetSupplies()
-        {
-            SuppliesInKilo += Supplier.SendSupplies();
-        }
-
         public int SendSupplies(int kilos)//called from Production
         {
             SuppliesInKilo -= kilos;
@@ -73,8 +68,7 @@ namespace ChocoFactory.Domain
         {
             if (AreSuppliesLow())
             {
-                Factory.Accounting.SendOrder(Supplier.Offer);
-                GetSupplies();
+                Factory.Accounting.SendOrder(Factory.Accounting.LastOrder);
             }
             RefillProducts("BlackChocolate", Factory.Company.CompanyPolicy.BlackChocolatePercent);
             RefillProducts("WhiteChocolate", Factory.Company.CompanyPolicy.WhiteChocolatePercent);
