@@ -8,11 +8,7 @@ namespace ChocoFactory.Domain
 {
     class Order : Offer
     {
-
-        public Order (decimal pricePerKilo, Quality quality, int quantity, Supplier supplier) : base (pricePerKilo, quality, quantity, supplier)
-        {
-
-        }
+        public Factory Factory { get; set; }
 
         public Order(Offer offer)
         {
@@ -20,6 +16,15 @@ namespace ChocoFactory.Domain
             this.Quality = offer.Quality;
             this.Quantity = offer.Quantity;
             this.Supplier = offer.Supplier;
+        }
+        
+        public Order(Offer offer, Factory factory)
+        {
+            this.PricePerKilo = offer.PricePerKilo; 
+            this.Quality = offer.Quality;
+            this.Quantity = offer.Quantity;
+            this.Supplier = offer.Supplier;
+            Factory = factory;
         }
     }
 }

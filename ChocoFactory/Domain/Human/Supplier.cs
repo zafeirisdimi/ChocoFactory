@@ -13,9 +13,10 @@ namespace ChocoFactory.Domain
         public int ID { get; set; }// SupplierID
 
         //methods
-        public int SendSupplies(Order order)
+        public void SendSupplies(Order order)
         {
-            return order.Quantity;
+            Warehouse warehouseToSend = order.Factory.Warehouse;
+            warehouseToSend.SuppliesInKilo += order.Quantity;
         }
 
         public Offer SendOffer(decimal pricePerKilo, Quality quality, int suppliesKilos)

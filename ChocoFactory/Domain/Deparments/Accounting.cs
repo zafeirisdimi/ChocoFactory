@@ -30,7 +30,7 @@ namespace ChocoFactory.Domain
         {
             Offer bestOffer = CheckBestOffer();
             //send this offer as order to supplier
-            Order order = new Order(bestOffer);
+            Order order = new Order(bestOffer, Factory);
 
             order.Supplier.SendSupplies(order);
            
