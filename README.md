@@ -91,9 +91,9 @@ Table of contents
 ## Account
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
-| List<Supplier> | Suppliers        | void ReceiveOffer()  |
-| List<Employee> | Employees        | Order SendOrder(parameter Offer)   |
-| List<Offer>    | AvailableOffers  | Offer CheckBestOffer()    |
+| List type of Supplier | Suppliers        | void ReceiveOffer()  |
+| List type of Employee | Employees        | Order SendOrder(parameter Offer)   |
+| List type of Offer    | AvailableOffers  | Offer CheckBestOffer()    |
 | Supplier       | supplierLast     | ---- |
 
 ##### [Back to >Top<](#chocofactory)
@@ -101,9 +101,13 @@ Table of contents
 ## Production
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
-| int            | DepartmentID     | get, set   |
-| string         | Description      | get, set    |
-| int            | ManagerID        | get, set    |
+| Factory            | Factory     | get, set   |
+
+| Extra Methods         |      Description                                                      |
+| ----------------- | ------------------------------------------------------------------ |
+| Product CreateProduct(string productName) | Choose what kind of Chocolate we want to create |
+| Offer SendOffer() | Send Offer to Accounting Deparment |
+
 
 ##### [Back to >Top<](#chocofactory)
 
@@ -129,9 +133,31 @@ Table of contents
 ## Shop
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
-| int            | DepartmentID     | get, set   |
-| string         | Description      | get, set    |
-| int            | ManagerID        | get, set    |
+| Company            | Company     | get, set   |
+| List of Product        | Products      | get, set    |
+| List of Employee            | Employees        | get, set    |
+| Dictionary string, int            | DailyProductsSold        | {"WhiteChocolate" , 0},
+            {"BlackChocolate" , 0},
+            {"PlainMilkChocolate" , 0},
+            {"AlmondMilkChocolate" , 0},
+            {"HazelnutMilkChocolate" , 0}   |
+| string            | Location        | get, set    |
+| decimal            | DailyEarnings        | get, set    |
+   
+
+| Extra Methods         |      Description                                                      |
+| ----------------- | ------------------------------------------------------------------ |
+| decimal SellProduct(string productName) | |
+| decimal ServeCustomer(List string productsToSell) |  |
+| void DailyActions(DateTime date) |  |
+| void DailyReport() |  |
+| void SendDailyEarnings() |  |
+| bool IsProductQuantityLow() |  |
+| void RefillProducts() |  |
+| Product ReceiveProduct() |  |
+| RemoveExpiredProducts(DateTime currentDate) |  |
+
+
 
 ##### [Back to >Top<](#chocofactory)
 
@@ -295,11 +321,4 @@ Table of contents
 - [@GitEmm](https://github.com/GitEmm)
 - [@zafeirisdimi](https://github.com/zafeirisdimi)
 - [@StaurosGouleas](https://www.github.com/StaurosGouleas)
-
-
-
-
-
-
-
 
