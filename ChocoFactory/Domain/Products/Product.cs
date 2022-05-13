@@ -18,6 +18,10 @@ namespace ChocoFactory.Domain
         public decimal Price { get; set; }
 
         //constructor
+        public Product()
+        {
+
+        }
         protected Product(int productID, string description, DateTime productionDate, DateTime expirationDate, decimal price)
         {
             ProductID = productID;

@@ -9,6 +9,6 @@ namespace ChocoFactory.Domain
 {
     public abstract class Chocolate: Product 
     {
-   
+     
     }
 }

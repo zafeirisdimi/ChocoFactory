@@ -66,7 +66,7 @@ namespace ChocoFactory.Domain
             DailyReport();
             SendDailyEarnings();
             DailyEarnings = 0;
-            foreach (var productType in DailyProductsSold.Keys)
+            foreach (var productType in DailyProductsSold.Keys.ToList<string>())
             {
                 DailyProductsSold[productType] = 0;
 
@@ -106,11 +106,14 @@ namespace ChocoFactory.Domain
 
         private void RefillProducts()
         {
-            do
+            foreach (string productName in DailyProductsSold.Keys.ToList<string>())
             {
-                Product newProduct = ReceiveProduct();
-                Products.Add(newProduct);
-            } while (Products.Count < Company.CompanyPolicy.ShopStockSize);
+                while (Products.Count < Company.CompanyPolicy.ShopStockSize)
+                {
+                    Product newProduct = ReceiveProduct(productName);
+                    Products.Add(newProduct);
+                }
+            }
         }
 
         private Product ReceiveProduct(string productName)//
