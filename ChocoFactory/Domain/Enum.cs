@@ -12,15 +12,4 @@ namespace ChocoFactory.Domain
         Medium,
         High
     }
-    public enum TypeChoco
-    {
-        Black,
-        White
-    }
-    public enum FlavorChoco
-    {
-       Pistazie,
-       Peanut,
-       Almond
-    }
 }
