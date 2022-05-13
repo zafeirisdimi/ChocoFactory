@@ -11,8 +11,8 @@ namespace ChocoFactory.Services
         public int BlackChocolateSupplies { get; set; } = 1;
         public int WhiteChocolateSupplies { get; set; } = 1;
         public int MilkChocolateSupplies { get; set; } = 1;
-        public int AlmondMilkChocolateSupplies { get; set; } = 2;
-        public int HazelnutMilkChocolateSupplies { get; set; } = 2;
+        public int AlmondMilkChocolateSupplies { get; set; } = 1;
+        public int HazelnutMilkChocolateSupplies { get; set; } = 1;
         public int ExperimentalChocolateSupplies { get; set; } = 1;
     }
 }

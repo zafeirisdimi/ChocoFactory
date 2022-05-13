@@ -64,6 +64,8 @@ namespace ChocoFactory
                 DailyActions(); // Do this everyday.
 
                 currentDate = Calendar.AddDays(CurrentDate, 1); // Advance Time by one day.
+
+                Console.WriteLine($"End of day {currentDate}");
             }
 
         }

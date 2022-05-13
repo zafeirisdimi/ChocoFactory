@@ -52,7 +52,14 @@ namespace ChocoFactory.Domain
             decimal totalCost = 0;
             foreach (string product in productsToSell)
             {
-                totalCost += SellProduct(product);
+                try
+                {
+                    totalCost += SellProduct(product);
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("The product not in shop.");
+                }
             }
 
             if (totalCost >= Company.CompanyPolicy.GiftMinimumPrice && HasExperimentalProduct())
@@ -75,11 +82,13 @@ namespace ChocoFactory.Domain
             }
             RemoveExpiredProducts(date);
 
-            if (IsProductQuantityLow())
+            foreach (string productName in DailyProductsSold.Keys.ToList<string>())
             {
-                RefillProducts();
+                if (IsProductQuantityLow(productName))
+                {
+                    RefillProducts();
+                }
             }
-
         }
 
         private void DailyReport()
@@ -99,9 +108,32 @@ namespace ChocoFactory.Domain
             Company.Revenue += DailyEarnings;
         }
 
-        private bool IsProductQuantityLow()
+        private bool IsProductQuantityLow(string productName)
         {
-            return Products.Count <= Company.CompanyPolicy.ShopRestockThreshold;
+            int stockProducts = 0;
+            switch (productName)
+            {
+                case "BlackChocolate":
+                    stockProducts = (int)Math.Floor(Company.CompanyPolicy.ShopStockSize * Company.CompanyPolicy.BlackChocolatePercent);
+                    break;
+                case "WhiteChocolate":
+                    stockProducts = (int)Math.Floor(Company.CompanyPolicy.ShopStockSize * Company.CompanyPolicy.WhiteChocolatePercent);
+                    break;
+                case "PlainMilkChocolate":
+                    stockProducts = (int)Math.Floor(Company.CompanyPolicy.ShopStockSize * Company.CompanyPolicy.MilkChocolatePercent);
+                    break;
+                case "AlmondMilkChocolate":
+                    stockProducts = (int)Math.Floor(Company.CompanyPolicy.ShopStockSize * Company.CompanyPolicy.AlmondMilkChocolatePercent);
+                    break;
+                case "HazelnutMilkChocolate":
+                    stockProducts = (int)Math.Floor(Company.CompanyPolicy.ShopStockSize * Company.CompanyPolicy.HazelnutMilkChocolatePercent);
+                    break;
+                default:
+                    break;
+            }
+            int productCounter = Products.Where(x => x.Description == productName).Count();
+
+            return productCounter <= stockProducts;
         }
 
 
@@ -131,9 +163,12 @@ namespace ChocoFactory.Domain
                     default:
                         break;
                 }
-                while (Products.Count < stockProducts)
+
+                int productCounter = Products.Where(x => x.Description == productName).Count();
+                while (productCounter < stockProducts)
                 {
-                    ReceiveProduct(productName); 
+                    ReceiveProduct(productName);
+                    productCounter = Products.Where(x => x.Description == productName).Count();
                 }
             }
         }
@@ -146,8 +181,10 @@ namespace ChocoFactory.Domain
         }
         private void RemoveExpiredProducts(DateTime currentDate)
         {
-            foreach (Product product in Products)
+            Product product = null;
+            for (int i = 0; i < Products.Count; i++)
             {
+                product = Products[i];
                 if (product.ExpirationDate > currentDate)
                 {
                     Products.Remove(product);

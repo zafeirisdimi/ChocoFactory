@@ -10,8 +10,8 @@ namespace ChocoFactory.Services
     internal class CustomerService
     {
         Random rnd = new Random();
-        private int maxProducts = 50;
-        private int maxCustomers = 100;
+        private int maxProducts = 5;
+        private int maxCustomers = 10;
 
         private string[] productNames = new string[]
         {
@@ -34,7 +34,7 @@ namespace ChocoFactory.Services
         }
         private List<string> ProductsToBuy()
         {
-            int randomNumberOfProducts = rnd.Next(maxProducts + 1);
+            int randomNumberOfProducts = rnd.Next(1, maxProducts + 1);
             List<string> products = new List<string>();
 
             for (int i = 0; i < randomNumberOfProducts; i++)

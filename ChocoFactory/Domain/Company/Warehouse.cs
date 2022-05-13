@@ -65,8 +65,11 @@ namespace ChocoFactory.Domain
 
         private void RemoveExpiredProducts(DateTime currentDate)
         {
-            foreach (Product product in Products)
+            Product product = null;
+
+            for (int i = 0; i < Products.Count; i++)
             {
+                product = Products[i];
                 if (product.ExpirationDate > currentDate)
                 {
                     ProductQuantity[product.Description]--;
@@ -77,6 +80,7 @@ namespace ChocoFactory.Domain
         public void DailyActions(DateTime currentDate)
         {
             RemoveExpiredProducts(currentDate);
+                Console.WriteLine(SuppliesInKilo);
             if (AreSuppliesLow())
             {
                 Factory.Accounting.SendOrder(Factory.Accounting.LastOrder);

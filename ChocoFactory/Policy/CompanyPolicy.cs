@@ -11,7 +11,7 @@ namespace ChocoFactory.Services
         // Factory
         public int DailyProducts { get; set; } = 500;
         public double LowSuppliesThresholdPercent { get; set; } = 0.10;
-        public double MinimumRevenueToInvest { get; set; } = 0.25;
+        public double MinimumRevenueToInvest { get; set; } = 0.10;
         public double RevenueYearlyGoal { get; set; } = 0.15;
         public int NumberOfOffers { get; set; } = 3;
 
