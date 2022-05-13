@@ -29,9 +29,10 @@ namespace ChocoFactory.Domain
 
         // Constructor
 
-        public Shop(Company company)
+        public Shop(Company company, Factory factory)
         {
             Company = company;
+            Factory = factory;
         }
 
         //methods
@@ -54,7 +55,7 @@ namespace ChocoFactory.Domain
                 totalCost += SellProduct(product);
             }
 
-            if (totalCost >= 30 && ExperimentalProducts.Count>0)
+            if (totalCost >= Company.CompanyPolicy.GiftMinimumPrice && ExperimentalProducts.Count>0)
             {
                 ExperimentalProducts.Remove(ExperimentalProducts.First());
             }
