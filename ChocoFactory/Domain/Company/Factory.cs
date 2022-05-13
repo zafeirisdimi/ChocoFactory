@@ -9,16 +9,10 @@ namespace ChocoFactory.Domain
     internal class Factory
     {
         //properties
-        public Warehouse Warehouse { get; set; }
-        public Production Production { get; set; }
         public Company Company { get; set; }
-
-        public Accounting Accounting { get; set; }
-
+        public Warehouse Warehouse { get; set; } = new Warehouse();
+        public Production Production { get; set; } = new Production();
+        public Accounting Accounting { get; set; } = new Accounting();
         public List<Shop> Shops { get; set; } = new List<Shop>();
-
-
-        //methods
-
     }
 }
