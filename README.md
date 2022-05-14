@@ -1,10 +1,11 @@
+----------------------------------------------------------------------------------------------------------------------------------------
 
-![Logo](https://github.com/zafeirisdimi/ChocoFactory/blob/master/img/choco.png)
+![Logo](https://github.com/zafeirisdimi/ChocoFactory/blob/master/img/choco.png "Chocofactory logo")
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 
-# 🏭CHOCOFACTORY
+# 🏭CHOCOFACTORY #
 
 
 <details><summary><strong>Description(Greek)</strong></summary>
@@ -57,24 +58,22 @@
 <!--te-->
                                                                                                                
 
-![factorydiagram](https://github.com/zafeirisdimi/ChocoFactory/blob/master/img/ChocoFactoryDiagram.drawio.png)
+![factorydiagram](https://github.com/zafeirisdimi/ChocoFactory/blob/master/img/ChocoFactoryDiagram.drawio.png "Object diagram")
 ------------------------------------------------------------------------------------------------------------------------------
 
-# /Domain/
-
-
-# /Deparments/
-## Deparment
-### (abstract Class)
+# /Domain/ #
+# /Deparments/ #
+## Deparment ##
+### (abstract Class) ###
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
 | int            | DepartmentID     | get, set   |
 | string         | Description      | get, set    |
 | int            | ManagerID        | get, set    |
 
-##### [Back to >Top<](#chocofactory)
+##### [Back to >Top<](#chocofactory) #####
 
-## 🧮Accounting
+## 🧮Accounting ##
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
 | List type of Supplier | Suppliers        | void ReceiveOffer()  |
@@ -82,7 +81,7 @@
 | List type of Offer    | AvailableOffers  | Offer CheckBestOffer()    |
 | Supplier       | supplierLast     | ---- |
 
-##### [Back to >Top<](#chocofactory)
+##### [Back to >Top<](#chocofactory) #####
 
 ## 🏦Production
 | Type           | Properties       | Methods |
@@ -95,7 +94,7 @@
 | Offer SendOffer() | Send Offer to Accounting Deparment |
 
 
-##### [Back to >Top<](#chocofactory)
+##### [Back to >Top<](#chocofactory) #####
 
 ## Warehouse
 | Type           | Properties       | Methods |
@@ -104,7 +103,7 @@
 | string         | Description      | get, set    |
 | int            | ManagerID        | get, set    |
 
-##### [Back to >Top<](#chocofactory)
+##### [Back to >Top<](#chocofactory) #####
 
 ## 🏫Factory
 | Type           | Properties       | Methods |
@@ -114,15 +113,15 @@
 | Company            | Company        | get, set    |
 | Account            | Accounting        | get, set    |
 
-##### [Back to >Top<](#chocofactory)
+##### [Back to >Top<](#chocofactory) #####
 
-## 🏪Shop
+## 🏪Shop ##
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
 | Company            | Company     | get, set   |
 | List of Product        | Products      | get, set    |
 | List of Employee            | Employees        | get, set    |
-| Dictionary string, int            | DailyProductsSold        | {"WhiteChocolate" ,"BlackChocolate" , "PlainMilkChocolate","AlmondMilkChocolate",HazelnutMilkChocolate |
+| Dictionary string, int            | DailyProductsSold        | {the products for sale}etc "WhiteChocolate"|
 | string            | Location        | get, set    |
 | decimal            | DailyEarnings        | get, set    |
    
@@ -140,12 +139,12 @@
 | RemoveExpiredProducts(DateTime currentDate) | Check if the Products have passed the ExpiredDate and it throws away.|
 
 
-##### [Back to >Top<](#chocofactory)
+##### [Back to >Top<](#chocofactory) #####
 
-# /Human/ 
+# /Human/ #
 
-## 🧑Human
-### (abstract Class)
+## 🧑Human ##
+### (abstract Class) ###
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
 | string            | FirstName     | get, set   |
@@ -159,7 +158,7 @@
 - Employee
 - Seller
 
-## 👴Supplier
+## 👴Supplier ##
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
 | int            | ID     | get, set   |
@@ -169,13 +168,13 @@
 | void SendSupplies(Order order)| Send Supplies from Supplier to Production|
 | Offer SendOffer(decimal pricePerKilo, Quality quality, int suppliesKilos) | Send Offer to Accounting Deparment |
 
-##### [Back to >Top<](#chocofactory)
+##### [Back to >Top<](#chocofactory) #####
 
-# /Products/
+# /Products/ #
 
 
-## 🍫Product
-### (abstract Class)
+## 🍫Product ##
+### (abstract Class) ###
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
 | int            | ID     | get, set   |
@@ -190,21 +189,26 @@
 - AlmondMilkChocolate
 - HazelnutMilkChocolate
 
-##### [Back to >Top<](#chocofactory)
+##### [Back to >Top<](#chocofactory) #####
 
-## 👮Policy
+## 👮Policy ##
 
-## 👨‍💼CompanyPolicy
+## 👨‍💼CompanyPolicy ##
+
+> Factory
 
 | Type           | Properties       | Methods |
-| :---:          |     :---:        |  :---:  |
-| //Factory                                     |
+| :---:          |     :---:        |  :---:  |                                    
 | int            | DailyProducts     | get, set   |
 | double        | LowSuppliesThresholdPercent      | get, set    |
 | double            | MinimumRevenueToInvest        | get, set    |
 | double            | RevenueYearlyGoal        | get, set    |
 | int            | NumberOfOffers        | get, set    |
-| //Production Percent                                   |
+
+> Production Percent
+
+| Type           | Properties       | Methods |
+| :---:          |     :---:        |  :---:  | 
 | double             | BlackChocolatePercent     | get, set   |
 | double        | WhiteChocolatePercent      | get, set    |
 | double            | MilkChocolatePercent        | get, set    |
@@ -219,7 +223,11 @@
 | DayOfWeek      | DiscountDay        | get, set    |
 | int      | DiscountDayOccurence        | get, set    |
 | decimal      | GiftMinimumPrice        | get, set    |
-| //Prices                                  |
+
+> Prices
+
+| Type           | Properties       | Methods |
+| :---:          |     :---:        |  :---:  |                                
 | decimal            | BlackChocolatePrice        | get, set    |
 | decimal           | WhiteChocolatePrice        | get, set    |
 | decimal      | MilkChocolatePrice        | get, set    |
@@ -227,7 +235,7 @@
 | decimal      | HazelnutMilkChocolatePrice        | get, set    |
 
 
-## 👩‍💼ProductionPolicy
+## 👩‍💼ProductionPolicy ##
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
 | int            | BlackChocolateSupplies     | get, set   |
@@ -238,13 +246,13 @@
 
 
 
-## 🔨Services
+## 🔨Services ##
 - CustomerService
 - SupplierService
 - RandomGenerator
 
 
-## ⏏️Interfaces
+## ⏏️Interfaces ##
 (loading....)
 - IDeparmentModel
 - IFactoryModel
@@ -254,33 +262,48 @@
 - IOrderModel
 - IProductModel
 
-## 🏢Company
+## 🏢Company ##
+
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
 
 
-## 📉Business Logic Diagram
+## 📉Business Logic Diagram ##
 ------------------------------------------------------------------------------------------
 
 ![Business Logic](https://github.com/zafeirisdimi/ChocoFactory/blob/master/img/MicrosoftTeams-image%20(1).png)
 
 ------------------------------------------------------------------------------------------
-## 🎖️Tasks
+## 🎖️Tasks ##
+### Project status ###
 
-## 🖥️Technologies + recourses
+- [x] Design
+- [x] Mockups
+- [x] Development
+- [x] Unit testing
+- [ ] QA
+- [ ] Stage
+- [ ] Beta Testing
+- [ ] Production
+
+## 🖥️Technologies + recourses ##
+
+### Technologies ###
 - Programming Language C#
 - Framework .NET 4.7.3
 - Console Application
-- [Visual Studio Community Edition 2019](https://visualstudio.microsoft.com/downloads/)
-- [Microsoft technical documentation](https://docs.microsoft.com/en-us/)
+
+### Recourses ###
+- [Download Visual Studio](https://visualstudio.microsoft.com/downloads/)
+- [Official documentation](https://docs.microsoft.com/en-us/)
 
 
-##### [Back to >Top<](#chocofactory)
+##### [Back to >Top<](#chocofactory) ####
 
 ------------------------------------------------------------------------------------------
-## 🤝Team
-- [👨@ioannis-thyris](https://github.com/ioannis-thyris)
-- [🧑@GitEmm](https://github.com/GitEmm)
-- [👨@zafeirisdimi](https://github.com/zafeirisdimi)
-- [🧔@StaurosGouleas](https://www.github.com/StaurosGouleas)
+## 🤝Team ##
+- [👨Ioannins T.](https://github.com/ioannis-thyris)
+- [🧑Dimitris B.](https://github.com/GitEmm)
+- [👨Dimitris Z](https://github.com/zafeirisdimi)
+- [🧔Stavros G.](https://www.github.com/StaurosGouleas)
 
