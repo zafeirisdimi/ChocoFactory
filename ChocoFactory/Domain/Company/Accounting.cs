@@ -14,10 +14,11 @@ namespace ChocoFactory.Domain
 
         //properties
         public Factory Factory { get; set; }
-        public List<Employee> Employees { get; set; } = new List<Employee>();//list of possible employees of this deparment
+        public List<Employee> Employees { get; set; } = new List<Employee>();//list of possible employees of this deparment.
         public List<Offer> AvailableOffers { get; set; } = new List<Offer>();// list of available offers of possible suppliers
         public Supplier LastSupplier { get; set; }// the last supplier that send us offer
         public Order LastOrder { get; set; }
+        
 
 
         public Accounting(Factory factory)
