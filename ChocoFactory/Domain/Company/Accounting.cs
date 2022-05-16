@@ -7,7 +7,7 @@ using ChocoFactory.Services;
 
 namespace ChocoFactory.Domain
 {
-    class Accounting : Department
+    public class Accounting : Department
     {
         // fields
         readonly SupplierService supplierService= new SupplierService();

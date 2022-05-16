@@ -9,7 +9,7 @@ using ChocoFactory.Services;
 
 namespace ChocoFactory
 {
-    internal class Scenario
+    public class Scenario
     {
         Company company = new Company(); // create Company object
 
