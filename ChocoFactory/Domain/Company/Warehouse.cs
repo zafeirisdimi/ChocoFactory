@@ -23,6 +23,13 @@ namespace ChocoFactory.Domain
         };
         public int SuppliesInKilo { get; set; }
         public int ExperimentalSupplies { get; set; }
+        public bool AreSuppliesLow
+        {
+            get
+            {
+                return SuppliesInKilo <= Factory.Accounting.LastOrder.Quantity * Factory.Company.CompanyPolicy.LowSuppliesThresholdPercent;
+            }
+        }
 
         public Warehouse(Factory factory)
         {
@@ -31,6 +38,18 @@ namespace ChocoFactory.Domain
 
 
         //methods
+
+        public void DailyActions(DateTime currentDate)
+        {
+            RemoveExpiredProducts(currentDate);
+            GetDailyProducts();
+
+            if (AreSuppliesLow)
+            {
+                Factory.Accounting.SendOrder(Factory.Accounting.LastOrder);
+            }
+        }
+
         public void GetSupplies(int supplies)
         {
             SuppliesInKilo += supplies;
@@ -38,8 +57,7 @@ namespace ChocoFactory.Domain
 
         public void SendSupplies(int kilos)//called from Production
         {
-            SuppliesInKilo -= kilos;
-            
+            SuppliesInKilo -= kilos;          
         }
 
         public void GetProduct(string productName)
@@ -47,7 +65,6 @@ namespace ChocoFactory.Domain
             Product newProduct = Factory.Production.CreateProduct(productName);
             Products.Add(newProduct);
             ProductQuantity[productName]++;
-
         }
 
         public Product SendProduct(string productName)
@@ -58,14 +75,9 @@ namespace ChocoFactory.Domain
             return productToSend;
         }
 
-        public bool AreSuppliesLow()//check for 10% of supplies
-        {
-            return SuppliesInKilo <= Factory.Accounting.LastOrder.Quantity * Factory.Company.CompanyPolicy.LowSuppliesThresholdPercent;
-        }
-
         private void RemoveExpiredProducts(DateTime currentDate)
         {
-            Product product = null;
+            Product product;
 
             for (int i = 0; i < Products.Count; i++)
             {
@@ -77,25 +89,10 @@ namespace ChocoFactory.Domain
                 }
             }
         }
-        public void DailyActions(DateTime currentDate)
-        {
-            //foreach (string productName in ProductQuantity.Keys.ToList<string>())
-            //{
-            //    Console.WriteLine($"{productName}: {ProductQuantity[productName]}");
-            //}
-
-            RemoveExpiredProducts(currentDate);
-                Console.WriteLine(SuppliesInKilo);
-            if (AreSuppliesLow())
-            {
-                Factory.Accounting.SendOrder(Factory.Accounting.LastOrder);
-            }
-            GetDailyProducts();
-        }
 
         public void RefillProduct(string productName, double policyPercentage)
         {
-            for (int i = 1; i <= policyPercentage * Factory.Company.CompanyPolicy.DailyProducts; i++) // I don't think this will work.
+            for (int i = 1; i <= policyPercentage * Factory.Company.CompanyPolicy.DailyProducts; i++)
             {
                 GetProduct(productName);              
             }
@@ -105,7 +102,7 @@ namespace ChocoFactory.Domain
         {
             foreach (string productName in ProductQuantity.Keys.ToList<string>())
             {
-                double dailyProduction = 0;
+                double dailyProduction;
 
                 switch (productName)
                 {
