@@ -19,10 +19,10 @@ namespace ChocoFactory.Domain
             {"BlackChocolate" , 0},
             {"PlainMilkChocolate" , 0},
             {"AlmondMilkChocolate" , 0},
-            {"HazelnutMilkChocolate" , 0},
-            {"ExperimentalProduct", 0 }
+            {"HazelnutMilkChocolate" , 0}
         };
         public int SuppliesInKilo { get; set; }
+        public int ExperimentalSupplies { get; set; }
 
         public Warehouse(Factory factory)
         {
@@ -79,6 +79,11 @@ namespace ChocoFactory.Domain
         }
         public void DailyActions(DateTime currentDate)
         {
+            //foreach (string productName in ProductQuantity.Keys.ToList<string>())
+            //{
+            //    Console.WriteLine($"{productName}: {ProductQuantity[productName]}");
+            //}
+
             RemoveExpiredProducts(currentDate);
                 Console.WriteLine(SuppliesInKilo);
             if (AreSuppliesLow())
@@ -98,14 +103,59 @@ namespace ChocoFactory.Domain
 
         public void GetDailyProducts()
         {
-            RefillProduct("BlackChocolate", Factory.Company.CompanyPolicy.BlackChocolatePercent);
-            RefillProduct("WhiteChocolate", Factory.Company.CompanyPolicy.WhiteChocolatePercent);
-            RefillProduct("PlainMilkChocolate", Factory.Company.CompanyPolicy.MilkChocolatePercent);
-            RefillProduct("AlmondMilkChocolate", Factory.Company.CompanyPolicy.AlmondMilkChocolatePercent);
-            RefillProduct("HazelnutMilkChocolate", Factory.Company.CompanyPolicy.HazelnutMilkChocolatePercent);
+            foreach (string productName in ProductQuantity.Keys.ToList<string>())
+            {
+                double dailyProduction = 0;
+
+                switch (productName)
+                {
+                    case "BlackChocolate":
+                        dailyProduction = Factory.Company.CompanyPolicy.BlackChocolatePercent;
+                        RefillProduct(productName, dailyProduction);
+                        break;
+                    case "WhiteChocolate":
+                        dailyProduction = Factory.Company.CompanyPolicy.WhiteChocolatePercent;
+                        RefillProduct(productName, dailyProduction);
+                        break;
+                    case "PlainMilkChocolate":
+                        dailyProduction = Factory.Company.CompanyPolicy.MilkChocolatePercent;
+                        RefillProduct(productName, dailyProduction);
+                        break;
+                    case "AlmondMilkChocolate":
+                        dailyProduction = Factory.Company.CompanyPolicy.AlmondMilkChocolatePercent;
+                        RefillProduct(productName, dailyProduction);
+                        break;
+                    case "HazelnutMilkChocolate":
+                        dailyProduction = Factory.Company.CompanyPolicy.HazelnutMilkChocolatePercent;
+                        RefillProduct(productName, dailyProduction);
+                        break;
+                    case "ExperimentalProduct":
+                        dailyProduction = Factory.Company.CompanyPolicy.ExperimentalPercent;
+                        RefillProduct(productName, dailyProduction);
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
 
-        
+        public void AddExperimentalProduct()
+        {
+            if (SuppliesInKilo > 0)
+            {
+                ExperimentalSupplies += SuppliesInKilo;
+                SuppliesInKilo = 0;
+                try
+                {
+                    ProductQuantity.Add("ExperimentalProduct", 0);
+
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine($"Factory already has Experimental Products.");
+                }
+            }
+        }
 
 
 

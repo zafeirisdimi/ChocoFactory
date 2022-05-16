@@ -79,11 +79,14 @@ namespace ChocoFactory.Domain
                     break;
                 case "ExperimentalProduct":
                     Factory.Warehouse.SendSupplies(ProductionPolicy.ExperimentalChocolateSupplies);
-                    createdProduct = new ExperimentalProduct();
-                    createdProduct.Description = "ExperimentalProduct";
-                    createdProduct.ProductionDate = DateTime.Now;
-                    createdProduct.ExpirationDate = DateTime.Now.AddDays(300);
-                    createdProduct.Price = 0;
+                    createdProduct = new ExperimentalProduct()
+                    {
+                        Description = "ExperimentalProduct",
+                        ProductionDate = DateTime.Now,
+                        ExpirationDate = DateTime.Now.AddDays(300),
+                        Price = Factory.Company.CompanyPolicy.ExperimentalChocolatePrice
+            };
+
                     break;
                 default:
                     Console.WriteLine("Error creating product");

@@ -21,6 +21,7 @@ namespace ChocoFactory.Services
         public double MilkChocolatePercent { get; set; } = 0.10;
         public double AlmondMilkChocolatePercent { get; set; } = 0.10;
         public double HazelnutMilkChocolatePercent { get; set; } = 0.10;
+        public double ExperimentalPercent { get; set; } = 0.05;
 
         // Shop
         public double ProductsToShopPercent { get; set; } = 0.50;
@@ -45,6 +46,7 @@ namespace ChocoFactory.Services
         public decimal MilkChocolatePrice { get; set; } = 5;
         public decimal AlmondMilkChocolatePrice { get; set; } = 8;
         public decimal HazelnutMilkChocolatePrice { get; set; } = 8;
+        public decimal ExperimentalChocolatePrice { get; set; } = 8;
 
 
 
