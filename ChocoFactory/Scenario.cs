@@ -26,7 +26,6 @@ namespace ChocoFactory
         public void Start()
         {
             company.Initialization();
-            company.DayOne(CurrentDate);
             AdvanceTime();
 
             Console.WriteLine("End of Scenario");

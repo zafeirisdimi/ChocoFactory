@@ -9,10 +9,6 @@ namespace ChocoFactory.Domain
 {
     internal class Company
     {
-
-        private CustomerService customerService = new CustomerService();
-        private int discountDayOccurences = 0;
-
         public decimal Capital { get; private set; } = 1000000;
         public decimal Revenue { get; set; }
         public List<Factory> Factories { get; set; } = new List<Factory>();
@@ -30,19 +26,8 @@ namespace ChocoFactory.Domain
             Factories.Add(factory);
 
             Shop shop = new Shop(this, factory);
-            shop.Company = this;
             Shops.Add(shop);
             factory.Shops.Add(shop);
-        }
-
-        public void DayOne(DateTime currentDate)
-        {
-            foreach (Shop shop in Shops)
-            {
-                shop.Discount = IsDiscountDay(currentDate) ? CompanyPolicy.ShopDiscount : 0;
-                shop.RefillProducts();
-                customerService.DailyPurchases(shop);
-            }
         }
 
         public void DailyActions(DateTime currentDate)
@@ -57,8 +42,6 @@ namespace ChocoFactory.Domain
 
             foreach (Shop shop in Shops)
             {
-                shop.Discount = IsDiscountDay(currentDate) ? CompanyPolicy.ShopDiscount : 0;
-                customerService.DailyPurchases(shop);
                 shop.DailyActions(currentDate);
             }
         }
@@ -79,19 +62,6 @@ namespace ChocoFactory.Domain
 
             // Update company capital, zero out the revenue.
 
-        }
-
-        public bool IsDiscountDay(DateTime currentDate)
-        {
-            if (currentDate.DayOfWeek == CompanyPolicy.DiscountDay)
-                discountDayOccurences++;
-
-            bool isDiscountDay = (discountDayOccurences == CompanyPolicy.DiscountDayOccurence);
-
-            if (isDiscountDay || currentDate.Day == 1) // Reset counter every start of the month or every discount day.
-                discountDayOccurences = 0;
-
-            return isDiscountDay;
         }
     }
 }

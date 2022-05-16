@@ -9,6 +9,9 @@ namespace ChocoFactory.Domain
 {
     internal class Shop
     {
+        private CustomerService customerService = new CustomerService();
+        private int discountDayOccurences = 0;
+
         public Company Company { get; set; }
         public Factory Factory { get; set; }
         public double Discount { get; set; } = 0;
@@ -33,9 +36,25 @@ namespace ChocoFactory.Domain
         {
             Company = company;
             Factory = factory;
+            RefillProducts();
         }
 
         //methods
+
+
+        private bool IsDiscountDay(DateTime currentDate)
+        {
+            if (currentDate.DayOfWeek == Company.CompanyPolicy.DiscountDay)
+                discountDayOccurences++;
+
+            bool isDiscountDay = (discountDayOccurences == Company.CompanyPolicy.DiscountDayOccurence);
+
+            if (isDiscountDay || currentDate.Day == 1) // Reset counter every start of the month or every discount day.
+                discountDayOccurences = 0;
+
+            return isDiscountDay;
+        }
+
         public decimal SellProduct(string productName)
         {
             Product productToSell = Products.Find(x => x.Description == productName);
@@ -69,18 +88,22 @@ namespace ChocoFactory.Domain
             return totalCost;
         }
 
-        public void DailyActions(DateTime date)
+        public void DailyActions(DateTime currentDate)
         {
-            //DailyReport();
+            Discount = IsDiscountDay(currentDate) ? Company.CompanyPolicy.ShopDiscount : 0;
+
+            customerService.DailyPurchases(this);
+
             SendDailyEarnings();
             DailyEarnings = 0;
+
             foreach (var productType in DailyProductsSold.Keys.ToList<string>())
             {
                 DailyProductsSold[productType] = 0;
 
                 //productType.Value = 0;
             }
-            RemoveExpiredProducts(date);
+            RemoveExpiredProducts(currentDate);
 
             foreach (string productName in DailyProductsSold.Keys.ToList<string>())
             {
