@@ -28,7 +28,7 @@ namespace ChocoFactory.Domain
         private void OpeningActions()
         {
             Accounting.ReceiveOffers();
-            Accounting.SendOrder(Accounting.BestOffer());
+            Accounting.SendOrder(Accounting.BestOffer);
             Warehouse.GetDailyProducts();
         }
 
@@ -41,7 +41,7 @@ namespace ChocoFactory.Domain
         {
             Warehouse.AddExperimentalProduct();
             Accounting.ReceiveOffers();
-            Accounting.SendOrder(Accounting.BestOffer());
+            Accounting.SendOrder(Accounting.BestOffer);
         }
 
 
