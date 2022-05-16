@@ -92,7 +92,9 @@ namespace ChocoFactory.Domain
 
         public void RefillProduct(string productName, double policyPercentage)
         {
-            for (int i = 1; i <= policyPercentage * Factory.Company.CompanyPolicy.DailyProducts; i++)
+            int numberOfProductDaily = (int) policyPercentage * Factory.Company.CompanyPolicy.DailyProducts;
+
+            for (int i = 1; i <= numberOfProductDaily; i++)
             {
                 GetProduct(productName);              
             }

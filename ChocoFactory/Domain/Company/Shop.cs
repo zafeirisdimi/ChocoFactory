@@ -204,7 +204,7 @@ namespace ChocoFactory.Domain
             }
         }
 
-        private void ReceiveProduct(string productName)//
+        private void ReceiveProduct(string productName)
         {
             Product newProduct = Factory.Warehouse.SendProduct(productName);
             Products.Add(newProduct);          

@@ -58,7 +58,7 @@ namespace ChocoFactory.Domain
             
             order.Supplier.SendSupplies(order);
 
-            Factory.Company.Revenue -= order.PricePerKilo;
+            Factory.Company.Revenue -= order.TotalCost;
 
             LastOrder = order;
             LastSupplier = order.Supplier;
