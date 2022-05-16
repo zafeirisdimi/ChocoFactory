@@ -71,7 +71,7 @@ namespace ChocoFactory.Domain
 
         public void DailyActions(DateTime date)
         {
-            DailyReport();
+            //DailyReport();
             SendDailyEarnings();
             DailyEarnings = 0;
             foreach (var productType in DailyProductsSold.Keys.ToList<string>())
@@ -168,7 +168,8 @@ namespace ChocoFactory.Domain
                 while (productCounter < stockProducts)
                 {
                     ReceiveProduct(productName);
-                    productCounter = Products.Where(x => x.Description == productName).Count();
+                    //productCounter = Products.Where(x => x.Description == productName).Count();
+                    productCounter++;
                 }
             }
         }

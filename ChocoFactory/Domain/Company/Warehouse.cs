@@ -79,10 +79,10 @@ namespace ChocoFactory.Domain
         }
         public void DailyActions(DateTime currentDate)
         {
-            foreach (string productName in ProductQuantity.Keys.ToList<string>())
-            {
-                Console.WriteLine($"{productName}: {ProductQuantity[productName]}");
-            }
+            //foreach (string productName in ProductQuantity.Keys.ToList<string>())
+            //{
+            //    Console.WriteLine($"{productName}: {ProductQuantity[productName]}");
+            //}
 
             RemoveExpiredProducts(currentDate);
                 Console.WriteLine(SuppliesInKilo);
@@ -145,7 +145,15 @@ namespace ChocoFactory.Domain
             {
                 ExperimentalSupplies += SuppliesInKilo;
                 SuppliesInKilo = 0;
-                ProductQuantity.Add("ExperimentalProduct", 0);
+                try
+                {
+                    ProductQuantity.Add("ExperimentalProduct", 0);
+
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine($"Factory already has Experimental Products.");
+                }
             }
         }
 
