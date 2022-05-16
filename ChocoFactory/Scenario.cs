@@ -26,6 +26,7 @@ namespace ChocoFactory
         public void Start()
         {
             company.Initialization();
+            company.DayOne(CurrentDate);
             AdvanceTime();
 
             Console.WriteLine("End of Scenario");
@@ -38,11 +39,6 @@ namespace ChocoFactory
         {
             while (CurrentDate != EndingDate)
             {
-                if (CurrentDate.Date == StartingDate.Date)
-                {
-                    company.DayOne(CurrentDate);
-                }
-
                 if (CurrentDate.Day == 1 && CurrentDate.Month == 1) // Do this on the first day of the year.
                 {
                     company.YearlyActions();
@@ -54,7 +50,6 @@ namespace ChocoFactory
 
                 Console.WriteLine($"End of day {currentDate}\n");
             }
-
         }
 
 
