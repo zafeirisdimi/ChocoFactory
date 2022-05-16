@@ -60,8 +60,8 @@ namespace ChocoFactory.Domain
                 Console.WriteLine("NEW SHOP!!");
             }
 
-            // Update company capital, zero out the revenue.
-
+            Capital += Revenue;
+            Revenue = 0;
         }
     }
 }
