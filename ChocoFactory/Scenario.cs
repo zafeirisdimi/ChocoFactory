@@ -12,9 +12,6 @@ namespace ChocoFactory
     internal class Scenario
     {
         Company company = new Company(); // create Company object
-        CustomerService customerService = new CustomerService();
-
-        private int discountDayOccurences = 0;
 
         public DateTime StartingDate { get; set; } = DateTime.Now;
         public DateTime EndingDate { get; set; } = new DateTime(2023, 1, 30);
@@ -24,13 +21,11 @@ namespace ChocoFactory
         {
             get { return currentDate; }
         }
-
-
         public Calendar Calendar { get; } = CultureInfo.InvariantCulture.Calendar;
 
         public void Start()
         {
-            Initialization();
+            company.Initialization();
             AdvanceTime();
 
             Console.WriteLine("End of Scenario");
@@ -39,33 +34,21 @@ namespace ChocoFactory
             Console.WriteLine($"Final Company Revenue: {company.Revenue}");
         }
 
-        public void Initialization()
-        {
-            Factory factory = new Factory();
-            company.Factories.Add(factory);
-            factory.Company = company;
-
-            Shop shop = new Shop(company, factory);
-            shop.Company = company;
-            company.Shops.Add(shop);
-            factory.Shops.Add(shop);
-        }
-
         public void AdvanceTime()
         {
             while (CurrentDate != EndingDate)
             {
                 if (CurrentDate.Date == StartingDate.Date)
                 {
-                    DayOne();
+                    company.DayOne(CurrentDate);
                 }
 
                 if (CurrentDate.Day == 1 && CurrentDate.Month == 1) // Do this on the first day of the year.
                 {
-                    YearlyActions();
+                    company.YearlyActions();
                 }
 
-                DailyActions(); // Do this everyday.
+                company.DailyActions(CurrentDate); // Do this everyday.
 
                 currentDate = Calendar.AddDays(CurrentDate, 1); // Advance Time by one day.
 
@@ -74,71 +57,7 @@ namespace ChocoFactory
 
         }
 
-        public void DailyActions()
-        {
-            Console.WriteLine($"Capital: {company.Capital}");
-            Console.WriteLine($"Revenue: {company.Revenue}");
-            foreach (Factory factory in company.Factories)
-            {
-                factory.Warehouse.DailyActions(currentDate);
-            }
 
-            foreach (Shop shop in company.Shops)
-            {
-                shop.Discount = IsDiscountDay() ? company.CompanyPolicy.ShopDiscount : 0;
-                customerService.DailyPurchases(shop);
-                shop.DailyActions(CurrentDate);
-            }
-        }
-
-        public void YearlyActions()
-        {
-            foreach (Factory factory in company.Factories)
-            {
-                factory.Warehouse.AddExperimentalProduct();
-                factory.Accounting.ReceiveOffers();
-                factory.Accounting.SendOrder(factory.Accounting.BestOffer());
-            }
-
-            if (company.RevenueGoalAchieved)
-            {
-                
-                Shop shop = new Shop(company, DataGenerator.RandomFactory(company));
-                company.Shops.Add(shop);
-            }
-        }
-
-        public void DayOne()
-        {
-            foreach (Factory factory in company.Factories)
-            {
-                factory.Accounting.ReceiveOffers();
-                factory.Accounting.SendOrder(factory.Accounting.BestOffer());
-                factory.Warehouse.GetDailyProducts();
-            }
-
-            foreach (Shop shop in company.Shops)
-            {
-                shop.Discount = IsDiscountDay() ? company.CompanyPolicy.ShopDiscount : 0;
-                shop.RefillProducts();
-                customerService.DailyPurchases(shop);
-            }
-        }
-
-        public bool IsDiscountDay()
-        {
-            if (CurrentDate.DayOfWeek == company.CompanyPolicy.DiscountDay)
-            {
-                discountDayOccurences++;
-            }
-
-            bool isDiscountDay = (discountDayOccurences == company.CompanyPolicy.DiscountDayOccurence);
-
-            if (isDiscountDay || CurrentDate.Day == 1)
-                discountDayOccurences = 0;
-
-            return isDiscountDay;
-        }
 
     }
 }
