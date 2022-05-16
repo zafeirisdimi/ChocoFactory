@@ -13,7 +13,7 @@ namespace ChocoFactory.Domain
         private CustomerService customerService = new CustomerService();
         private int discountDayOccurences = 0;
 
-        public decimal Capital { get; set; } = 1000000;
+        public decimal Capital { get; private set; } = 1000000;
         public decimal Revenue { get; set; }
         public List<Factory> Factories { get; set; } = new List<Factory>();
         public List<Shop> Shops { get; set; } = new List<Shop>();
@@ -26,9 +26,8 @@ namespace ChocoFactory.Domain
 
         public void Initialization()
         {
-            Factory factory = new Factory();
+            Factory factory = new Factory(this);
             Factories.Add(factory);
-            factory.Company = this;
 
             Shop shop = new Shop(this, factory);
             shop.Company = this;
@@ -38,13 +37,6 @@ namespace ChocoFactory.Domain
 
         public void DayOne(DateTime currentDate)
         {
-            foreach (Factory factory in Factories)
-            {
-                factory.Accounting.ReceiveOffers();
-                factory.Accounting.SendOrder(factory.Accounting.BestOffer());
-                factory.Warehouse.GetDailyProducts();
-            }
-
             foreach (Shop shop in Shops)
             {
                 shop.Discount = IsDiscountDay(currentDate) ? CompanyPolicy.ShopDiscount : 0;
@@ -57,9 +49,10 @@ namespace ChocoFactory.Domain
         {
             Console.WriteLine($"Capital: {Capital}");
             Console.WriteLine($"Revenue: {Revenue}");
+
             foreach (Factory factory in Factories)
             {
-                factory.Warehouse.DailyActions(currentDate);
+                factory.DailyActions(currentDate);
             }
 
             foreach (Shop shop in Shops)
@@ -69,13 +62,12 @@ namespace ChocoFactory.Domain
                 shop.DailyActions(currentDate);
             }
         }
+
         public void YearlyActions()
         {
             foreach (Factory factory in Factories)
             {
-                factory.Warehouse.AddExperimentalProduct();
-                factory.Accounting.ReceiveOffers();
-                factory.Accounting.SendOrder(factory.Accounting.BestOffer());
+                factory.YearlyActions();
             }
 
             if (RevenueGoalAchieved)

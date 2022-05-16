@@ -40,9 +40,7 @@ namespace ChocoFactory
             while (CurrentDate != EndingDate)
             {
                 if (CurrentDate.Day == 1 && CurrentDate.Month == 1) // Do this on the first day of the year.
-                {
                     company.YearlyActions();
-                }
 
                 company.DailyActions(CurrentDate); // Do this everyday.
 
