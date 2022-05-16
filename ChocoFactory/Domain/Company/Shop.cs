@@ -30,6 +30,12 @@ namespace ChocoFactory.Domain
         public string Location { get; set; }
         public decimal DailyEarnings { get; set; } = 0;
 
+        public bool HasExperimentalProduct
+        {
+            get { return Products.Any(x => x.Description == "ExperimentalProduct"); }
+        }
+
+
         // Constructor
 
         public Shop(Company company, Factory factory)
@@ -81,7 +87,7 @@ namespace ChocoFactory.Domain
                 }
             }
 
-            if (totalCost >= Company.CompanyPolicy.GiftMinimumPrice && HasExperimentalProduct())
+            if (totalCost >= Company.CompanyPolicy.GiftMinimumPrice && HasExperimentalProduct)
             {
                 Products.Remove(Products.Find(x=>x.Description=="ExperimentalProduct"));
             }
@@ -160,7 +166,7 @@ namespace ChocoFactory.Domain
         }
 
 
-        public void RefillProducts()
+        private void RefillProducts()
         {
             foreach (string productName in DailyProductsSold.Keys.ToList<string>())
             {
@@ -197,7 +203,7 @@ namespace ChocoFactory.Domain
             }
         }
 
-        public void ReceiveProduct(string productName)//
+        private void ReceiveProduct(string productName)//
         {
             Product newProduct = Factory.Warehouse.SendProduct(productName);
             Products.Add(newProduct);
@@ -214,11 +220,6 @@ namespace ChocoFactory.Domain
                     Products.Remove(product);
                 }
             }
-        }
-
-        private bool HasExperimentalProduct()
-        {
-            return Products.Any(x => x.Description == "ExperimentalProduct");
         }
     }
 }
