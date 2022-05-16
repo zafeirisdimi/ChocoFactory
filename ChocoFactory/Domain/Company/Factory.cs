@@ -6,17 +6,18 @@ using System.Threading.Tasks;
 
 namespace ChocoFactory.Domain
 {
-    internal class Factory
+    internal class Factory : IFactory
     {
         //properties
-        public Company Company { get; set; }
+        public ICompany Company { get; set; }
         public Warehouse Warehouse { get; set; }
         public Production Production { get; set; }
         public Accounting Accounting { get; set; }
-        public List<Shop> Shops { get; set; } = new List<Shop>();
+        public List<IShop> Shops { get; set; }
 
-        public Factory(Company company)
+        public Factory(ICompany company,List<IShop> shops )
         {
+            Shops = shops;
             Company = company;
             Warehouse = new Warehouse(this);
             Production = new Production(this);

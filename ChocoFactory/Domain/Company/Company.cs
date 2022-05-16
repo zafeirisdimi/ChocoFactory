@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace ChocoFactory.Domain
 {
-    internal class Company
+    internal class Company : ICompany
     {
         public decimal Capital { get; private set; } = 1000000;
         public decimal Revenue { get; set; }
-        public List<Factory> Factories { get; set; } = new List<Factory>();
-        public List<Shop> Shops { get; set; } = new List<Shop>();
+        public List<IFactory> Factories { get; set; }
+        public List<IShop> Shops { get; set; }
         public List<Employee> Employees { get; set; } = new List<Employee>();
         public CompanyPolicy CompanyPolicy { get; set; } = new CompanyPolicy();
         public bool RevenueGoalAchieved
@@ -20,6 +20,11 @@ namespace ChocoFactory.Domain
             get { return Revenue > (decimal)CompanyPolicy.RevenueYearlyGoal * Revenue; }
         }
 
+        public Company(List<IFactory> factorys,List<IShop> shops)
+        {
+            Factories = factorys;
+            Shops = shops;
+        }
         public void Initialization()
         {
             Factory factory = new Factory(this);
