@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace ChocoFactory.Domain
 {
-    internal class Shop : IShop
+    internal class Shop
     {
         private readonly CustomerService customerService = new CustomerService();
         private int discountDayOccurences = 0;
 
-        public ICompany Company { get; set; }
-        public IFactory Factory { get; set; }
+        public Company Company { get; set; }
+        public Factory Factory { get; set; }
         public double Discount { get; set; } = 0;
         public List<Product> Products { get; set; } = new List<Product>();
-
+        
         public List<Employee> Employees { get; set; }
 
         public Dictionary<string, int> DailyProductsSold { get; set; } = new Dictionary<string, int>()
@@ -38,7 +38,7 @@ namespace ChocoFactory.Domain
 
         // Constructor
 
-        public Shop(ICompany company, IFactory factory)
+        public Shop(Company company, Factory factory)
         {
             Company = company;
             Factory = factory;
@@ -110,7 +110,7 @@ namespace ChocoFactory.Domain
 
             if (HasExperimentalProduct && totalCost >= Company.CompanyPolicy.GiftMinimumPrice)
             {
-                Products.Remove(Products.Find(x => x.Description == "ExperimentalProduct"));
+                Products.Remove(Products.Find(x=>x.Description=="ExperimentalProduct"));
             }
             return totalCost;
         }
@@ -190,7 +190,7 @@ namespace ChocoFactory.Domain
             {
                 ReceiveProduct(productName);
                 productsInStock++;
-            }
+            }      
         }
 
         private void RefillStock()
@@ -207,7 +207,7 @@ namespace ChocoFactory.Domain
         private void ReceiveProduct(string productName)
         {
             Product newProduct = Factory.Warehouse.SendProduct(productName);
-            Products.Add(newProduct);
+            Products.Add(newProduct);          
         }
 
         private void RemoveExpiredProducts(DateTime currentDate)
