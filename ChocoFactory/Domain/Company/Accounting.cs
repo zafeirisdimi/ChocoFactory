@@ -7,20 +7,39 @@ using ChocoFactory.Services;
 
 namespace ChocoFactory.Domain
 {
-    class Accounting
+    class Accounting : Department
     {
         // fields
-        SupplierService supplierService= new SupplierService();
+        readonly SupplierService supplierService= new SupplierService();
+        private Offer bestOffer;
 
-        //properties
+        // Properties
         public Factory Factory { get; set; }
         public List<Employee> Employees { get; set; } = new List<Employee>();//list of possible employees of this deparment.
         public List<Offer> AvailableOffers { get; set; } = new List<Offer>();// list of available offers of possible suppliers
+        public Offer BestOffer
+        {
+            get
+            {
+                double bestValue = 0;
+
+                foreach (Offer offer in AvailableOffers)
+                {
+                    double value = OfferValue(offer);
+
+                    if (value > bestValue)
+                    {
+                        bestValue = value;
+                        bestOffer = offer;
+                    }
+                }
+                return bestOffer;
+            }
+        }
         public Supplier LastSupplier { get; set; }// the last supplier that send us offer
         public Order LastOrder { get; set; }
         
-
-
+        // Constructor
         public Accounting(Factory factory)
         {
             Factory = factory;
@@ -30,42 +49,22 @@ namespace ChocoFactory.Domain
         public void ReceiveOffers()
         {
             AvailableOffers = new List<Offer>(supplierService.Offers(Factory));
-            Console.WriteLine("[New offer from Supplier is delivered !!!]");
+            Console.WriteLine("The offers from Suppliers are delivered.");
          }
 
         public  Order SendOrder(Offer offer)
         {
-            Offer bestOffer = BestOffer();
-            //send this offer as order to supplier
-            Order order = new Order(bestOffer, Factory);
+            Order order = new Order(BestOffer, Factory);
             
             order.Supplier.SendSupplies(order);
 
-            Factory.Company.Capital -= order.PricePerKilo;
+            Factory.Company.Revenue -= order.TotalCost;
 
             LastOrder = order;
             LastSupplier = order.Supplier;
 
             Console.WriteLine("[Send order!!!]");
             return order;
-        }
-
-        public Offer BestOffer()
-        {
-            double bestValue = 0;
-            Offer bestOffer = null;
-
-            foreach (Offer offer in AvailableOffers)
-            {
-                double value = OfferValue(offer);
-
-                if(value > bestValue)
-                {
-                    bestValue = value;
-                    bestOffer = offer;
-                }
-            }
-            return bestOffer;
         }
 
         private double OfferValue(Offer offer)

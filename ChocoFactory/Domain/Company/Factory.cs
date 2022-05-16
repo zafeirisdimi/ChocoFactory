@@ -15,11 +15,35 @@ namespace ChocoFactory.Domain
         public Accounting Accounting { get; set; }
         public List<Shop> Shops { get; set; } = new List<Shop>();
 
-        public Factory()
+        public Factory(Company company)
         {
+            Company = company;
             Warehouse = new Warehouse(this);
             Production = new Production(this);
             Accounting = new Accounting(this);
+
+            OpeningActions();
         }
+
+        private void OpeningActions()
+        {
+            Accounting.ReceiveOffers();
+            Accounting.SendOrder(Accounting.BestOffer);
+            Warehouse.GetDailyProducts();
+        }
+
+        public void DailyActions(DateTime currentDate)
+        {
+            Warehouse.DailyActions(currentDate);
+        }
+
+        public void YearlyActions()
+        {
+            Warehouse.AddExperimentalProduct();
+            Accounting.ReceiveOffers();
+            Accounting.SendOrder(Accounting.BestOffer);
+        }
+
+
     }
 }
