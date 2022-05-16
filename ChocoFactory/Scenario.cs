@@ -17,7 +17,7 @@ namespace ChocoFactory
         private int discountDayOccurences = 0;
 
         public DateTime StartingDate { get; set; } = DateTime.Now;
-        public DateTime EndingDate { get; set; } = new DateTime(2025, 5, 30);
+        public DateTime EndingDate { get; set; } = new DateTime(2023, 1, 30);
 
         private DateTime currentDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
         public DateTime CurrentDate
@@ -76,6 +76,8 @@ namespace ChocoFactory
 
         public void DailyActions()
         {
+            Console.WriteLine($"Capital: {company.Capital}");
+            Console.WriteLine($"Revenue: {company.Revenue}");
             foreach (Factory factory in company.Factories)
             {
                 factory.Warehouse.DailyActions(currentDate);
@@ -91,11 +93,9 @@ namespace ChocoFactory
 
         public void YearlyActions()
         {
-            CreateAndDistributeExperimentalProducts();
-
-
             foreach (Factory factory in company.Factories)
             {
+                factory.Warehouse.AddExperimentalProduct();
                 factory.Accounting.ReceiveOffers();
                 factory.Accounting.SendOrder(factory.Accounting.BestOffer());
             }
@@ -123,8 +123,6 @@ namespace ChocoFactory
                 shop.RefillProducts();
                 customerService.DailyPurchases(shop);
             }
-
-
         }
 
         public bool IsDiscountDay()
@@ -140,29 +138,6 @@ namespace ChocoFactory
                 discountDayOccurences = 0;
 
             return isDiscountDay;
-        }
-
-        public void CreateAndDistributeExperimentalProducts()
-        {
-            foreach (Factory factory in company.Factories)
-            {
-                while (factory.Warehouse.SuppliesInKilo >= factory.Production.ProductionPolicy.ExperimentalChocolateSupplies)
-                {
-                    factory.Warehouse.GetProduct("ExperimentalProduct");
-
-                }
-                while (factory.Warehouse.Products.Any(x => x.Description == "ExperimentalProduct"))
-                {
-                    foreach (Shop shop in factory.Shops)
-                    {
-                        shop.ReceiveProduct("ExperimentalProduct");
-                    }
-
-                }
-
-
-
-            }
         }
 
     }
