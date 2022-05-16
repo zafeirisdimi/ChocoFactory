@@ -42,11 +42,10 @@ namespace ChocoFactory.Domain
         {
             Company = company;
             Factory = factory;
-            RefillProducts();
+            RefillStock();
         }
 
         //methods
-
 
         private bool IsDiscountDay(DateTime currentDate)
         {
@@ -101,7 +100,6 @@ namespace ChocoFactory.Domain
             customerService.DailyPurchases(this);
 
             SendDailyEarnings();
-            DailyEarnings = 0;
 
             foreach (var productType in DailyProductsSold.Keys.ToList<string>())
             {
@@ -110,13 +108,7 @@ namespace ChocoFactory.Domain
 
             RemoveExpiredProducts(currentDate);
 
-            foreach (string productName in DailyProductsSold.Keys.ToList<string>())
-            {
-                if (IsProductQuantityLow(productName))
-                {
-                    RefillProducts();
-                }
-            }
+
         }
 
         private void DailyReport()
@@ -134,6 +126,7 @@ namespace ChocoFactory.Domain
         private void SendDailyEarnings()
         {
             Company.Revenue += DailyEarnings;
+            DailyEarnings = 0;
         }
 
         private bool IsProductQuantityLow(string productName)
@@ -165,7 +158,7 @@ namespace ChocoFactory.Domain
         }
 
 
-        private void RefillProducts()
+        private void RefillProduct()
         {
             foreach (string productName in DailyProductsSold.Keys.ToList<string>())
             {
@@ -201,13 +194,23 @@ namespace ChocoFactory.Domain
                 }
             }
         }
+        private void RefillStock()
+        {
+            foreach (string productName in DailyProductsSold.Keys.ToList<string>())
+            {
+                if (IsProductQuantityLow(productName))
+                {
+                    RefillProduct();
+                }
+            }
+        }
 
         private void ReceiveProduct(string productName)//
         {
             Product newProduct = Factory.Warehouse.SendProduct(productName);
-            Products.Add(newProduct);
-            
+            Products.Add(newProduct);          
         }
+
         private void RemoveExpiredProducts(DateTime currentDate)
         {
             Product product = null;
