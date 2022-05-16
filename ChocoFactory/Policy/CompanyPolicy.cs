@@ -45,6 +45,7 @@ namespace ChocoFactory.Services
         public decimal MilkChocolatePrice { get; set; } = 5;
         public decimal AlmondMilkChocolatePrice { get; set; } = 8;
         public decimal HazelnutMilkChocolatePrice { get; set; } = 8;
+        public decimal ExperimentalChocolatePrice { get; set; } = 8;
 
 
 

@@ -84,7 +84,7 @@ namespace ChocoFactory.Domain
                         Description = "ExperimentalProduct",
                         ProductionDate = DateTime.Now,
                         ExpirationDate = DateTime.Now.AddDays(300),
-                        Price = 0
+                        Price = Factory.Company.CompanyPolicy.ExperimentalChocolatePrice
             };
 
                     break;
