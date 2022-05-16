@@ -21,6 +21,7 @@ namespace ChocoFactory.Services
         public double MilkChocolatePercent { get; set; } = 0.10;
         public double AlmondMilkChocolatePercent { get; set; } = 0.10;
         public double HazelnutMilkChocolatePercent { get; set; } = 0.10;
+        public double ExperimentalPercent { get; set; } = 0.05;
 
         // Shop
         public double ProductsToShopPercent { get; set; } = 0.50;
