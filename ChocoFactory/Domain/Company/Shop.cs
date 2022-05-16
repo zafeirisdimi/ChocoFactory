@@ -83,7 +83,7 @@ namespace ChocoFactory.Domain
                 }
                 catch (Exception)
                 {
-                    Console.WriteLine("The shop hasn't got the product.");
+                    Console.WriteLine("The shop did not have the product.");
                 }
             }
 
@@ -106,9 +106,8 @@ namespace ChocoFactory.Domain
             foreach (var productType in DailyProductsSold.Keys.ToList<string>())
             {
                 DailyProductsSold[productType] = 0;
-
-                //productType.Value = 0;
             }
+
             RemoveExpiredProducts(currentDate);
 
             foreach (string productName in DailyProductsSold.Keys.ToList<string>())
