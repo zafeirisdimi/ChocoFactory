@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Autofac;
+using ChocoFactory.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,8 +12,13 @@ namespace ChocoFactory
     {
         static void Main(string[] args)
         {
-            Scenario scenario = new Scenario();
-            scenario.Start();
+            IContainer container = ContainerConfig.Configure();
+            using (var scope = container.BeginLifetimeScope())
+            {
+                IScenario scenario = scope.Resolve<IScenario>();
+                scenario.Start();
+            }
+            
 
         }
     }

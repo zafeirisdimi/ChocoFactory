@@ -9,9 +9,10 @@ using ChocoFactory.Services;
 
 namespace ChocoFactory
 {
-    internal class Scenario
+    internal class Scenario : IScenario
     {
-        Company company = new Company(); // create Company object
+        ICompany _comapny;
+       
 
         public DateTime StartingDate { get; set; } = DateTime.Now;
         public DateTime EndingDate { get; set; } = new DateTime(2023, 1, 30);
@@ -23,15 +24,19 @@ namespace ChocoFactory
         }
         public Calendar Calendar { get; } = CultureInfo.InvariantCulture.Calendar;
 
+        public Scenario(ICompany company)
+        {
+            _comapny = company;
+        }
         public void Start()
         {
-            company.Initialization();
+            _comapny.Initialization();
             AdvanceTime();
 
             Console.WriteLine("End of Scenario");
 
-            Console.WriteLine($"Final Company Capital: {company.Capital}");
-            Console.WriteLine($"Final Company Revenue: {company.Revenue}");
+            Console.WriteLine($"Final Company Capital: {_comapny.Capital}");
+            Console.WriteLine($"Final Company Revenue: {_comapny.Revenue}");
         }
 
         public void AdvanceTime()
@@ -39,9 +44,9 @@ namespace ChocoFactory
             while (CurrentDate != EndingDate)
             {
                 if (CurrentDate.Day == 1 && CurrentDate.Month == 1) // Do this on the first day of the year.
-                    company.YearlyActions();
+                    _comapny.YearlyActions();
 
-                company.DailyActions(CurrentDate); // Do this everyday.
+                _comapny.DailyActions(CurrentDate); // Do this everyday.
 
                 currentDate = Calendar.AddDays(CurrentDate, 1); // Advance Time by one day.
 
