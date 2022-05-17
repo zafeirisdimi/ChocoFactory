@@ -3,7 +3,7 @@ using System.Globalization;
 
 namespace ChocoFactory
 {
-    internal interface IScenario
+    public interface IScenario
     {
         Calendar Calendar { get; }
         DateTime CurrentDate { get; }
