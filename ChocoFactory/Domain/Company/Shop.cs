@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ChocoFactory.Domain
 {
-    internal class Shop
+    public class Shop
     {
         private readonly CustomerService customerService = new CustomerService();
         private int discountDayOccurences = 0;

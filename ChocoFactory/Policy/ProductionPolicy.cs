@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChocoFactory.Services
 {
-    internal class ProductionPolicy
+    public class ProductionPolicy
     {
         public int BlackChocolateSupplies { get; set; } = 1;
         public int WhiteChocolateSupplies { get; set; } = 1;
