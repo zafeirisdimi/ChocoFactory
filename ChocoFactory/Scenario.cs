@@ -30,7 +30,7 @@ namespace ChocoFactory
         }
         public void Start()
         {
-            _comapny.Initialization();
+            
             AdvanceTime();
 
             Console.WriteLine("End of Scenario");

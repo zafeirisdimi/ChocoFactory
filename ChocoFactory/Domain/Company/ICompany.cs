@@ -10,6 +10,6 @@ namespace ChocoFactory.Domain
         void DailyActions(DateTime currentDate);
         void YearlyActions();
 
-        void Initialization();
+        
     }
 }
