@@ -10,7 +10,7 @@ namespace ChocoFactory.Domain
     class Accounting : Department
     {
         // fields
-        readonly SupplierService supplierService= new SupplierService();
+        private readonly ISupplierService _supplierService;
         private Offer bestOffer;
 
         // Properties
@@ -48,7 +48,7 @@ namespace ChocoFactory.Domain
         //methods
         public void ReceiveOffers()
         {
-            AvailableOffers = new List<Offer>(supplierService.Offers(Factory));
+            AvailableOffers = new List<Offer>(_supplierService.Offers(Factory));
             Console.WriteLine("The offers from Suppliers are delivered.");
          }
 

@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using ChocoFactory.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,10 @@ namespace ChocoFactory.Domain
             ContainerBuilder builder = new ContainerBuilder();
             builder.RegisterType<Scenario>().As<IScenario>();
             builder.RegisterType<Company>().As<ICompany>();
+            builder.RegisterType<SupplierService>().As<ISupplierService>();
+            builder.RegisterType<CustomerService>().As<ICustomerService>();
+
+
             return builder.Build();
 
 

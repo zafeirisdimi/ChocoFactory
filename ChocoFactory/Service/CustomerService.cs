@@ -7,7 +7,7 @@ using ChocoFactory.Domain;
 
 namespace ChocoFactory.Services
 {
-    internal class CustomerService
+    internal class CustomerService : ICustomerService
     {
         Random rnd = new Random();
         private int maxProducts = 5;
