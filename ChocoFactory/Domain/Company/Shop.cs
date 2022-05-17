@@ -9,7 +9,7 @@ namespace ChocoFactory.Domain
 {
     internal class Shop
     {
-        private readonly ICustomerService _customerService;
+        private readonly CustomerService customerService = new CustomerService();
         private int discountDayOccurences = 0;
 
         public Company Company { get; set; }
@@ -50,7 +50,7 @@ namespace ChocoFactory.Domain
         {
             Discount = IsDiscountDay(currentDate) ? Company.CompanyPolicy.ShopDiscount : 0;
 
-            _customerService.DailyPurchases(this);
+            customerService.DailyPurchases(this);
 
             SendDailyEarnings();
 

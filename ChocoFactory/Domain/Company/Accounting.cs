@@ -10,7 +10,7 @@ namespace ChocoFactory.Domain
     class Accounting : Department
     {
         // fields
-        private readonly ISupplierService _supplierService;
+        private readonly SupplierService _supplierService = new SupplierService();
         private Offer bestOffer;
 
         // Properties
@@ -38,7 +38,7 @@ namespace ChocoFactory.Domain
         }
         public Supplier LastSupplier { get; set; }// the last supplier that send us offer
         public Order LastOrder { get; set; }
-        
+
         // Constructor
         public Accounting(Factory factory)
         {
@@ -50,12 +50,12 @@ namespace ChocoFactory.Domain
         {
             AvailableOffers = new List<Offer>(_supplierService.Offers(Factory));
             Console.WriteLine("The offers from Suppliers are delivered.");
-         }
+        }
 
-        public  Order SendOrder(Offer offer)
+        public Order SendOrder(Offer offer)
         {
             Order order = new Order(BestOffer, Factory);
-            
+
             order.Supplier.SendSupplies(order);
 
             Factory.Company.Revenue -= order.TotalCost;
