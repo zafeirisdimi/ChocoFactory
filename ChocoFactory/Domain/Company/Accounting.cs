@@ -7,7 +7,7 @@ using ChocoFactory.Services;
 
 namespace ChocoFactory.Domain
 {
-    class Accounting : Department
+    public class Accounting : Department
     {
         // fields
         private readonly SupplierService _supplierService = new SupplierService();
@@ -54,7 +54,11 @@ namespace ChocoFactory.Domain
 
         public Order SendOrder(Offer offer)
         {
-            Order order = new Order(BestOffer, Factory);
+
+
+
+            Order order = new Order(offer, Factory);
+            
 
             order.Supplier.SendSupplies(order);
 
@@ -67,7 +71,7 @@ namespace ChocoFactory.Domain
             return order;
         }
 
-        private double OfferValue(Offer offer)
+        public double OfferValue(Offer offer)
         {
             int quality = (int)offer.Quality;
             double pricePerKilo = (double)offer.PricePerKilo;

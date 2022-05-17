@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ChocoFactory.Domain
 {
-    class Supplier
+    public class Supplier
     {
         //properties
         public int ID { get; set; }// SupplierID

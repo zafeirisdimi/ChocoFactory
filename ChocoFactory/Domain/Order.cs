@@ -6,17 +6,9 @@ using System.Threading.Tasks;
 
 namespace ChocoFactory.Domain
 {
-    class Order : Offer
+    public class Order : Offer
     {
         public Factory Factory { get; set; }
-
-        public Order(Offer offer)
-        {
-            this.PricePerKilo = offer.PricePerKilo; 
-            this.Quality = offer.Quality;
-            this.Quantity = offer.Quantity;
-            this.Supplier = offer.Supplier;
-        }
         
         public Order(Offer offer, Factory factory)
         {

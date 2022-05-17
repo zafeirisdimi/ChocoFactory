@@ -9,7 +9,9 @@ using ChocoFactory.Services;
 
 namespace ChocoFactory
 {
-    internal class Scenario : IScenario
+
+    public class Scenario : IScenario
+
     {
         private readonly ICompany _comapny;
        

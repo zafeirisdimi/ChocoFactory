@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ChocoFactory.Domain
 {
-    class Warehouse : Department
+    public class Warehouse : Department
     {
         public Factory Factory { get; set; }
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ChocoFactory.Domain
 {
     //object oofer form Supplier
-    class Offer
+    public class Offer
     {
         //properties
         public decimal PricePerKilo { get; set; }

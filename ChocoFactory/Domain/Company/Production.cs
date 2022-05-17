@@ -9,7 +9,7 @@ using ChocoFactory.Services;
 namespace ChocoFactory.Domain
 {
     
-    class Production: Department
+    public class Production: Department
     {
         public Factory Factory { get; set; }
         public ProductionPolicy ProductionPolicy { get; set; } = new ProductionPolicy();
