@@ -11,7 +11,7 @@ namespace ChocoFactory
 {
     internal class Scenario : IScenario
     {
-        ICompany _comapny;
+        private readonly ICompany _comapny;
        
 
         public DateTime StartingDate { get; set; } = DateTime.Now;
