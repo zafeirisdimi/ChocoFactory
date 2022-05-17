@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ChocoFactory.Services
 {
-    internal class SupplierService
+    public class SupplierService
     {
 
         public List<Offer> Offers(Factory factory)

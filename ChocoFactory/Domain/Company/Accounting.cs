@@ -50,11 +50,11 @@ namespace ChocoFactory.Domain
         {
             AvailableOffers = new List<Offer>(supplierService.Offers(Factory));
             Console.WriteLine("The offers from Suppliers are delivered.");
-         }
+        }
 
         public  Order SendOrder(Offer offer)
         {
-            Order order = new Order(BestOffer, Factory);
+            Order order = new Order(offer, Factory);
             
             order.Supplier.SendSupplies(order);
 
@@ -67,7 +67,7 @@ namespace ChocoFactory.Domain
             return order;
         }
 
-        private double OfferValue(Offer offer)
+        public double OfferValue(Offer offer)
         {
             int quality = (int)offer.Quality;
             double pricePerKilo = (double)offer.PricePerKilo;

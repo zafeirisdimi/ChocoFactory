@@ -8,7 +8,7 @@ namespace ChocoFactory.Domain
 {
     public enum Quality
     {
-        Low,
+        Low = 1,
         Medium,
         High
     }
