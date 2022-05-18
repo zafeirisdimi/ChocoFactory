@@ -14,7 +14,7 @@ namespace ChocoFactory.Services
         {
             List<Offer> offers = new List<Offer>();
 
-            for (int i = 0; i < factory.Company.CompanyPolicy.NumberOfOffers; i++)
+            for (int i = 0; i < factory.Company.CompanyPolicy.Factory.NumberOfOffers; i++)
             {
                 Supplier supplier = new Supplier();
 

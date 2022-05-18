@@ -9,6 +9,7 @@ namespace ChocoFactory.Policy
     public class ShopPolicy
     {
         // properties
+        public int DailyProducts { get; set; }
         public double ProductsToShopPercent { get; private set; } 
         public double ShopRestockPercent { get; private set; } 
         public int ShopStockSize
@@ -26,8 +27,9 @@ namespace ChocoFactory.Policy
 
 
         //constuctor
-        public ShopPolicy()
+        public ShopPolicy(int dailyProducts)
         {
+            DailyProducts = dailyProducts;
             ProductsToShopPercent = 0.50;
             ShopRestockPercent = 0.25;
             ShopDiscount = 0.20;

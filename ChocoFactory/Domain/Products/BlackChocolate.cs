@@ -3,7 +3,7 @@ using System;
 
 namespace ChocoFactory.Domain
 {
-    public class BlackChocolate : IChocolate, IProduct
+    public class BlackChocolate : IChocolate
     {
         public DateTime ExpirationDate { get; set; }
 

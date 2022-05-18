@@ -18,7 +18,7 @@ namespace ChocoFactory.Services
             Factory = new FactoryPolicy();
             Production = new ProductionPolicy();
             Pricing = new PricePolicy();
-            Shop = new ShopPolicy();
+            Shop = new ShopPolicy(Factory.DailyProducts);
         }
     }
 }

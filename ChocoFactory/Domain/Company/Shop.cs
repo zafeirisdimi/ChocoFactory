@@ -1,5 +1,5 @@
 ﻿using ChocoFactory.Interfaces;
-using ChocoFactory.Service;
+
 using ChocoFactory.Services;
 using System;
 using System.Collections.Generic;
@@ -45,7 +45,6 @@ namespace ChocoFactory.Domain
         {
             Company = company;
             Factory = factory;
-            Employees = MockHelper.EmployeesMockList(); // bring a mock list of employee in Shop
             RefillStock();
         }
 
