@@ -9,9 +9,10 @@ namespace ChocoFactory.Domain
 {
     public class Warehouse : Department
     {
-        public Factory Factory { get; set; }
+        // Add a field that holds the last supplies recieved
 
         //properties
+        public Factory Factory { get; set; }
         public List<Product> Products { get; set; } = new List<Product>();
         public Dictionary<string, int> ProductQuantity { get; set; } = new Dictionary<string, int>()
         {
@@ -82,7 +83,7 @@ namespace ChocoFactory.Domain
             for (int i = 0; i < Products.Count; i++)
             {
                 product = Products[i];
-                if (product.ExpirationDate > currentDate)
+                if (DateTime.Compare(product.ExpirationDate, currentDate) < 0)
                 {
                     ProductQuantity[product.Description]--;
                     Products.Remove(product);

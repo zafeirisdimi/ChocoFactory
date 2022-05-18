@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Domain\Company\AccountingTests.cs" />
     <Compile Include="Domain\Company\ProductionTests.cs" />
+    <Compile Include="Domain\Company\WarehouseTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
