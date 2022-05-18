@@ -16,7 +16,9 @@ namespace ChocoFactory.Domain
             ContainerBuilder builder = new ContainerBuilder();
             builder.RegisterType<Scenario>().As<IScenario>();
             builder.RegisterType<Company>().As<ICompany>();
-   
+            builder.RegisterType<CustomerService>().As<ICustomerService>();
+            builder.RegisterType<SupplierService>().As<ISupplierService>();
+
 
 
             return builder.Build();
