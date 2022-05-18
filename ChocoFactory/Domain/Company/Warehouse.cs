@@ -1,4 +1,5 @@
-﻿using ChocoFactory.Services;
+﻿using ChocoFactory.Interfaces;
+using ChocoFactory.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace ChocoFactory.Domain
 {
-    public class Warehouse : Department
+    class Warehouse : IDeparmentModel
     {
-        public Factory Factory { get; set; }
 
         //properties
-        public List<Product> Products { get; set; } = new List<Product>();
+        public Factory Factory { get; set; }
+        public List<IProductModel> Products { get; set; } = new List<IProductModel>();
         public Dictionary<string, int> ProductQuantity { get; set; } = new Dictionary<string, int>()
         {
             {"WhiteChocolate" , 0},
@@ -31,6 +32,11 @@ namespace ChocoFactory.Domain
             }
         }
 
+        public int DepartmentID { get; set; }
+
+        public string Description { get; set; }
+
+        //constructor
         public Warehouse(Factory factory)
         {
             Factory = factory;
@@ -62,14 +68,14 @@ namespace ChocoFactory.Domain
 
         public void GetProduct(string productName)
         {
-            Product newProduct = Factory.Production.CreateProduct(productName);
+            IProductModel newProduct = Factory.Production.CreateProduct(productName);
             Products.Add(newProduct);
             ProductQuantity[productName]++;
         }
 
-        public Product SendProduct(string productName)
+        public IProductModel SendProduct(string productName)
         {
-            Product productToSend = Products.Find(x => x.Description == productName);
+            IProductModel productToSend = Products.Find(x => x.Description == productName);
             Products.Remove(productToSend);
             ProductQuantity[productName]--;
             return productToSend;
@@ -77,7 +83,7 @@ namespace ChocoFactory.Domain
 
         private void RemoveExpiredProducts(DateTime currentDate)
         {
-            Product product;
+            IProductModel product;
 
             for (int i = 0; i < Products.Count; i++)
             {

@@ -8,22 +8,26 @@ using ChocoFactory.Services;
 
 namespace ChocoFactory.Domain
 {
-    
-    public class Production: Department
+
+    class Production : IDeparmentModel
     {
+        //properties
         public Factory Factory { get; set; }
         public ProductionPolicy ProductionPolicy { get; set; } = new ProductionPolicy();
 
+        public int DepartmentID { get; set; }
+
+        public string Description { get; set; }
 
         public Production(Factory factory)
         {
             Factory = factory;
         }
 
-
-        public Product CreateProduct(string productName)
+        //methods
+        public IProductModel CreateProduct(string productName)
         {
-            Product createdProduct = null;
+            IProductModel createdProduct = null;
 
             switch (productName)
             {

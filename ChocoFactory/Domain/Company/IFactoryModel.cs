@@ -1,18 +1,17 @@
-﻿using System;
+﻿using ChocoFactory.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChocoFactory.Interfaces
+namespace ChocoFactory.Company
 {
-    interface IFactoryModel
+    interface IFactoryModel : IDeparmentModel
     {
         int ID { get; }
-
-        string City { get; set; }
-        string Address { get; set; }
-
+        string City { get; }
+        string Address { get; }
         double TotalProducts { get; }
         double TotalEmployees { get; }
 
