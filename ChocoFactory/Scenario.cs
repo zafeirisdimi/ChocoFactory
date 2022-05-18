@@ -1,26 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ChocoFactory.Domain;
-using ChocoFactory.Services;
 
 namespace ChocoFactory
 {
-    internal class Scenario
+    public class Scenario
     {
-        Company company = new Company(); // create Company object
+        private Company company = new Company(); // create Company object
 
         public DateTime StartingDate { get; set; } = DateTime.Now;
         public DateTime EndingDate { get; set; } = new DateTime(2023, 1, 30);
 
         private DateTime currentDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+
         public DateTime CurrentDate
         {
             get { return currentDate; }
         }
+
         public Calendar Calendar { get; } = CultureInfo.InvariantCulture.Calendar;
 
         public void Start()
@@ -48,8 +44,5 @@ namespace ChocoFactory
                 Console.WriteLine($"End of day {currentDate}\n");
             }
         }
-
-
-
     }
 }

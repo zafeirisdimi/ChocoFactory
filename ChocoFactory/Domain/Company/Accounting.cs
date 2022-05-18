@@ -1,13 +1,14 @@
-﻿using System;
+﻿using ChocoFactory.Interfaces;
+using ChocoFactory.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ChocoFactory.Services;
 
 namespace ChocoFactory.Domain
 {
-    class Accounting : Department
+    class Accounting : IDeparmentModel
     {
         // fields
         readonly SupplierService supplierService= new SupplierService();
@@ -38,7 +39,11 @@ namespace ChocoFactory.Domain
         }
         public Supplier LastSupplier { get; set; }// the last supplier that send us offer
         public Order LastOrder { get; set; }
-        
+
+        public int DepartmentID { get; set; }
+
+        public string Description { get; set; }
+
         // Constructor
         public Accounting(Factory factory)
         {

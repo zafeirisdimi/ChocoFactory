@@ -1,29 +1,29 @@
 using ChocoFactory.Domain;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace ChocoFactory.Services
 {
-    internal  static class DataGenerator
+    internal static class DataGenerator
     {
-        static Random rnd = new Random();
-        public  static decimal PricePerKilo(Quality quality)  //create a random Quality indicator with limits[1-20]
+        private static Random rnd = new Random();
+
+        public static decimal PricePerKilo(Quality quality)  //create a random Quality indicator with limits[1-20]
         {
             Thread.Sleep(1);
             decimal number = rnd.Next(1, 21);
             return number * (int)quality;
         }
-        public  static Quality Quality()       //Create a random Object Quality
+
+        public static Quality Quality()       //Create a random Object Quality
         {
             Thread.Sleep(1);
             Array values = Enum.GetValues(typeof(Quality));
             int index = rnd.Next(0, values.Length);
             return (Quality)values.GetValue(index);
         }
+
         public static int Quantity()       //create a random Quantity number with limitis [300-1000]
         {
             Thread.Sleep(1);
@@ -50,7 +50,5 @@ namespace ChocoFactory.Services
             Thread.Sleep(1);
             return company.Factories[rnd.Next(company.Factories.Count)];
         }
-
-
     }
 }

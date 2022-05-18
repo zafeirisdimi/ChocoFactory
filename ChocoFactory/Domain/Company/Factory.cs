@@ -15,6 +15,7 @@ namespace ChocoFactory.Domain
         public Accounting Accounting { get; set; }
         public List<Shop> Shops { get; set; } = new List<Shop>();
 
+        //constructor
         public Factory(Company company)
         {
             Company = company;
@@ -25,6 +26,7 @@ namespace ChocoFactory.Domain
             OpeningActions();
         }
 
+        //methods
         private void OpeningActions()
         {
             Accounting.ReceiveOffers();

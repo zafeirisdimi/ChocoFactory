@@ -1,4 +1,6 @@
-﻿using ChocoFactory.Services;
+﻿using ChocoFactory.Interfaces;
+using ChocoFactory.Service;
+using ChocoFactory.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,17 +9,18 @@ using System.Threading.Tasks;
 
 namespace ChocoFactory.Domain
 {
-    internal class Shop
+    internal class Shop 
     {
+        //properties
         private readonly CustomerService customerService = new CustomerService();
         private int discountDayOccurences = 0;
 
         public Company Company { get; set; }
         public Factory Factory { get; set; }
         public double Discount { get; set; } = 0;
-        public List<Product> Products { get; set; } = new List<Product>();
-        
-        public List<Employee> Employees { get; set; }
+        public List<IProductModel> Products { get; set; } = new List<IProductModel>();
+
+        public List<IEmployeeModel> Employees { get; set; }
 
         public Dictionary<string, int> DailyProductsSold { get; set; } = new Dictionary<string, int>()
         {
@@ -38,10 +41,11 @@ namespace ChocoFactory.Domain
 
         // Constructor
 
-        public Shop(Company company, Factory factory)
+        public Shop(Company company,Factory factory)
         {
             Company = company;
             Factory = factory;
+            Employees = MockHelper.EmployeesMockList(); // bring a mock list of employee in Shop
             RefillStock();
         }
 
@@ -84,7 +88,7 @@ namespace ChocoFactory.Domain
 
         public decimal SellProduct(string productName)
         {
-            Product productToSell = Products.Find(x => x.Description == productName);
+            IProductModel productToSell = Products.Find(x => x.Description == productName);
             decimal productPrice = productToSell.Price;
             DailyEarnings += productPrice;
             Products.Remove(productToSell);
@@ -206,7 +210,7 @@ namespace ChocoFactory.Domain
 
         private void ReceiveProduct(string productName)
         {
-            Product newProduct = Factory.Warehouse.SendProduct(productName);
+            IProductModel newProduct = Factory.Warehouse.SendProduct(productName);
             Products.Add(newProduct);          
         }
 
