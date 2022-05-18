@@ -21,11 +21,9 @@ namespace ChocoFactory.Domain
             Warehouse = new Warehouse(this);
             Production = new Production(this);
             Accounting = new Accounting(this);
-
-            OpeningActions();
         }
 
-        private void OpeningActions()
+        public void OpeningActions()
         {
             Accounting.ReceiveOffers();
             Accounting.SendOrder(Accounting.BestOffer);
