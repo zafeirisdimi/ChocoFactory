@@ -10,7 +10,7 @@ namespace ChocoFactory.Domain
     public class Accounting : IDepartment
     {
         // fields
-        private readonly SupplierService _supplierService = new SupplierService();
+        private readonly ISupplierService _supplierService;
         private Offer bestOffer;
 
         // Properties
@@ -45,9 +45,10 @@ namespace ChocoFactory.Domain
 
 
         // Constructor
-        public Accounting(Factory factory)
+        public Accounting(Factory factory,ISupplierService supplierService)
         {
             Factory = factory;
+            _supplierService = supplierService;
         }
 
         //methods

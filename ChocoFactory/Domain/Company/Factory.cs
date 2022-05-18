@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ChocoFactory.Services;
 
 namespace ChocoFactory.Domain
 {
@@ -15,12 +16,12 @@ namespace ChocoFactory.Domain
         public Accounting Accounting { get; set; }
         public List<Shop> Shops { get; set; } = new List<Shop>();
 
-        public Factory(Company company)
+        public Factory(Company company, ISupplierService supplierService)
         {
             Company = company;
             Warehouse = new Warehouse(this);
             Production = new Production(this);
-            Accounting = new Accounting(this);
+            Accounting = new Accounting(this,supplierService);
         }
 
         public void OpeningActions()
