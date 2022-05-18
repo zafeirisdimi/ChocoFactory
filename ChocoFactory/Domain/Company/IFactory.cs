@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChocoFactory.Company
+namespace ChocoFactory.Domain
 {
-    interface IFactory : IDeparmentModel
+    interface IFactory : IDepartment
     {
         int ID { get; }
         string City { get; }

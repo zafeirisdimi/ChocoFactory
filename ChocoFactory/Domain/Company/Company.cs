@@ -9,7 +9,7 @@ namespace ChocoFactory.Domain
 {
 
 
-    public class Company
+    public class Company : ICompany
 
     {
         public decimal Capital { get; private set; } = 1000000;
@@ -34,7 +34,7 @@ namespace ChocoFactory.Domain
             Shops.Add(shop);
             factory.Shops.Add(shop);
         }
-        
+
 
         public void DailyActions(DateTime currentDate)
         {
