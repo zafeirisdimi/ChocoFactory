@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace ChocoFactory.Domain
 {
+
+
     public class Company
+
     {
         public decimal Capital { get; private set; } = 1000000;
         public decimal Revenue { get; set; }
@@ -20,18 +23,18 @@ namespace ChocoFactory.Domain
             get { return Revenue > (decimal)CompanyPolicy.RevenueYearlyGoal * Revenue; }
         }
 
-        public void Initialization()
+        public Company()
         {
             Factory factory = new Factory(this);
             factory.OpeningActions();
             Factories.Add(factory);
-
-
+          
             Shop shop = new Shop(this, factory);
             Shops.Add(shop);
             shop.RefillStock();
             factory.Shops.Add(shop);
         }
+        
 
         public void DailyActions(DateTime currentDate)
         {
