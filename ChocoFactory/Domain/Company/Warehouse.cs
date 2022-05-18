@@ -83,11 +83,11 @@ namespace ChocoFactory.Domain
 
         private void RemoveExpiredProducts(DateTime currentDate)
         {
-            IProductModel product;
+             IChocolateModel product;//ExpireDateTime included for now only for chocolate products
 
             for (int i = 0; i < Products.Count; i++)
             {
-                product = Products[i];
+                product = (IChocolateModel)Products[i];
                 if (product.ExpirationDate > currentDate)
                 {
                     ProductQuantity[product.Description]--;
