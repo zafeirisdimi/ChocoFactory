@@ -5,11 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ChocoFactory.Services;
+using ChocoFactory.Domain.Products;
 
 namespace ChocoFactory.Domain
 {
 
-    class Production : IDeparmentModel
+    public class Production : IDepartment
     {
         //properties
         public Factory Factory { get; set; }
@@ -25,9 +26,9 @@ namespace ChocoFactory.Domain
         }
 
         //methods
-        public IProductModel CreateProduct(string productName)
+        public IProduct CreateProduct(string productName)
         {
-            IProductModel createdProduct = null;
+            IProduct createdProduct = null;
 
             switch (productName)
             {
@@ -38,7 +39,7 @@ namespace ChocoFactory.Domain
                         Description = "BlackChocolate",
                         ProductionDate = DateTime.Now,
                         ExpirationDate = DateTime.Now.AddDays(90),
-                        Price = Factory.Company.CompanyPolicy.BlackChocolatePrice
+                        Price = Factory.Company.CompanyPolicy.Pricing.BlackChocolatePrice
                     };
                     break;
                 case "WhiteChocolate":
@@ -48,7 +49,7 @@ namespace ChocoFactory.Domain
                         Description = "WhiteChocolate",
                         ProductionDate = DateTime.Now,
                         ExpirationDate = DateTime.Now.AddDays(60),
-                        Price = Factory.Company.CompanyPolicy.WhiteChocolatePrice
+                        Price = Factory.Company.CompanyPolicy.Pricing.WhiteChocolatePrice
                     };
                     break;
                 case "PlainMilkChocolate":
@@ -58,7 +59,7 @@ namespace ChocoFactory.Domain
                         Description = "PlainMilkChocolate",
                         ProductionDate = DateTime.Now,
                         ExpirationDate = DateTime.Now.AddDays(75),
-                        Price = Factory.Company.CompanyPolicy.MilkChocolatePrice
+                        Price = Factory.Company.CompanyPolicy.Pricing.MilkChocolatePrice
                     };
                     break;
                 case "AlmondMilkChocolate":
@@ -68,7 +69,7 @@ namespace ChocoFactory.Domain
                         Description = "AlmondMilkChocolate",
                         ProductionDate = DateTime.Now,
                         ExpirationDate = DateTime.Now.AddDays(75),
-                        Price = Factory.Company.CompanyPolicy.AlmondMilkChocolatePrice
+                        Price = Factory.Company.CompanyPolicy.Pricing.AlmondMilkChocolatePrice
                     };
                     break;
                 case "HazelnutMilkChocolate":
@@ -78,7 +79,7 @@ namespace ChocoFactory.Domain
                         Description = "HazelnutMilkChocolate",
                         ProductionDate = DateTime.Now,
                         ExpirationDate = DateTime.Now.AddDays(75),
-                        Price = Factory.Company.CompanyPolicy.HazelnutMilkChocolatePrice
+                        Price = Factory.Company.CompanyPolicy.Pricing.HazelnutMilkChocolatePrice
                     };
                     break;
                 case "ExperimentalProduct":
@@ -88,7 +89,7 @@ namespace ChocoFactory.Domain
                         Description = "ExperimentalProduct",
                         ProductionDate = DateTime.Now,
                         ExpirationDate = DateTime.Now.AddDays(300),
-                        Price = Factory.Company.CompanyPolicy.ExperimentalChocolatePrice
+                        Price = Factory.Company.CompanyPolicy.Pricing.ExperimentalChocolatePrice
             };
 
                     break;

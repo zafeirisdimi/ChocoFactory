@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace ChocoFactory.Domain
 {
-    class Warehouse : IDeparmentModel
+    public class Warehouse : IDepartment
     {
 
         //properties
         public Factory Factory { get; set; }
-        public List<IProductModel> Products { get; set; } = new List<IProductModel>();
+        public List<IProduct> Products { get; set; } = new List<IProduct>();
         public Dictionary<string, int> ProductQuantity { get; set; } = new Dictionary<string, int>()
         {
             {"WhiteChocolate" , 0},
@@ -28,7 +28,7 @@ namespace ChocoFactory.Domain
         {
             get
             {
-                return SuppliesInKilo <= Factory.Accounting.LastOrder.Quantity * Factory.Company.CompanyPolicy.LowSuppliesThresholdPercent;
+                return SuppliesInKilo <= Factory.Accounting.LastOrder.Quantity * Factory.Company.CompanyPolicy.Factory.LowSuppliesThresholdPercent;
             }
         }
 
@@ -68,14 +68,14 @@ namespace ChocoFactory.Domain
 
         public void GetProduct(string productName)
         {
-            IProductModel newProduct = Factory.Production.CreateProduct(productName);
+            IProduct newProduct = Factory.Production.CreateProduct(productName);
             Products.Add(newProduct);
             ProductQuantity[productName]++;
         }
 
-        public IProductModel SendProduct(string productName)
+        public IProduct SendProduct(string productName)
         {
-            IProductModel productToSend = Products.Find(x => x.Description == productName);
+            IProduct productToSend = Products.Find(x => x.Description == productName);
             Products.Remove(productToSend);
             ProductQuantity[productName]--;
             return productToSend;
@@ -83,11 +83,11 @@ namespace ChocoFactory.Domain
 
         private void RemoveExpiredProducts(DateTime currentDate)
         {
-             IChocolateModel product;//ExpireDateTime included for now only for chocolate products
+             IChocolate product;//ExpireDateTime included for now only for chocolate products
 
             for (int i = 0; i < Products.Count; i++)
             {
-                product = (IChocolateModel)Products[i];
+                product = (IChocolate)Products[i];
                 if (product.ExpirationDate > currentDate)
                 {
                     ProductQuantity[product.Description]--;
@@ -98,7 +98,7 @@ namespace ChocoFactory.Domain
 
         public void RefillProduct(string productName, double policyPercentage)
         {
-            int numberOfProductDaily = (int)Math.Floor(policyPercentage * Factory.Company.CompanyPolicy.DailyProducts);
+            int numberOfProductDaily = (int)Math.Floor(policyPercentage * Factory.Company.CompanyPolicy.Factory.DailyProducts);
 
             for (int i = 1; i <= numberOfProductDaily; i++)
             {
@@ -115,27 +115,27 @@ namespace ChocoFactory.Domain
                 switch (productName)
                 {
                     case "BlackChocolate":
-                        dailyProduction = Factory.Company.CompanyPolicy.BlackChocolatePercent;
+                        dailyProduction = Factory.Company.CompanyPolicy.Production.BlackChocolatePercent;
                         RefillProduct(productName, dailyProduction);
                         break;
                     case "WhiteChocolate":
-                        dailyProduction = Factory.Company.CompanyPolicy.WhiteChocolatePercent;
+                        dailyProduction = Factory.Company.CompanyPolicy.Production.WhiteChocolatePercent;
                         RefillProduct(productName, dailyProduction);
                         break;
                     case "PlainMilkChocolate":
-                        dailyProduction = Factory.Company.CompanyPolicy.MilkChocolatePercent;
+                        dailyProduction = Factory.Company.CompanyPolicy.Production.MilkChocolatePercent;
                         RefillProduct(productName, dailyProduction);
                         break;
                     case "AlmondMilkChocolate":
-                        dailyProduction = Factory.Company.CompanyPolicy.AlmondMilkChocolatePercent;
+                        dailyProduction = Factory.Company.CompanyPolicy.Production.AlmondMilkChocolatePercent;
                         RefillProduct(productName, dailyProduction);
                         break;
                     case "HazelnutMilkChocolate":
-                        dailyProduction = Factory.Company.CompanyPolicy.HazelnutMilkChocolatePercent;
+                        dailyProduction = Factory.Company.CompanyPolicy.Production.HazelnutMilkChocolatePercent;
                         RefillProduct(productName, dailyProduction);
                         break;
                     case "ExperimentalProduct":
-                        dailyProduction = Factory.Company.CompanyPolicy.ExperimentalPercent;
+                        dailyProduction = Factory.Company.CompanyPolicy.Production.ExperimentalPercent;
                         RefillProduct(productName, dailyProduction);
                         break;
                     default:

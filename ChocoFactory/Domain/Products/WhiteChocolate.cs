@@ -5,17 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChocoFactory.Domain
+namespace ChocoFactory.Domain.Products
 {
-    public class ExperimentalProduct : IProduct
+    public class WhiteChocolate : IChocolate, IProduct
     {
-        public int ID { get; set; }
-
+        public int ID { get; }
         public string Description { get; set; }
-
         public DateTime ProductionDate { get; set; }
         public DateTime ExpirationDate { get; set; }
-
         public decimal Price { get; set; }
+
     }
 }

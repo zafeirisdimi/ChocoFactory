@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ChocoFactory.Company
 {
-    interface IFactoryModel : IDeparmentModel
+    interface IFactory : IDeparmentModel
     {
         int ID { get; }
         string City { get; }

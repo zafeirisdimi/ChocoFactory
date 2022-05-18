@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ChocoFactory.Domain
 {
-    public interface IMilkChocolateModel : IChocolateModel 
+    public interface IMilkChocolateModel : IChocolate 
     {
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChocoFactory.Domain
 {
-    public interface IDeparmentModel
+    public interface IDepartment
     {
         //properties
         int DepartmentID { get; }

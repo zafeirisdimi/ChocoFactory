@@ -20,7 +20,7 @@ namespace ChocoFactory.Domain
         public CompanyPolicy CompanyPolicy { get; set; } = new CompanyPolicy();
         public bool RevenueGoalAchieved
         {
-            get { return Revenue > (decimal)CompanyPolicy.RevenueYearlyGoal * Revenue; }
+            get { return Revenue > (decimal)CompanyPolicy.Factory.RevenueYearlyGoal * Revenue; }
         }
 
         public Company()

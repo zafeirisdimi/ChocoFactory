@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace ChocoFactory.Interfaces
 {
-    public interface IChocolateModel : IProductModel
+    public interface IChocolate : IProduct
     {
-        DateTime ExpirationDate { get;}
+        DateTime ExpirationDate { get; }
     }
 }

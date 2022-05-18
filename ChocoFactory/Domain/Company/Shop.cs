@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ChocoFactory.Domain
 {
-    internal class Shop 
+    public class Shop 
     {
         //properties
         private readonly CustomerService customerService = new CustomerService();
@@ -18,7 +18,7 @@ namespace ChocoFactory.Domain
         public Company Company { get; set; }
         public Factory Factory { get; set; }
         public double Discount { get; set; } = 0;
-        public List<IProductModel> Products { get; set; } = new List<IProductModel>();
+        public List<IProduct> Products { get; set; } = new List<IProduct>();
 
         public List<IEmployeeModel> Employees { get; set; }
 
@@ -52,7 +52,7 @@ namespace ChocoFactory.Domain
         //methods
         public void DailyActions(DateTime currentDate)
         {
-            Discount = IsDiscountDay(currentDate) ? Company.CompanyPolicy.ShopDiscount : 0;
+            Discount = IsDiscountDay(currentDate) ? Company.CompanyPolicy.Shop.ShopDiscount : 0;
 
             customerService.DailyPurchases(this);
 
@@ -75,10 +75,10 @@ namespace ChocoFactory.Domain
 
         private bool IsDiscountDay(DateTime currentDate)
         {
-            if (currentDate.DayOfWeek == Company.CompanyPolicy.DiscountDay)
+            if (currentDate.DayOfWeek == Company.CompanyPolicy.Shop.DiscountDay)
                 discountDayOccurences++;
 
-            bool isDiscountDay = (discountDayOccurences == Company.CompanyPolicy.DiscountDayOccurence);
+            bool isDiscountDay = (discountDayOccurences == Company.CompanyPolicy.Shop.DiscountDayOccurence);
 
             if (isDiscountDay || currentDate.Day == 1) // Reset counter every start of the month or every discount day.
                 discountDayOccurences = 0;
@@ -88,7 +88,7 @@ namespace ChocoFactory.Domain
 
         public decimal SellProduct(string productName)
         {
-            IProductModel productToSell = Products.Find(x => x.Description == productName);
+            IProduct productToSell = Products.Find(x => x.Description == productName);
             decimal productPrice = productToSell.Price;
             DailyEarnings += productPrice;
             Products.Remove(productToSell);
@@ -112,7 +112,7 @@ namespace ChocoFactory.Domain
                 }
             }
 
-            if (HasExperimentalProduct && totalCost >= Company.CompanyPolicy.GiftMinimumPrice)
+            if (HasExperimentalProduct && totalCost >= Company.CompanyPolicy.Shop.GiftMinimumPrice)
             {
                 Products.Remove(Products.Find(x=>x.Description=="ExperimentalProduct"));
             }
@@ -142,19 +142,19 @@ namespace ChocoFactory.Domain
             switch (productName)
             {
                 case "BlackChocolate":
-                    stockProducts = (int)Math.Floor(Company.CompanyPolicy.ShopStockSize * Company.CompanyPolicy.BlackChocolatePercent);
+                    stockProducts = (int)Math.Floor(Company.CompanyPolicy.Shop.ShopStockSize * Company.CompanyPolicy.Production.BlackChocolatePercent);
                     break;
                 case "WhiteChocolate":
-                    stockProducts = (int)Math.Floor(Company.CompanyPolicy.ShopStockSize * Company.CompanyPolicy.WhiteChocolatePercent);
+                    stockProducts = (int)Math.Floor(Company.CompanyPolicy.Shop.ShopStockSize * Company.CompanyPolicy.Production.WhiteChocolatePercent);
                     break;
                 case "PlainMilkChocolate":
-                    stockProducts = (int)Math.Floor(Company.CompanyPolicy.ShopStockSize * Company.CompanyPolicy.MilkChocolatePercent);
+                    stockProducts = (int)Math.Floor(Company.CompanyPolicy.Shop.ShopStockSize * Company.CompanyPolicy.Production.MilkChocolatePercent);
                     break;
                 case "AlmondMilkChocolate":
-                    stockProducts = (int)Math.Floor(Company.CompanyPolicy.ShopStockSize * Company.CompanyPolicy.AlmondMilkChocolatePercent);
+                    stockProducts = (int)Math.Floor(Company.CompanyPolicy.Shop.ShopStockSize * Company.CompanyPolicy.Production.AlmondMilkChocolatePercent);
                     break;
                 case "HazelnutMilkChocolate":
-                    stockProducts = (int)Math.Floor(Company.CompanyPolicy.ShopStockSize * Company.CompanyPolicy.HazelnutMilkChocolatePercent);
+                    stockProducts = (int)Math.Floor(Company.CompanyPolicy.Shop.ShopStockSize * Company.CompanyPolicy.Production.HazelnutMilkChocolatePercent);
                     break;
                 default:
                     break;
@@ -171,19 +171,19 @@ namespace ChocoFactory.Domain
             switch (productName)
             {
                 case "BlackChocolate":
-                    productMaxCapacity = (int)Math.Floor(Company.CompanyPolicy.ShopStockSize * Company.CompanyPolicy.BlackChocolatePercent);
+                    productMaxCapacity = (int)Math.Floor(Company.CompanyPolicy.Shop.ShopStockSize * Company.CompanyPolicy.Production.BlackChocolatePercent);
                     break;
                 case "WhiteChocolate":
-                    productMaxCapacity = (int)Math.Floor(Company.CompanyPolicy.ShopStockSize * Company.CompanyPolicy.WhiteChocolatePercent);
+                    productMaxCapacity = (int)Math.Floor(Company.CompanyPolicy.Shop.ShopStockSize * Company.CompanyPolicy.Production.WhiteChocolatePercent);
                     break;
                 case "PlainMilkChocolate":
-                    productMaxCapacity = (int)Math.Floor(Company.CompanyPolicy.ShopStockSize * Company.CompanyPolicy.MilkChocolatePercent);
+                    productMaxCapacity = (int)Math.Floor(Company.CompanyPolicy.Shop.ShopStockSize * Company.CompanyPolicy.Production.MilkChocolatePercent);
                     break;
                 case "AlmondMilkChocolate":
-                    productMaxCapacity = (int)Math.Floor(Company.CompanyPolicy.ShopStockSize * Company.CompanyPolicy.AlmondMilkChocolatePercent);
+                    productMaxCapacity = (int)Math.Floor(Company.CompanyPolicy.Shop.ShopStockSize * Company.CompanyPolicy.Production.AlmondMilkChocolatePercent);
                     break;
                 case "HazelnutMilkChocolate":
-                    productMaxCapacity = (int)Math.Floor(Company.CompanyPolicy.ShopStockSize * Company.CompanyPolicy.HazelnutMilkChocolatePercent);
+                    productMaxCapacity = (int)Math.Floor(Company.CompanyPolicy.Shop.ShopStockSize * Company.CompanyPolicy.Production.HazelnutMilkChocolatePercent);
                     break;
                 default:
                     break;
@@ -197,7 +197,7 @@ namespace ChocoFactory.Domain
             }      
         }
 
-        private void RefillStock()
+        public void RefillStock()
         {
             foreach (string productName in DailyProductsSold.Keys.ToList<string>())
             {
@@ -210,19 +210,23 @@ namespace ChocoFactory.Domain
 
         private void ReceiveProduct(string productName)
         {
-            IProductModel newProduct = Factory.Warehouse.SendProduct(productName);
+            IProduct newProduct = Factory.Warehouse.SendProduct(productName);
             Products.Add(newProduct);          
         }
 
         private void RemoveExpiredProducts(DateTime currentDate)
         {
-            Product product;
+            IProduct product;
             for (int i = 0; i < Products.Count; i++)
             {
                 product = Products[i];
-                if (product.ExpirationDate > currentDate)
+
+                if (product is IChocolate chocolate)
                 {
-                    Products.Remove(product);
+                    if (chocolate.ExpirationDate > currentDate)
+                    {
+                        Products.Remove(product);
+                    }
                 }
             }
         }
