@@ -61,10 +61,14 @@ namespace ChocoFactory.Domain.Tests
             Factory factory = new Factory(company);
             Accounting accounting = new Accounting(factory);
 
-            double value1 = accounting.OfferValue(offer1);
-            double value2 = accounting.OfferValue(offer2);
+            PrivateObject privateObject = new PrivateObject(accounting);
 
-            Assert.IsTrue(value1 > value2, "The offer2 had higher value than offer1.");
+            Type[] typeArray = new Type[1] { typeof(Offer) };
+
+            var value1 = privateObject.Invoke("OfferValue", offer1);
+            var value2 = privateObject.Invoke("OfferValue", offer2);
+
+            Assert.IsTrue((double)value1 > (double)value2, "The offer2 had higher value than offer1.");
         }
 
         [TestMethod()]
