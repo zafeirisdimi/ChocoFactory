@@ -26,13 +26,17 @@ namespace ChocoFactory.Domain
         public Company()
         {
             Factory factory = new Factory(this);
-            factory.OpeningActions();
             Factories.Add(factory);
           
             Shop shop = new Shop(this, factory);
             Shops.Add(shop);
-            shop.RefillStock();
             factory.Shops.Add(shop);
+        }
+
+        public void OpeningActions()
+        {
+            Factories[0].OpeningActions();
+            Shops[0].RefillStock();
         }
         
 
