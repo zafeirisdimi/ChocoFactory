@@ -42,7 +42,6 @@ namespace ChocoFactory.Domain
         {
             Company = company;
             Factory = factory;
-            RefillStock();
         }
 
         //methods
@@ -193,7 +192,7 @@ namespace ChocoFactory.Domain
             }      
         }
 
-        private void RefillStock()
+        public void RefillStock()
         {
             foreach (string productName in DailyProductsSold.Keys.ToList<string>())
             {

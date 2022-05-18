@@ -23,10 +23,13 @@ namespace ChocoFactory.Domain
         public void Initialization()
         {
             Factory factory = new Factory(this);
+            factory.OpeningActions();
             Factories.Add(factory);
+
 
             Shop shop = new Shop(this, factory);
             Shops.Add(shop);
+            shop.RefillStock();
             factory.Shops.Add(shop);
         }
 
@@ -56,6 +59,7 @@ namespace ChocoFactory.Domain
             if (RevenueGoalAchieved)
             {
                 Shop shop = new Shop(this, DataGenerator.RandomFactory(this));
+                shop.RefillStock();
                 Shops.Add(shop);
                 Console.WriteLine("NEW SHOP!!");
             }
