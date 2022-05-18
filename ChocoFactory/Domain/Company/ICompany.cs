@@ -2,7 +2,7 @@
 
 namespace ChocoFactory.Domain
 {
-    public interface ICompany
+    internal interface ICompany
     {
         decimal Capital { get; }
         decimal Revenue { get; set; }
