@@ -7,7 +7,7 @@ using ChocoFactory.Services;
 
 namespace ChocoFactory.Domain
 {
-    public class Accounting : Department
+    public class Accounting : IDeparmentModel
     {
         // fields
         private readonly SupplierService _supplierService = new SupplierService();
@@ -15,7 +15,7 @@ namespace ChocoFactory.Domain
 
         // Properties
         public Factory Factory { get; set; }
-        public List<Employee> Employees { get; set; } = new List<Employee>();//list of possible employees of this deparment.
+        public List<IEmployeeModel> Employees { get; set; } = new List<IEmployeeModel>();//list of possible employees of this deparment.
         public List<Offer> AvailableOffers { get; set; } = new List<Offer>();// list of available offers of possible suppliers
         public Offer BestOffer
         {
