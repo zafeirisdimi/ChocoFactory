@@ -8,7 +8,7 @@
 # 🏭CHOCOFACTORY #
 
 
-<details><summary><strong>Description(Greek)</strong></summary>
+<details><summary><strong>Description(GR)</strong></summary>
 <p>
     <ol><li>Αρχικά η επιχείρηση θα έχει 1 Εργοστάσιο με δυνατότητα επέκτασης</li></ul>
     <li> Επίσης θα έχει και 1 κατάστημα πώλησης των προϊόντων με δυνατότητα επέκτασης</li>
@@ -36,24 +36,35 @@
 
 <!--ts-->
 
+
    * [Domain](#domain)
-   * [Deparments](#deparments)
-      * [Deparment(abstract Class)](#deparment)
-      * [Account](#accounting)
+      * [IDeparment](#ideparment)
+      * [ICompany](#icompany)
+      * [IFactory](#ifactory)
+      * [Company](#company)
+      * [Accounting](#accounting)
       * [Production](#production)
       * [Warehouse](#warehouse)
       * [Factory](#factory)
       * [Shop](#shop)
    * [Human](#human)
-      * [Human(abstract Class)](#human)
+      * [IHuman](#ihuman)
+      * [IEmployee](#iemployee)
+      * [Employee](#employee)
       * [Supplier](#supplier)
    * [Products](#products)
+      * [IProduct](#iproduct)
    * [Policy](#policy)
-   * [Service](#service)
-   * [Interfaces](#interfaces)
-   * [Screenshots](#screenshots)
-   * [Team](#team)
+      * [CompanyPolicy](#companypolicy)
+      * [PricePolicy](#pricepolicy)
+      * [ProductionPolicy](#productionpolicy)
+      * [FactoryPolicy](#factorypolicy)
+      * [ShopPolicy](#shoppolicy)
+   * [Services](#services)
+   * [Tasks](#tasks)
    * [Technologies](#technologies)
+   * [Team](#team)
+   
    
 <!--te-->
                                                                                                                
@@ -62,24 +73,79 @@
 ------------------------------------------------------------------------------------------------------------------------------
 
 # /Domain/ #
-# /Deparments/ #
-## Deparment ##
-### (abstract Class) ###
+
+## IDeparment ##
+
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
-| int            | DepartmentID     | get, set   |
-| string         | Description      | get, set    |
-| int            | ManagerID        | get, set    |
+| int            | DepartmentID     | get  |
+| string         | Description      | get|
+
+##### [Back to >Top<](#chocofactory) #####
+
+## ICompany ##
+
+| Type           | Properties       | Methods |
+| :---:          |     :---:        |  :---:  |
+| decimal            | Capital      | get |
+| decimal         | Revenue       | get, set    |
+
+| Extra Methods         |      Description                                                      |
+| ----------------- | ------------------------------------------------------------------ |
+| _DailyActions(DateTime currentDate)_ | Set the daily Action of Company |
+| _YearlyActions()_ | Set the yearly Action of Company |
+
+##### [Back to >Top<](#chocofactory) #####
+
+## IFactory ##
+
+| Type           | Properties       | Methods |
+| :---:          |     :---:        |  :---:  |
+| int             | ID       | get |
+| string          | City        | get|
+| string          | Address         | get|
+| double           | TotalProducts          | get|
+| double           | TotalEmployees          | get|
+
+
+##### [Back to >Top<](#chocofactory) #####
+
+## 🏢Company ##
+
+| Type           | Properties       | Methods |
+| :---:          |     :---:        |  :---:  |
+| decimal | Capital      | get; private set;  |
+| decimal  | Revenue       | get; set;  |
+| List of Factory | Employees        | get; set;  |
+| List of Shop    | Shops | get; set;   |
+| List of Employee      | Employees     | get; set;|
+| CompanyPolicy     | CompanyPolicy     | get; set; |
+| bool     | RevenueGoalAchieved    | get; set; |
+
+| Extra Methods         |      Description                                                      |
+| ----------------- | ------------------------------------------------------------------ |
+| _DailyActions(DateTime currentDate)_ | Set the daily Action of Company |
+| _YearlyActions()_ | Set the yearly Action of Company |
+
 
 ##### [Back to >Top<](#chocofactory) #####
 
 ## 🧮Accounting ##
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
-| List type of Supplier | Suppliers        | void ReceiveOffer()  |
-| List type of Employee | Employees        | Order SendOrder(parameter Offer)   |
-| List type of Offer    | AvailableOffers  | Offer CheckBestOffer()    |
-| Supplier       | supplierLast     | ---- |
+| int | DepartmentID      | get; set;  |
+| Factory  | Factory       | get; set;  |
+| List of Employee | Employees        | get; set;  |
+| List of Offer    | AvailableOffers  | get; set;   |
+| offer      | BestOffer     | ---- |
+| Supplier     | LastSupplier     | get; set; |
+| Order     | LastOrder     | get; set; |
+
+| Extra Methods         |      Description                                                      |
+| ----------------- | ------------------------------------------------------------------ |
+| _ReceiveOffers()_ | Add a new offer in the list of AvailableOffers |
+| _Order SendOrder(Offer offer)_ | Send Offer to Accounting Deparment |
+| _double OfferValue(Offer offer)_ | Calcualtes the value of offer |
 
 ##### [Back to >Top<](#chocofactory) #####
 
@@ -87,16 +153,19 @@
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
 | Factory            | Factory     | get, set   |
+| ProductionPolicy             | ProductionPolicy      | get, set   |
+| string               | Description        | get, set   |
+
 
 | Extra Methods         |      Description                                                      |
 | ----------------- | ------------------------------------------------------------------ |
-| Product CreateProduct(string productName) | Choose what kind of Chocolate we want to create |
-| Offer SendOffer() | Send Offer to Accounting Deparment |
+| _IProduct CreateProduct(string productName)_ | Choose what kind of Chocolate we want to create |
 
 
 ##### [Back to >Top<](#chocofactory) #####
 
-## Warehouse
+## 📦Warehouse
+
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
 | int            | DepartmentID     | get, set   |
@@ -106,12 +175,21 @@
 ##### [Back to >Top<](#chocofactory) #####
 
 ## 🏫Factory
+
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
 | Warehouse          | Warehouse     | get, set   |
 | Production         | Production      | get, set    |
 | Company            | Company        | get, set    |
-| Account            | Accounting        | get, set    |
+| Accounting            | Accounting        | get, set    |
+| List of Shop           | Shops       | get, set    |
+
+| Extra Methods         |      Description                                                      |
+| ----------------- | ------------------------------------------------------------------ |
+| _OpeningActions()_ | set the opening actions of factory|
+| _DailyActions(DateTime currentDate)_ | set the daily actions of factory|
+| _YearlyActions()_ | set the yearly actions of factory |
+
 
 ##### [Back to >Top<](#chocofactory) #####
 
@@ -128,74 +206,116 @@
 
 | Extra Methods         |      Description                                                      |
 | ----------------- | ------------------------------------------------------------------ |
-| decimal SellProduct(string productName) | Sell Product, add the price Of Product in Daily, increase DailyProductsSold|
-| decimal ServeCustomer(List string productsToSell) | Get the order of Customer and check if the products have value more than 30 euro|
-| void DailyActions(DateTime date) | What do extactly every day the object Shop |
-| void DailyReport() | Daily report of sales and earnings|
-| void SendDailyEarnings() |  The Shop send the daily earnings to object Company|
-| bool IsProductQuantityLow() | Check the Avalaible Quantity of Products of Shop|
-| void RefillProducts() | Refill Products,if the IsProductQuantityLow() is true |
-| Product ReceiveProduct() | Receive Product from Warehouse |
-| RemoveExpiredProducts(DateTime currentDate) | Check if the Products have passed the ExpiredDate and it throws away.|
+| _SellProduct(string productName)_ | Sell Product, add the price Of Product in Daily, increase DailyProductsSold|
+| _ServeCustomer(List string productsToSell)_ | Get the order of Customer and check if the products have value more than 30 euro|
+| _DailyActions(DateTime date)_ | What do extactly every day the object Shop |
+| _DailyReport()_ | Daily report of sales and earnings|
+| _SendDailyEarnings()_ |  The Shop send the daily earnings to object Company|
+| _IsProductQuantityLow()_ | Check the Avalaible Quantity of Products of Shop|
+| _RefillProducts()_ | Refill Products,if the IsProductQuantityLow() is true |
+| _ReceiveProduct()_ | Receive Product from Warehouse |
+| _RemoveExpiredProducts(DateTime currentDate)_ | Check if the Products have passed the ExpiredDate and it throws away.|
 
 
 ##### [Back to >Top<](#chocofactory) #####
 
 # /Human/ #
 
-## 🧑Human ##
-### (abstract Class) ###
+## 🧑IHuman ##
+
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
 | string            | FirstName     | get, set   |
 | string         | LastName      | get, set    |
-| double            | PhoneNumber         | get, set    |
-| char            | Sex        | get, set    |
+
+## 👷‍♂️IEmployee ##
+
+| Type           | Properties       | Methods |
+| :---:          |     :---:        |  :---:  |
+| int             | EmployeeID      | get  |
+| string         | DeparmentId       | get  |
+| string            | ManagerId      | get  |
+| decimal        | Salary       | get, set    |
+| string         | EmailAddres       | get, set    |
 
 
-- CEO
-- Customer
-- Employee
-- Seller
+## 👨‍🏭Employee ##
+
+| Type           | Properties       | Methods |
+| :---:          |     :---:        |  :---:  |
+| int             | EmployeeID      | get  |
+| string         | DeparmentId       | get  |
+| string            | ManagerId      | get  |
+| decimal        | Salary       | get, set    |
+| string            | FirstName     | get, set   |
+| string         | LastName      | get, set    |
+| string         | EmailAddres       | get, set    |
+| double          | Phone        | get, set    |
+
 
 ## 👴Supplier ##
+
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
 | int            | ID     | get, set   |
+| string            | FirstName     | get, set   |
+| string         | LastName      | get, set    |
+| double         | PhoneNumber       | get, set    |
 
 | Extra Methods         |      Description                                                      |
 | ----------------- | ------------------------------------------------------------------ |
-| void SendSupplies(Order order)| Send Supplies from Supplier to Production|
-| Offer SendOffer(decimal pricePerKilo, Quality quality, int suppliesKilos) | Send Offer to Accounting Deparment |
+| _SendSupplies(Order order)_| Send Supplies from Supplier to Production|
+| _endOffer(decimal pricePerKilo, Quality quality, int suppliesKilos)_ | Send Offer to Accounting Deparment |
 
 ##### [Back to >Top<](#chocofactory) #####
 
-# /Products/ #
+# 🍫Products #
 
+## IProduct ##
 
-## 🍫Product ##
-### (abstract Class) ###
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
 | int            | ID     | get, set   |
-| Offer         | Offer      | get, set    |
-| int            | OrderID        | get, set    |
+| string         | Description       | get, set    |
+| DateTime          | ProductionDate        | get, set    |
+| DateTime          | ExpirationDate         | get, set    |
+| decimal             | Price         | get, set    |
 
-- Chocolate 
+### IChocolate ### 
 - DarkChocolate
 - WhiteChocolate
-- MilkChocolate (abstract Class)
+- ExperimentalProduct
+
+### IMilkChocolate ###
 - PlainMilkChocolate
 - AlmondMilkChocolate
 - HazelnutMilkChocolate
+
+# Offer #
+
+| Type           | Properties       | Methods |
+| :---:          |     :---:        |  :---:  |
+| decimal            | PricePerKilo      | get, set   |
+| Quality          | Quality        | get, set    |
+| int           | Quantity         | get, set    |
+| decimal           | TotalCost          | get, set    |
+| Supplier              | Supplier          | get, set    |
 
 ##### [Back to >Top<](#chocofactory) #####
 
 ## 👮Policy ##
 
-## 👨‍💼CompanyPolicy ##
+### CompanyPolicy ###
 
-> Factory
+| Type           | Properties       | Methods |
+| :---:          |     :---:        |  :---:  |                                    
+| FactoryPolicy             | Factory     | get, set   |
+| ProductionPolicy         | Production      | get, set    |
+| PricePolicy             | Pricing        | get, set    |
+| ShopPolicy             | Shop        | get, set    |
+
+
+### FactoryPolicy ####
 
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |                                    
@@ -205,7 +325,7 @@
 | double            | RevenueYearlyGoal        | get, set    |
 | int            | NumberOfOffers        | get, set    |
 
-> Production Percent
+### ProductionPolicy ###
 
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  | 
@@ -214,7 +334,16 @@
 | double            | MilkChocolatePercent        | get, set    |
 | double            | AlmondMilkChocolatePercent        | get, set    |
 | double            | HazelnutMilkChocolatePercent        | get, set    |
-| //Shop                                  |
+| int            | BlackChocolateSupplies     | get, set   |
+| int        | WhiteChocolateSupplies      | get, set    |
+| int            | AlmondMilkChocolateSupplies        | get, set    |
+| int            | HazelnutMilkChocolateSupplies        | get, set    |
+| int            | ExperimentalChocolateSupplies        | get, set    |
+
+### ShopPolicy ###
+
+| Type           | Properties       | Methods |
+| :---:          |     :---:        |  :---:  |    
 | double            | ProductsToShopPercent        | get, set    |
 | double            | ShopRestockPercent        | get, set    |
 | int            | ShopStockSize        | get, set    |
@@ -224,7 +353,7 @@
 | int      | DiscountDayOccurence        | get, set    |
 | decimal      | GiftMinimumPrice        | get, set    |
 
-> Prices
+### PricePolicy ###
 
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |                                
@@ -235,56 +364,31 @@
 | decimal      | HazelnutMilkChocolatePrice        | get, set    |
 
 
-## 👩‍💼ProductionPolicy ##
-| Type           | Properties       | Methods |
-| :---:          |     :---:        |  :---:  |
-| int            | BlackChocolateSupplies     | get, set   |
-| int        | WhiteChocolateSupplies      | get, set    |
-| int            | AlmondMilkChocolateSupplies        | get, set    |
-| int            | HazelnutMilkChocolateSupplies        | get, set    |
-| int            | ExperimentalChocolateSupplies        | get, set    |
-
-
 
 ## 🔨Services ##
+
 - CustomerService
 - SupplierService
 - RandomGenerator
 
 
-## ⏏️Interfaces ##
-(loading....)
-- IDeparmentModel
-- IFactoryModel
-- IHumanModel
-- IMaterialModel
-- IOfferModel
-- IOrderModel
-- IProductModel
-
-## 🏢Company ##
-
-| Type           | Properties       | Methods |
-| :---:          |     :---:        |  :---:  |
-
-
-## 📉Business Logic Diagram ##
+## 📈Business Logic Diagram ##
 ------------------------------------------------------------------------------------------
 
 ![Business Logic](https://github.com/zafeirisdimi/ChocoFactory/blob/master/img/MicrosoftTeams-image%20(1).png)
 
 ------------------------------------------------------------------------------------------
-## 🎖️Tasks ##
-### Project status ###
 
+
+## 🎖️Tasks ##
+
+### Project status ###
+- [x] Analysis
 - [x] Design
-- [x] Mockups
 - [x] Development
 - [x] Unit testing
-- [ ] QA
-- [ ] Stage
-- [ ] Beta Testing
-- [ ] Production
+- [x] Mockup Data  
+
 
 ## 🖥️Technologies + recourses ##
 
