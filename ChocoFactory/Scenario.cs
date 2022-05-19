@@ -17,7 +17,7 @@ namespace ChocoFactory
        
 
         public DateTime StartingDate { get; set; } = DateTime.Now;
-        public DateTime EndingDate { get; set; } = new DateTime(2023, 1, 30);
+        public DateTime EndingDate { get; set; } = new DateTime(2024, 1, 30);
 
         private DateTime currentDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
         public DateTime CurrentDate

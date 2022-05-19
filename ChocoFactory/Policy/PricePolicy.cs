@@ -14,12 +14,12 @@
         //constructor
         public PricePolicy()
         {
-            BlackChocolatePrice = 5;
-            WhiteChocolatePrice = 6;
-            MilkChocolatePrice = 5;
-            AlmondMilkChocolatePrice = 8;
-            HazelnutMilkChocolatePrice = 8;
-            ExperimentalChocolatePrice = 8;
+            BlackChocolatePrice = 10;
+            WhiteChocolatePrice = 12;
+            MilkChocolatePrice = 10;
+            AlmondMilkChocolatePrice = 16;
+            HazelnutMilkChocolatePrice = 16;
+            ExperimentalChocolatePrice = 16;
         }
     }
 }

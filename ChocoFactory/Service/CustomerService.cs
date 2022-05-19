@@ -10,8 +10,8 @@ namespace ChocoFactory.Services
     public class CustomerService : ICustomerService
     {
         Random rnd = new Random();
-        private int maxProducts = 5;
-        private int maxCustomers = 10;
+        private int maxProducts = 10;
+        private int maxCustomers = 50;
 
         private string[] productNames = new string[]
         {

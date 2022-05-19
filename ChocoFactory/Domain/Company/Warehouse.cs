@@ -46,6 +46,7 @@ namespace ChocoFactory.Domain
 
         public void DailyActions(DateTime currentDate)
         {
+            Console.WriteLine($"Supplies today: {SuppliesInKilo}");
             RemoveExpiredProducts(currentDate);
             GetDailyProducts();
 
