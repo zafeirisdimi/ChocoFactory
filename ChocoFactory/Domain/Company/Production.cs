@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ChocoFactory.Services;
-using ChocoFactory.Domain.Products;
 
 namespace ChocoFactory.Domain
 {
