@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ChocoFactory.Domain;
+using ChocoFactory.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +15,11 @@ namespace ChocoFactory.Domain.Tests
         [TestMethod()]
         public void CreateProductTestWhite() // Test for white chocolate
         {
-            Company company = new Company();
-            Factory factory = new Factory(company);
+            ISupplierService serviceProvider = new SupplierService();
+            ICustomerService customerProvider = new CustomerService();
+
+            Company company = new Company(serviceProvider, customerProvider);
+            Factory factory = new Factory(company, serviceProvider);
             Production production = new Production(factory);
 
             string productName = "WhiteChocolate";
@@ -29,8 +33,11 @@ namespace ChocoFactory.Domain.Tests
         [TestMethod()]
         public void CreateProductTestBlack() // Test for black chocolate
         {
-            Company company = new Company();
-            Factory factory = new Factory(company);
+            ISupplierService serviceProvider = new SupplierService();
+            ICustomerService customerProvider = new CustomerService();
+
+            Company company = new Company(serviceProvider, customerProvider);
+            Factory factory = new Factory(company, serviceProvider);
             Production production = new Production(factory);
 
             string productName = "BlackChocolate";
@@ -44,8 +51,11 @@ namespace ChocoFactory.Domain.Tests
         [TestMethod()]
         public void CreateProductTestMilk() // Test for milk chocolate
         {
-            Company company = new Company();
-            Factory factory = new Factory(company);
+            ISupplierService serviceProvider = new SupplierService();
+            ICustomerService customerProvider = new CustomerService();
+
+            Company company = new Company(serviceProvider, customerProvider);
+            Factory factory = new Factory(company, serviceProvider);
             Production production = new Production(factory);
 
             string productName = "PlainMilkChocolate";
@@ -59,8 +69,11 @@ namespace ChocoFactory.Domain.Tests
         [TestMethod()]
         public void CreateProductTestAlmondMilk() // Test for almond milk chocolate
         {
-            Company company = new Company();
-            Factory factory = new Factory(company);
+            ISupplierService serviceProvider = new SupplierService();
+            ICustomerService customerProvider = new CustomerService();
+
+            Company company = new Company(serviceProvider, customerProvider);
+            Factory factory = new Factory(company, serviceProvider);
             Production production = new Production(factory);
 
             string productName = "AlmondMilkChocolate";
@@ -74,8 +87,11 @@ namespace ChocoFactory.Domain.Tests
         [TestMethod()]
         public void CreateProductTestHazelnutMilk() // Test for halzenut milk chocolate
         {
-            Company company = new Company();
-            Factory factory = new Factory(company);
+            ISupplierService serviceProvider = new SupplierService();
+            ICustomerService customerProvider = new CustomerService();
+
+            Company company = new Company(serviceProvider, customerProvider);
+            Factory factory = new Factory(company, serviceProvider);
             Production production = new Production(factory);
 
             string productName = "HazelnutMilkChocolate";

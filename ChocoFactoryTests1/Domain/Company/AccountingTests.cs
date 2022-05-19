@@ -16,9 +16,12 @@ namespace ChocoFactory.Domain.Tests
         [TestMethod()]
         public void ReceiveOffersTest()
         {
-            Company company = new Company();    
-            Factory factory = new Factory(company);
-            Accounting accounting = new Accounting(factory);
+            ISupplierService serviceProvider = new SupplierService();
+            ICustomerService customerProvider = new CustomerService();
+
+            Company company = new Company(serviceProvider, customerProvider);    
+            Factory factory = new Factory(company, serviceProvider);
+            Accounting accounting = new Accounting(factory, serviceProvider);
 
             accounting.ReceiveOffers();
 
@@ -28,12 +31,15 @@ namespace ChocoFactory.Domain.Tests
         [TestMethod()]
         public void SendOrderTest()
         {
-            Company company = new Company()
+            ISupplierService serviceProvider = new SupplierService();
+            ICustomerService customerProvider = new CustomerService();
+
+            Company company = new Company(serviceProvider, customerProvider)
             {
                 Revenue = 100m
             };
-            Factory factory = new Factory(company);
-            Accounting accounting = new Accounting(factory);
+            Factory factory = new Factory(company, serviceProvider);
+            Accounting accounting = new Accounting(factory, serviceProvider);
             Warehouse warehouse = new Warehouse(factory)
             {
                 SuppliesInKilo = 0
@@ -57,9 +63,12 @@ namespace ChocoFactory.Domain.Tests
             Offer offer1 = new Offer(10, Quality.Medium, 100, new Supplier());
             Offer offer2 = new Offer(10, Quality.Low, 100, new Supplier());
 
-            Company company = new Company();
-            Factory factory = new Factory(company);
-            Accounting accounting = new Accounting(factory);
+            ISupplierService serviceProvider = new SupplierService();
+            ICustomerService customerProvider = new CustomerService();
+
+            Company company = new Company(serviceProvider, customerProvider);
+            Factory factory = new Factory(company, serviceProvider);
+            Accounting accounting = new Accounting(factory, serviceProvider);
 
             PrivateObject privateObject = new PrivateObject(accounting);
 
@@ -74,9 +83,12 @@ namespace ChocoFactory.Domain.Tests
         [TestMethod()]
         public void DiffPricePerKilo_SameQuality_BestOfferTest()
         {
-            Company company = new Company();
-            Factory factory = new Factory(company);
-            Accounting accounting = new Accounting(factory);
+            ISupplierService serviceProvider = new SupplierService();
+            ICustomerService customerProvider = new CustomerService();
+
+            Company company = new Company(serviceProvider, customerProvider);
+            Factory factory = new Factory(company, serviceProvider);
+            Accounting accounting = new Accounting(factory, serviceProvider);
 
             Supplier supplier = new Supplier();
 
@@ -97,9 +109,12 @@ namespace ChocoFactory.Domain.Tests
         [TestMethod()]
         public void DiffQuality_SamePricePerKilo_BestOfferTest()
         {
-            Company company = new Company();
-            Factory factory = new Factory(company);
-            Accounting accounting = new Accounting(factory);
+            ISupplierService serviceProvider = new SupplierService();
+            ICustomerService customerProvider = new CustomerService();
+
+            Company company = new Company(serviceProvider, customerProvider);
+            Factory factory = new Factory(company, serviceProvider);
+            Accounting accounting = new Accounting(factory, serviceProvider);
 
             Supplier supplier = new Supplier();
 

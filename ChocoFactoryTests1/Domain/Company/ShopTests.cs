@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ChocoFactory.Domain;
+using ChocoFactory.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,9 +27,12 @@ namespace ChocoFactory.Domain.Tests
         [TestMethod()]
         public void ResetDailyProductsSoldTests()
         {
-            Company company = new Company();
-            Factory factory = new Factory(company);
-            Shop shop = new Shop(company, factory);
+            ISupplierService serviceProvider = new SupplierService();
+            ICustomerService customerProvider = new CustomerService();
+
+            Company company = new Company(serviceProvider, customerProvider);
+            Factory factory = new Factory(company, serviceProvider);
+            Shop shop = new Shop(company, factory, customerProvider);
 
             PrivateObject privateObject = new PrivateObject(shop);
 
@@ -59,10 +63,13 @@ namespace ChocoFactory.Domain.Tests
         [DataRow("HazelnutMilkChocolate")]
         public void SellProductTest(string productName)
         {
-            Company company = new Company();
-            Factory factory = new Factory(company);
+            ISupplierService serviceProvider = new SupplierService();
+            ICustomerService customerProvider = new CustomerService();
+
+            Company company = new Company(serviceProvider, customerProvider);
+            Factory factory = new Factory(company, serviceProvider);
             factory.Warehouse.GetProduct(productName);
-            Shop shop = new Shop(company, factory);
+            Shop shop = new Shop(company, factory, customerProvider);
 
             PrivateObject privateObject = new PrivateObject(shop);
 
@@ -87,9 +94,12 @@ namespace ChocoFactory.Domain.Tests
         [TestMethod()]
         public void SendDailyEarningsTests()
         {
-            Company company = new Company();
-            Factory factory = new Factory(company);
-            Shop shop = new Shop(company, factory)
+            ISupplierService serviceProvider = new SupplierService();
+            ICustomerService customerProvider = new CustomerService();
+
+            Company company = new Company(serviceProvider, customerProvider);
+            Factory factory = new Factory(company, serviceProvider);
+            Shop shop = new Shop(company, factory, customerProvider)
             {
                 DailyEarnings = 100
             };
@@ -110,10 +120,13 @@ namespace ChocoFactory.Domain.Tests
         [DataRow("HazelnutMilkChocolate")]
         public void NotLowQuantity_IsProductQuantityLowTests(string productName)
         {
-            Company company = new Company();
-            Factory factory = new Factory(company);
+            ISupplierService serviceProvider = new SupplierService();
+            ICustomerService customerProvider = new CustomerService();
+
+            Company company = new Company(serviceProvider, customerProvider);
+            Factory factory = new Factory(company, serviceProvider);
             factory.Warehouse.GetDailyProducts();
-            Shop shop = new Shop(company, factory);
+            Shop shop = new Shop(company, factory, customerProvider);
 
             int stockProducts = 0;
             switch (productName)
@@ -154,10 +167,13 @@ namespace ChocoFactory.Domain.Tests
         [DataRow("HazelnutMilkChocolate")]
         public void LowQuantity_IsProductQuantityLowTests(string productName)
         {
-            Company company = new Company();
-            Factory factory = new Factory(company);
+            ISupplierService serviceProvider = new SupplierService();
+            ICustomerService customerProvider = new CustomerService();
+
+            Company company = new Company(serviceProvider, customerProvider);
+            Factory factory = new Factory(company, serviceProvider);
             factory.Warehouse.GetDailyProducts();
-            Shop shop = new Shop(company, factory);
+            Shop shop = new Shop(company, factory, customerProvider);
 
             int stockProducts = 0;
             switch (productName)
@@ -198,10 +214,13 @@ namespace ChocoFactory.Domain.Tests
         [DataRow("HazelnutMilkChocolate")]
         public void RefillProductTests(string productName)
         {
-            Company company = new Company();
-            Factory factory = new Factory(company);
+            ISupplierService serviceProvider = new SupplierService();
+            ICustomerService customerProvider = new CustomerService();
+
+            Company company = new Company(serviceProvider, customerProvider);
+            Factory factory = new Factory(company, serviceProvider);
             factory.Warehouse.GetDailyProducts();
-            Shop shop = new Shop(company, factory);
+            Shop shop = new Shop(company, factory, customerProvider);
 
             int productMaxCapacity = 0;
 
@@ -247,10 +266,13 @@ namespace ChocoFactory.Domain.Tests
         [DataRow("HazelnutMilkChocolate")]
         public void ReceiveProductTest(string productName)
         {
-            Company company = new Company();
-            Factory factory = new Factory(company);
+            ISupplierService serviceProvider = new SupplierService();
+            ICustomerService customerProvider = new CustomerService();
+
+            Company company = new Company(serviceProvider, customerProvider);
+            Factory factory = new Factory(company, serviceProvider);
             factory.Warehouse.GetProduct(productName);
-            Shop shop = new Shop(company, factory);
+            Shop shop = new Shop(company, factory, customerProvider);
 
             PrivateObject privateObject = new PrivateObject(shop);
 
@@ -271,10 +293,13 @@ namespace ChocoFactory.Domain.Tests
             DateTime today = DateTime.Today;
             DateTime yesterday = today.AddDays(-1);
 
-            Company company = new Company();
-            Factory factory = new Factory(company);
+            ISupplierService serviceProvider = new SupplierService();
+            ICustomerService customerProvider = new CustomerService();
+
+            Company company = new Company(serviceProvider, customerProvider);
+            Factory factory = new Factory(company, serviceProvider);
             factory.Warehouse.GetProduct(productName);
-            Shop shop = new Shop(company, factory);
+            Shop shop = new Shop(company, factory, customerProvider);
 
             PrivateObject privateObject = new PrivateObject(shop);
 
@@ -295,10 +320,13 @@ namespace ChocoFactory.Domain.Tests
             DateTime today = DateTime.Today;
             DateTime farFuture = today.AddDays(10000);
 
-            Company company = new Company();
-            Factory factory = new Factory(company);
+            ISupplierService serviceProvider = new SupplierService();
+            ICustomerService customerProvider = new CustomerService();
+
+            Company company = new Company(serviceProvider, customerProvider);
+            Factory factory = new Factory(company, serviceProvider);
             factory.Warehouse.GetProduct(productName);
-            Shop shop = new Shop(company, factory);
+            Shop shop = new Shop(company, factory, customerProvider);
 
             PrivateObject privateObject = new PrivateObject(shop);
 

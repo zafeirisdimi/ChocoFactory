@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ChocoFactory.Domain;
+using ChocoFactory.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,8 +27,11 @@ namespace ChocoFactory.Domain.Tests
         [TestMethod()]
         public void GetSuppliesTest()
         {
-            Company company = new Company();
-            Factory factory = new Factory(company);
+            ISupplierService serviceProvider = new SupplierService();
+            ICustomerService customerProvider = new CustomerService();
+
+            Company company = new Company(serviceProvider, customerProvider);
+            Factory factory = new Factory(company, serviceProvider);
             Warehouse warehouse = new Warehouse(factory)
             {
                 SuppliesInKilo = 0
@@ -43,8 +47,11 @@ namespace ChocoFactory.Domain.Tests
         [TestMethod()]
         public void SendSuppliesTest()
         {
-            Company company = new Company();
-            Factory factory = new Factory(company);
+            ISupplierService serviceProvider = new SupplierService();
+            ICustomerService customerProvider = new CustomerService();
+
+            Company company = new Company(serviceProvider, customerProvider);
+            Factory factory = new Factory(company, serviceProvider);
             Warehouse warehouse = new Warehouse(factory)
             {
                 SuppliesInKilo = 100
@@ -65,8 +72,11 @@ namespace ChocoFactory.Domain.Tests
         [DataRow("HazelnutMilkChocolate")]
         public void GetProductTest(string productName)
         {
-            Company company = new Company();
-            Factory factory = new Factory(company);
+            ISupplierService serviceProvider = new SupplierService();
+            ICustomerService customerProvider = new CustomerService();
+
+            Company company = new Company(serviceProvider, customerProvider);
+            Factory factory = new Factory(company, serviceProvider);
             Warehouse warehouse = new Warehouse(factory);
 
             warehouse.GetProduct(productName);
@@ -86,8 +96,11 @@ namespace ChocoFactory.Domain.Tests
         [DataRow("HazelnutMilkChocolate")]
         public void SendProductTest(string productName)
         {
-            Company company = new Company();
-            Factory factory = new Factory(company);
+            ISupplierService serviceProvider = new SupplierService();
+            ICustomerService customerProvider = new CustomerService();
+
+            Company company = new Company(serviceProvider, customerProvider);
+            Factory factory = new Factory(company, serviceProvider);
             Warehouse warehouse = new Warehouse(factory);
             warehouse.GetProduct(productName);
 
@@ -113,8 +126,11 @@ namespace ChocoFactory.Domain.Tests
             DateTime today = DateTime.Today;
             DateTime yesterday = today.AddDays(-1);
 
-            Company company = new Company();
-            Factory factory = new Factory(company);
+            ISupplierService serviceProvider = new SupplierService();
+            ICustomerService customerProvider = new CustomerService();
+
+            Company company = new Company(serviceProvider, customerProvider);
+            Factory factory = new Factory(company, serviceProvider);
             Warehouse warehouse = new Warehouse(factory);
             warehouse.GetProduct(productName);
 
@@ -138,8 +154,11 @@ namespace ChocoFactory.Domain.Tests
             DateTime today = DateTime.Today;
             DateTime farFuture = today.AddDays(10000);
 
-            Company company = new Company();
-            Factory factory = new Factory(company);
+            ISupplierService serviceProvider = new SupplierService();
+            ICustomerService customerProvider = new CustomerService();
+
+            Company company = new Company(serviceProvider, customerProvider);
+            Factory factory = new Factory(company, serviceProvider);
             Warehouse warehouse = new Warehouse(factory);
             warehouse.GetProduct(productName);
 
@@ -161,8 +180,11 @@ namespace ChocoFactory.Domain.Tests
         [DataRow("HazelnutMilkChocolate")]
         public void RefillProductTest(string productName)
         {
-            Company company = new Company();
-            Factory factory = new Factory(company);
+            ISupplierService serviceProvider = new SupplierService();
+            ICustomerService customerProvider = new CustomerService();
+
+            Company company = new Company(serviceProvider, customerProvider);
+            Factory factory = new Factory(company, serviceProvider);
             Warehouse warehouse = new Warehouse(factory);
 
             int dailyProducts = company.CompanyPolicy.Factory.DailyProducts;
@@ -183,8 +205,11 @@ namespace ChocoFactory.Domain.Tests
         [DataRow("HazelnutMilkChocolate")]
         public void GetDailyProductsTest(string productName)
         {
-            Company company = new Company();
-            Factory factory = new Factory(company);
+            ISupplierService serviceProvider = new SupplierService();
+            ICustomerService customerProvider = new CustomerService();
+
+            Company company = new Company(serviceProvider, customerProvider);
+            Factory factory = new Factory(company, serviceProvider);
             Warehouse warehouse = new Warehouse(factory);
 
             warehouse.GetDailyProducts();
@@ -225,8 +250,11 @@ namespace ChocoFactory.Domain.Tests
         [TestMethod()]
         public void DontAddExperimentalProductTest()
         {
-            Company company = new Company();
-            Factory factory = new Factory(company);
+            ISupplierService serviceProvider = new SupplierService();
+            ICustomerService customerProvider = new CustomerService();
+
+            Company company = new Company(serviceProvider, customerProvider);
+            Factory factory = new Factory(company, serviceProvider);
             Warehouse warehouse = new Warehouse(factory)
             {
                 SuppliesInKilo = 0
@@ -241,8 +269,11 @@ namespace ChocoFactory.Domain.Tests
         [TestMethod()]
         public void AddExperimentalProductTest()
         {
-            Company company = new Company();
-            Factory factory = new Factory(company);
+            ISupplierService serviceProvider = new SupplierService();
+            ICustomerService customerProvider = new CustomerService();
+
+            Company company = new Company(serviceProvider, customerProvider);
+            Factory factory = new Factory(company, serviceProvider);
             Warehouse warehouse = new Warehouse(factory)
             {
                 SuppliesInKilo = 100
