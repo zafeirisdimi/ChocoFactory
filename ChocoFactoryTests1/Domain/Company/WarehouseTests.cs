@@ -119,7 +119,6 @@ namespace ChocoFactory.Domain.Tests
             warehouse.GetProduct(productName);
 
             PrivateObject privateObject = new PrivateObject(warehouse);
-            Console.WriteLine(warehouse.Products[0].ExpirationDate);
 
             privateObject.Invoke("RemoveExpiredProducts", yesterday);
             int counter = warehouse.ProductQuantity[productName];
@@ -166,7 +165,7 @@ namespace ChocoFactory.Domain.Tests
             Factory factory = new Factory(company);
             Warehouse warehouse = new Warehouse(factory);
 
-            int dailyProducts = company.CompanyPolicy.DailyProducts;
+            int dailyProducts = company.CompanyPolicy.Factory.DailyProducts;
 
             warehouse.RefillProduct(productName, 1);
 
@@ -195,25 +194,25 @@ namespace ChocoFactory.Domain.Tests
             switch (productName)
             {
                 case "BlackChocolate":
-                    products = (int)Math.Floor(company.CompanyPolicy.DailyProducts * company.CompanyPolicy.BlackChocolatePercent);
+                    products = (int)Math.Floor(company.CompanyPolicy.Factory.DailyProducts * company.CompanyPolicy.Production.BlackChocolatePercent);
 
                     break;
                 case "WhiteChocolate":
-                    products = (int)Math.Floor(company.CompanyPolicy.DailyProducts * company.CompanyPolicy.WhiteChocolatePercent);
+                    products = (int)Math.Floor(company.CompanyPolicy.Factory.DailyProducts * company.CompanyPolicy.Production.WhiteChocolatePercent);
 
                     break;
                 case "PlainMilkChocolate":
-                    products = (int)Math.Floor(company.CompanyPolicy.DailyProducts * company.CompanyPolicy.MilkChocolatePercent);
+                    products = (int)Math.Floor(company.CompanyPolicy.Factory.DailyProducts * company.CompanyPolicy.Production.MilkChocolatePercent);
 
                     break;
                 case "AlmondMilkChocolate":
-                    products = (int)Math.Floor(company.CompanyPolicy.DailyProducts * company.CompanyPolicy.AlmondMilkChocolatePercent);
+                    products = (int)Math.Floor(company.CompanyPolicy.Factory.DailyProducts * company.CompanyPolicy.Production.AlmondMilkChocolatePercent);
                     break;
                 case "HazelnutMilkChocolate":
-                    products = (int)Math.Floor(company.CompanyPolicy.DailyProducts * company.CompanyPolicy.HazelnutMilkChocolatePercent);
+                    products = (int)Math.Floor(company.CompanyPolicy.Factory.DailyProducts * company.CompanyPolicy.Production.HazelnutMilkChocolatePercent);
                     break;
                 case "ExperimentalProduct":
-                    products = (int)Math.Floor(company.CompanyPolicy.DailyProducts * company.CompanyPolicy.ExperimentalPercent);
+                    products = (int)Math.Floor(company.CompanyPolicy.Factory.DailyProducts * company.CompanyPolicy.Production.ExperimentalPercent);
                     break;
                 default:
                     break;

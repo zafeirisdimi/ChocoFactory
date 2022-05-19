@@ -95,19 +95,19 @@ namespace ChocoFactory.Domain.Tests
             switch (productName)
             {
                 case "BlackChocolate":
-                    productMaxCapacity = (int)Math.Floor(company.CompanyPolicy.ShopStockSize * company.CompanyPolicy.BlackChocolatePercent);
+                    productMaxCapacity = (int)Math.Floor(company.CompanyPolicy.Shop.ShopStockSize * company.CompanyPolicy.Production.BlackChocolatePercent);
                     break;
                 case "WhiteChocolate":
-                    productMaxCapacity = (int)Math.Floor(company.CompanyPolicy.ShopStockSize * company.CompanyPolicy.WhiteChocolatePercent);
+                    productMaxCapacity = (int)Math.Floor(company.CompanyPolicy.Shop.ShopStockSize * company.CompanyPolicy.Production.WhiteChocolatePercent);
                     break;
                 case "PlainMilkChocolate":
-                    productMaxCapacity = (int)Math.Floor(company.CompanyPolicy.ShopStockSize * company.CompanyPolicy.MilkChocolatePercent);
+                    productMaxCapacity = (int)Math.Floor(company.CompanyPolicy.Shop.ShopStockSize * company.CompanyPolicy.Production.MilkChocolatePercent);
                     break;
                 case "AlmondMilkChocolate":
-                    productMaxCapacity = (int)Math.Floor(company.CompanyPolicy.ShopStockSize * company.CompanyPolicy.AlmondMilkChocolatePercent);
+                    productMaxCapacity = (int)Math.Floor(company.CompanyPolicy.Shop.ShopStockSize * company.CompanyPolicy.Production.AlmondMilkChocolatePercent);
                     break;
                 case "HazelnutMilkChocolate":
-                    productMaxCapacity = (int)Math.Floor(company.CompanyPolicy.ShopStockSize * company.CompanyPolicy.HazelnutMilkChocolatePercent);
+                    productMaxCapacity = (int)Math.Floor(company.CompanyPolicy.Shop.ShopStockSize * company.CompanyPolicy.Production.HazelnutMilkChocolatePercent);
                     break;
                 default:
                     break;

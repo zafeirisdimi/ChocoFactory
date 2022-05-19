@@ -22,7 +22,7 @@ namespace ChocoFactory.Domain.Tests
 
             accounting.ReceiveOffers();
 
-            Assert.AreEqual(company.CompanyPolicy.NumberOfOffers, accounting.AvailableOffers.Count);
+            Assert.AreEqual(company.CompanyPolicy.Factory.NumberOfOffers, accounting.AvailableOffers.Count);
         }
 
         [TestMethod()]
