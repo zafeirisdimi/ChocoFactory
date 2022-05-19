@@ -12,7 +12,7 @@ namespace ChocoFactory.Domain
     public class Shop 
     {
         //properties
-        private readonly CustomerService customerService = new CustomerService();
+        private readonly ICustomerService _customerService;
         private int discountDayOccurences = 0;
 
         public Company Company { get; set; }
@@ -41,8 +41,9 @@ namespace ChocoFactory.Domain
 
         // Constructor
 
-        public Shop(Company company,Factory factory)
+        public Shop(Company company,Factory factory,ICustomerService customerService)
         {
+            _customerService = customerService;
             Company = company;
             Factory = factory;
             RefillStock();
@@ -53,7 +54,7 @@ namespace ChocoFactory.Domain
         {
             Discount = IsDiscountDay(currentDate) ? Company.CompanyPolicy.Shop.ShopDiscount : 0;
 
-            customerService.DailyPurchases(this);
+            _customerService.DailyPurchases(this);
 
             SendDailyEarnings();
 

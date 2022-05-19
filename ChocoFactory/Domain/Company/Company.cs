@@ -12,6 +12,8 @@ namespace ChocoFactory.Domain
     public class Company : ICompany
 
     {
+        private readonly ISupplierService _supplierService;
+        private readonly ICustomerService _customerService;
         public decimal Capital { get; private set; } = 1000000;
         public decimal Revenue { get; set; }
         public List<Factory> Factories { get; set; } = new List<Factory>();
@@ -23,13 +25,13 @@ namespace ChocoFactory.Domain
             get { return Revenue > (decimal)CompanyPolicy.Factory.RevenueYearlyGoal * Revenue; }
         }
 
-        public Company()
+        public Company(ISupplierService supplierService,ICustomerService customerService)
         {
-            Factory factory = new Factory(this);
+            Factory factory = new Factory(this, supplierService);
             Factories.Add(factory);
             factory.OpeningActions();
 
-            Shop shop = new Shop(this, factory);
+            Shop shop = new Shop(this, factory, customerService);
             shop.RefillStock();
             Shops.Add(shop);
             factory.Shops.Add(shop);
@@ -61,7 +63,7 @@ namespace ChocoFactory.Domain
 
             if (RevenueGoalAchieved)
             {
-                Shop shop = new Shop(this, DataGenerator.RandomFactory(this));
+                Shop shop = new Shop(this, DataGenerator.RandomFactory(this), _customerService);
                 shop.RefillStock();
                 Shops.Add(shop);
                 Console.WriteLine("NEW SHOP!!");

@@ -109,6 +109,8 @@
     <Compile Include="Policy\CompanyPolicy.cs" />
     <Compile Include="Service\CustomerService.cs" />
     <Compile Include="Policy\ProductionPolicy.cs" />
+    <Compile Include="Service\ICustomerService.cs" />
+    <Compile Include="Service\ISupplierService.cs" />
     <Compile Include="Service\RandomGenerator.cs" />
     <Compile Include="Scenario.cs" />
     <Compile Include="Service\SupplierService.cs" />
