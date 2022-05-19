@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChocoFactory.Domain.Products
+namespace ChocoFactory.Domain
 {
     public class WhiteChocolate : IChocolate
     {
