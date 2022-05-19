@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChocoFactory.Domain
 {
-    class AlmondMilkChocolate : IMilkChocolateModel
+    public class AlmondMilkChocolate : IMilkChocolateModel
     {
         public DateTime ExpirationDate { get; set; }
 
