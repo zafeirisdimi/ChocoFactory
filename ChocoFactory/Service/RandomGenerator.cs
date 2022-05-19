@@ -12,7 +12,7 @@ namespace ChocoFactory.Services
         public static decimal PricePerKilo(Quality quality)  //create a random Quality indicator with limits[1-20]
         {
             Thread.Sleep(1);
-            decimal number = rnd.Next(1, 21);
+            decimal number = rnd.Next(1, 2);
             return number * (int)quality;
         }
 

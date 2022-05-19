@@ -108,7 +108,7 @@ namespace ChocoFactory.Domain
                 }
                 catch (Exception)
                 {
-                    Console.WriteLine("The shop did not have the product.");
+                    //Console.WriteLine("The shop did not have the product.");
                 }
             }
 
