@@ -6,17 +6,14 @@ using System.Threading.Tasks;
 
 namespace ChocoFactory.Domain
 {
-    public abstract class Department
+    public interface IDepartment
     {
         //properties
-        public int DepartmentID { get; set; }
-        public string Description { get; set; }
-
-        public int ManagerID { get; set; }
-
-       
-
+        int DepartmentID { get; }
+        string Description { get; }
+        
         //methods
-
+        
+        
     }
 }

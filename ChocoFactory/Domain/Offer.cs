@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace ChocoFactory.Domain
 {
-    //object oofer form Supplier
     public class Offer
     {
         //properties

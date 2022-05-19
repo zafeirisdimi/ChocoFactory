@@ -1,56 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ChocoFactory.Policy;
 
 namespace ChocoFactory.Services
 {
     public class CompanyPolicy
     {
-        // Factory
-        public int DailyProducts { get; set; } = 500;
-        public double LowSuppliesThresholdPercent { get; set; } = 0.10;
-        public double MinimumRevenueToInvest { get; set; } = 0.10;
-        public double RevenueYearlyGoal { get; set; } = 0.15;
-        public int NumberOfOffers { get; set; } = 3;
+        //properties
+        public FactoryPolicy Factory { get; private set; }
 
-        // Production Percent
-        public double BlackChocolatePercent { get; set; } = 0.50;
-        public double WhiteChocolatePercent { get; set; } = 0.20;
-        public double MilkChocolatePercent { get; set; } = 0.10;
-        public double AlmondMilkChocolatePercent { get; set; } = 0.10;
-        public double HazelnutMilkChocolatePercent { get; set; } = 0.10;
-        public double ExperimentalPercent { get; set; } = 0.05;
+        public ProductionPolicy Production { get; private set; }
 
-        // Shop
-        public double ProductsToShopPercent { get; set; } = 0.50;
-        public double ShopRestockPercent { get; set; } = 0.25;
-        public int ShopStockSize
+        public PricePolicy Pricing { get; private set; }
+        public ShopPolicy Shop { get; private set; }
+
+        //constructor
+        public CompanyPolicy()
         {
-            get { return (int)Math.Floor(DailyProducts * ProductsToShopPercent); }
+            Factory = new FactoryPolicy();
+            Production = new ProductionPolicy();
+            Pricing = new PricePolicy();
+            Shop = new ShopPolicy(Factory.DailyProducts);
         }
-        public int ShopRestockThreshold
-        {
-            get { return (int)Math.Floor(DailyProducts * ProductsToShopPercent * ShopRestockPercent); }
-        }
-        public double ShopDiscount { get; set; } = 0.20;
-        public DayOfWeek DiscountDay { get; set; } = DayOfWeek.Tuesday;
-        public int DiscountDayOccurence { get; set; } = 2; // Every second Tuesday of each month.
-        public decimal GiftMinimumPrice { get; set; } = 30;
-
-
-        // Prices
-        public decimal BlackChocolatePrice { get; set; } = 5;
-        public decimal WhiteChocolatePrice { get; set; } = 6;
-        public decimal MilkChocolatePrice { get; set; } = 5;
-        public decimal AlmondMilkChocolatePrice { get; set; } = 8;
-        public decimal HazelnutMilkChocolatePrice { get; set; } = 8;
-        public decimal ExperimentalChocolatePrice { get; set; } = 8;
-
-
-
-
-
     }
 }

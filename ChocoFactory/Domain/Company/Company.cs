@@ -9,18 +9,18 @@ namespace ChocoFactory.Domain
 {
 
 
-    public class Company
+    public class Company : ICompany
 
     {
         public decimal Capital { get; private set; } = 1000000;
         public decimal Revenue { get; set; }
         public List<Factory> Factories { get; set; } = new List<Factory>();
         public List<Shop> Shops { get; set; } = new List<Shop>();
-        public List<Employee> Employees { get; set; } = new List<Employee>();
+        public List<IEmployeeModel> Employees { get; set; } = new List<IEmployeeModel>();
         public CompanyPolicy CompanyPolicy { get; set; } = new CompanyPolicy();
         public bool RevenueGoalAchieved
         {
-            get { return Revenue > (decimal)CompanyPolicy.RevenueYearlyGoal * Revenue; }
+            get { return Revenue > (decimal)CompanyPolicy.Factory.RevenueYearlyGoal * Revenue; }
         }
 
         public Company()
@@ -29,6 +29,7 @@ namespace ChocoFactory.Domain
             Factories.Add(factory);
           
             Shop shop = new Shop(this, factory);
+            shop.RefillStock();
             Shops.Add(shop);
             factory.Shops.Add(shop);
         }

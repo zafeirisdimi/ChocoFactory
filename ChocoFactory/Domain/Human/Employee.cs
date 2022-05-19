@@ -10,17 +10,30 @@ namespace ChocoFactory.Domain
 
 {
     [Serializable]
-    public class Employee
+    public class Employee : IEmployeeModel
     {
-        [CsvColumn(Name = "ID",FieldIndex = 1)]
+
         //properties
-        public int ID { get; set; }
+        [CsvColumn(Name = "ID", FieldIndex = 1)]
+        public int EmployeeID { get; set; }
+
         [CsvColumn(Name = "Salary", FieldIndex = 2)]
         public decimal Salary { get; set; }
+
         [CsvColumn(Name = "DeparmentId", FieldIndex = 3)]
         public int DeparmentId { get; set; }
+
         [CsvColumn(Name = "ManagerId", FieldIndex = 4)]
         public int ManagerId { get; set; }
+
+        public string FirstName { get; private set; }
+
+        public string LastName { get; private set; }
+
+        public string EmailAddres { get; private set; }
+
+        public double Phone ;
+
         //default constructor
 
         //custom constructor

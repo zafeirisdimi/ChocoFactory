@@ -13,7 +13,7 @@ namespace ChocoFactory
     public class Scenario : IScenario
 
     {
-        private readonly ICompany _comapny;
+        private readonly ICompany _company;
        
 
         public DateTime StartingDate { get; set; } = DateTime.Now;
@@ -28,7 +28,7 @@ namespace ChocoFactory
 
         public Scenario(ICompany company)
         {
-            _comapny = company;
+            _company = company;
         }
         public void Start()
         {
@@ -37,8 +37,8 @@ namespace ChocoFactory
 
             Console.WriteLine("End of Scenario");
 
-            Console.WriteLine($"Final Company Capital: {_comapny.Capital}");
-            Console.WriteLine($"Final Company Revenue: {_comapny.Revenue}");
+            Console.WriteLine($"Final Company Capital: {_company.Capital}");
+            Console.WriteLine($"Final Company Revenue: {_company.Revenue}");
         }
 
         public void AdvanceTime()
@@ -46,9 +46,9 @@ namespace ChocoFactory
             while (CurrentDate != EndingDate)
             {
                 if (CurrentDate.Day == 1 && CurrentDate.Month == 1) // Do this on the first day of the year.
-                    _comapny.YearlyActions();
+                    _company.YearlyActions();
 
-                _comapny.DailyActions(CurrentDate); // Do this everyday.
+                _company.DailyActions(CurrentDate); // Do this everyday.
 
                 currentDate = Calendar.AddDays(CurrentDate, 1); // Advance Time by one day.
 
