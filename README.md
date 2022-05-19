@@ -37,10 +37,11 @@
 <!--ts-->
 
    * [Domain](#domain)
-   * [Deparments](#deparments)
-      * [IDeparment(inteface)](#ideparment)
+      * [IDeparment](#ideparment)
+      * [ICompany](#icompany)
+      * [IFactory](#ifactory)
       * [Company](#company)
-      * [Accountint](#accounting)
+      * [Accounting](#accounting)
       * [Production](#production)
       * [Warehouse](#warehouse)
       * [Factory](#factory)
@@ -73,12 +74,38 @@
 # /Domain/ #
 
 ## IDeparment ##
-### (interface) ###
+
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
-| int            | DepartmentID     | get, set   |
-| string         | Description      | get, set    |
-| int            | ManagerID        | get, set    |
+| int            | DepartmentID     | get  |
+| string         | Description      | get|
+
+##### [Back to >Top<](#chocofactory) #####
+
+## ICompany ##
+
+| Type           | Properties       | Methods |
+| :---:          |     :---:        |  :---:  |
+| decimal            | Capital      | get |
+| decimal         | Revenue       | get, set    |
+
+| Extra Methods         |      Description                                                      |
+| ----------------- | ------------------------------------------------------------------ |
+| _DailyActions(DateTime currentDate)_ | Set the daily Action of Company |
+| _YearlyActions()_ | Set the yearly Action of Company |
+
+##### [Back to >Top<](#chocofactory) #####
+
+## IFactory ##
+
+| Type           | Properties       | Methods |
+| :---:          |     :---:        |  :---:  |
+| int             | ID       | get |
+| string          | City        | get|
+| string          | Address         | get|
+| double           | TotalProducts          | get|
+| double           | TotalEmployees          | get|
+
 
 ##### [Back to >Top<](#chocofactory) #####
 
@@ -86,16 +113,38 @@
 
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
+| decimal | Capital      | get; private set;  |
+| decimal  | Revenue       | get; set;  |
+| List of Factory | Employees        | get; set;  |
+| List of Shop    | Shops | get; set;   |
+| List of Employee      | Employees     | get; set;|
+| CompanyPolicy     | CompanyPolicy     | get; set; |
+| bool     | RevenueGoalAchieved    | get; set; |
+
+| Extra Methods         |      Description                                                      |
+| ----------------- | ------------------------------------------------------------------ |
+| _DailyActions(DateTime currentDate)_ | Set the daily Action of Company |
+| _YearlyActions()_ | Set the yearly Action of Company |
+
 
 ##### [Back to >Top<](#chocofactory) #####
 
 ## 🧮Accounting ##
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
-| List of Supplier | Suppliers        | void ReceiveOffer()  |
-| List of Employee | Employees        | Order SendOrder(parameter Offer)   |
-| List of Offer    | AvailableOffers  | Offer CheckBestOffer()    |
-| Supplier       | supplierLast     | ---- |
+| int | DepartmentID      | get; set;  |
+| Factory  | Factory       | get; set;  |
+| List of Employee | Employees        | get; set;  |
+| List of Offer    | AvailableOffers  | get; set;   |
+| offer      | BestOffer     | ---- |
+| Supplier     | LastSupplier     | get; set; |
+| Order     | LastOrder     | get; set; |
+
+| Extra Methods         |      Description                                                      |
+| ----------------- | ------------------------------------------------------------------ |
+| _ReceiveOffers()_ | Add a new offer in the list of AvailableOffers |
+| _Order SendOrder(Offer offer)_ | Send Offer to Accounting Deparment |
+| _double OfferValue(Offer offer)_ | Calcualtes the value of offer |
 
 ##### [Back to >Top<](#chocofactory) #####
 
@@ -103,16 +152,19 @@
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
 | Factory            | Factory     | get, set   |
+| ProductionPolicy             | ProductionPolicy      | get, set   |
+| string               | Description        | get, set   |
+
 
 | Extra Methods         |      Description                                                      |
 | ----------------- | ------------------------------------------------------------------ |
-| Product CreateProduct(string productName) | Choose what kind of Chocolate we want to create |
-| Offer SendOffer() | Send Offer to Accounting Deparment |
+| _IProduct CreateProduct(string productName)_ | Choose what kind of Chocolate we want to create |
 
 
 ##### [Back to >Top<](#chocofactory) #####
 
 ## 📦Warehouse
+
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
 | int            | DepartmentID     | get, set   |
@@ -122,12 +174,21 @@
 ##### [Back to >Top<](#chocofactory) #####
 
 ## 🏫Factory
+
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
 | Warehouse          | Warehouse     | get, set   |
 | Production         | Production      | get, set    |
 | Company            | Company        | get, set    |
-| Account            | Accounting        | get, set    |
+| Accounting            | Accounting        | get, set    |
+| List of Shop           | Shops       | get, set    |
+
+| Extra Methods         |      Description                                                      |
+| ----------------- | ------------------------------------------------------------------ |
+| void _OpeningActions()_ | set the opening actions of factory|
+| void _DailyActions(DateTime currentDate)_ | set the daily actions of factory|
+| void _YearlyActions()_ | set the yearly actions of factory |
+
 
 ##### [Back to >Top<](#chocofactory) #####
 
@@ -268,6 +329,7 @@
 ## ⏏️Interfaces ##
 
 All the builded interfaces: 
+- ICompany
 - IDepartment
 - IFactory
 - IHuman
