@@ -15,6 +15,7 @@ namespace ChocoFactory.Domain.Tests
         [TestMethod()]
         public void CreateProductTestWhite() // Test for white chocolate
         {
+            // Arrange
             ISupplierService serviceProvider = new SupplierService();
             ICustomerService customerProvider = new CustomerService();
 
@@ -24,7 +25,8 @@ namespace ChocoFactory.Domain.Tests
 
             string productName = "WhiteChocolate";
 
-             IChocolate productCreated = (IChocolate)production.CreateProduct(productName);
+            // Act
+            IChocolate productCreated = (IChocolate)production.CreateProduct(productName);
 
             Assert.AreEqual(productName, productCreated.Description);
             Assert.AreEqual(production.Factory.Company.CompanyPolicy.Pricing.WhiteChocolatePrice, productCreated.Price);
@@ -33,6 +35,7 @@ namespace ChocoFactory.Domain.Tests
         [TestMethod()]
         public void CreateProductTestBlack() // Test for black chocolate
         {
+            // Arrange
             ISupplierService serviceProvider = new SupplierService();
             ICustomerService customerProvider = new CustomerService();
 
@@ -42,8 +45,10 @@ namespace ChocoFactory.Domain.Tests
 
             string productName = "BlackChocolate";
 
+            // Act
             IChocolate productCreated = (IChocolate)production.CreateProduct(productName);
 
+            // Assert
             Assert.AreEqual(productName, productCreated.Description);
             Assert.AreEqual(production.Factory.Company.CompanyPolicy.Pricing.BlackChocolatePrice, productCreated.Price);
         }
@@ -51,6 +56,7 @@ namespace ChocoFactory.Domain.Tests
         [TestMethod()]
         public void CreateProductTestMilk() // Test for milk chocolate
         {
+            // Arrange
             ISupplierService serviceProvider = new SupplierService();
             ICustomerService customerProvider = new CustomerService();
 
@@ -60,8 +66,10 @@ namespace ChocoFactory.Domain.Tests
 
             string productName = "PlainMilkChocolate";
 
+            // Act
             IChocolate productCreated = (IChocolate)production.CreateProduct(productName);
 
+            // Assert
             Assert.AreEqual(productName, productCreated.Description);
             Assert.AreEqual(production.Factory.Company.CompanyPolicy.Pricing.MilkChocolatePrice, productCreated.Price);
         }
@@ -69,6 +77,7 @@ namespace ChocoFactory.Domain.Tests
         [TestMethod()]
         public void CreateProductTestAlmondMilk() // Test for almond milk chocolate
         {
+            // Arrange
             ISupplierService serviceProvider = new SupplierService();
             ICustomerService customerProvider = new CustomerService();
 
@@ -78,8 +87,10 @@ namespace ChocoFactory.Domain.Tests
 
             string productName = "AlmondMilkChocolate";
 
+            // Act
             IChocolate productCreated = (IChocolate)production.CreateProduct(productName);
 
+            // Assert
             Assert.AreEqual(productName, productCreated.Description);
             Assert.AreEqual(production.Factory.Company.CompanyPolicy.Pricing.AlmondMilkChocolatePrice, productCreated.Price);
         }
@@ -87,6 +98,7 @@ namespace ChocoFactory.Domain.Tests
         [TestMethod()]
         public void CreateProductTestHazelnutMilk() // Test for halzenut milk chocolate
         {
+            // Arrange
             ISupplierService serviceProvider = new SupplierService();
             ICustomerService customerProvider = new CustomerService();
 
@@ -96,8 +108,10 @@ namespace ChocoFactory.Domain.Tests
 
             string productName = "HazelnutMilkChocolate";
 
+            // Act
             IChocolate productCreated = (IChocolate)production.CreateProduct(productName);
 
+            // Assert
             Assert.AreEqual(productName, productCreated.Description);
             Assert.AreEqual(production.Factory.Company.CompanyPolicy.Pricing.HazelnutMilkChocolatePrice, productCreated.Price);
         }
