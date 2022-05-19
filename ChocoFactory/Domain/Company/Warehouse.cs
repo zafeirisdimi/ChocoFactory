@@ -47,6 +47,7 @@ namespace ChocoFactory.Domain
 
         public void DailyActions(DateTime currentDate)
         {
+            Console.WriteLine($"Supplies today: {SuppliesInKilo}");
             RemoveExpiredProducts(currentDate);
             GetDailyProducts();
 
@@ -88,7 +89,7 @@ namespace ChocoFactory.Domain
             for (int i = 0; i < Products.Count; i++)
             {
                 product = (IChocolate)Products[i];
-                if (product.ExpirationDate > currentDate)
+                if (DateTime.Compare(product.ExpirationDate, currentDate) < 0)
                 {
                     ProductQuantity[product.Description]--;
                     Products.Remove(product);
