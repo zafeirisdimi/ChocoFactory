@@ -8,7 +8,7 @@
 # 🏭CHOCOFACTORY #
 
 
-<details><summary><strong>Description(Greek)</strong></summary>
+<details><summary><strong>Description(GR)</strong></summary>
 <p>
     <ol><li>Αρχικά η επιχείρηση θα έχει 1 Εργοστάσιο με δυνατότητα επέκτασης</li></ul>
     <li> Επίσης θα έχει και 1 κατάστημα πώλησης των προϊόντων με δυνατότητα επέκτασης</li>
@@ -38,17 +38,26 @@
 
    * [Domain](#domain)
    * [Deparments](#deparments)
-      * [Deparment(abstract Class)](#deparment)
-      * [Account](#accounting)
+      * [IDeparment(inteface)](#ideparment)
+      * [Company](#company)
+      * [Accountint](#accounting)
       * [Production](#production)
       * [Warehouse](#warehouse)
       * [Factory](#factory)
       * [Shop](#shop)
    * [Human](#human)
-      * [Human(abstract Class)](#human)
+      * [IHuman(inteface)](#ihuman)
       * [Supplier](#supplier)
+      * [Employee](#employee)
    * [Products](#products)
+      * [IProduct(inteface)](#iproduct)
    * [Policy](#policy)
+      * [CompanyPolicy](#companypolicy)
+      * [PricePolicy](#pricepolicy)
+      * [ProductionPolicy](#productionpolicy)
+      * [Warehouse](#warehouse)
+      * [FactoryPolicy](#factorypolicy)
+      * [ShopPolicy](#shoppolicy)
    * [Service](#service)
    * [Interfaces](#interfaces)
    * [Screenshots](#screenshots)
@@ -62,9 +71,9 @@
 ------------------------------------------------------------------------------------------------------------------------------
 
 # /Domain/ #
-# /Deparments/ #
-## Deparment ##
-### (abstract Class) ###
+
+## IDeparment ##
+### (interface) ###
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
 | int            | DepartmentID     | get, set   |
@@ -73,12 +82,19 @@
 
 ##### [Back to >Top<](#chocofactory) #####
 
+## 🏢Company ##
+
+| Type           | Properties       | Methods |
+| :---:          |     :---:        |  :---:  |
+
+##### [Back to >Top<](#chocofactory) #####
+
 ## 🧮Accounting ##
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
-| List type of Supplier | Suppliers        | void ReceiveOffer()  |
-| List type of Employee | Employees        | Order SendOrder(parameter Offer)   |
-| List type of Offer    | AvailableOffers  | Offer CheckBestOffer()    |
+| List of Supplier | Suppliers        | void ReceiveOffer()  |
+| List of Employee | Employees        | Order SendOrder(parameter Offer)   |
+| List of Offer    | AvailableOffers  | Offer CheckBestOffer()    |
 | Supplier       | supplierLast     | ---- |
 
 ##### [Back to >Top<](#chocofactory) #####
@@ -96,7 +112,7 @@
 
 ##### [Back to >Top<](#chocofactory) #####
 
-## Warehouse
+## 📦Warehouse
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
 | int            | DepartmentID     | get, set   |
@@ -143,14 +159,12 @@
 
 # /Human/ #
 
-## 🧑Human ##
-### (abstract Class) ###
+## 🧑IHuman ##
+### (inteface) ###
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
 | string            | FirstName     | get, set   |
 | string         | LastName      | get, set    |
-| double            | PhoneNumber         | get, set    |
-| char            | Sex        | get, set    |
 
 
 - CEO
@@ -170,21 +184,20 @@
 
 ##### [Back to >Top<](#chocofactory) #####
 
-# /Products/ #
+# 🍫Products #
 
-
-## 🍫Product ##
-### (abstract Class) ###
+## IProduct ##
+### (interface) ###
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
 | int            | ID     | get, set   |
 | Offer         | Offer      | get, set    |
 | int            | OrderID        | get, set    |
 
-- Chocolate 
+### IChocolate ### 
 - DarkChocolate
 - WhiteChocolate
-- MilkChocolate (abstract Class)
+### IMilkChocolate (interface) ###
 - PlainMilkChocolate
 - AlmondMilkChocolate
 - HazelnutMilkChocolate
@@ -193,9 +206,9 @@
 
 ## 👮Policy ##
 
-## 👨‍💼CompanyPolicy ##
+### CompanyPolicy ###
 
-> Factory
+### FactoryPolicy ####
 
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |                                    
@@ -205,7 +218,7 @@
 | double            | RevenueYearlyGoal        | get, set    |
 | int            | NumberOfOffers        | get, set    |
 
-> Production Percent
+### ProductionPolicy ###
 
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  | 
@@ -214,7 +227,16 @@
 | double            | MilkChocolatePercent        | get, set    |
 | double            | AlmondMilkChocolatePercent        | get, set    |
 | double            | HazelnutMilkChocolatePercent        | get, set    |
-| //Shop                                  |
+| int            | BlackChocolateSupplies     | get, set   |
+| int        | WhiteChocolateSupplies      | get, set    |
+| int            | AlmondMilkChocolateSupplies        | get, set    |
+| int            | HazelnutMilkChocolateSupplies        | get, set    |
+| int            | ExperimentalChocolateSupplies        | get, set    |
+
+### ShopPolicy ###
+
+| Type           | Properties       | Methods |
+| :---:          |     :---:        |  :---:  |    
 | double            | ProductsToShopPercent        | get, set    |
 | double            | ShopRestockPercent        | get, set    |
 | int            | ShopStockSize        | get, set    |
@@ -224,7 +246,7 @@
 | int      | DiscountDayOccurence        | get, set    |
 | decimal      | GiftMinimumPrice        | get, set    |
 
-> Prices
+### PricePolicy ###
 
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |                                
@@ -235,38 +257,24 @@
 | decimal      | HazelnutMilkChocolatePrice        | get, set    |
 
 
-## 👩‍💼ProductionPolicy ##
-| Type           | Properties       | Methods |
-| :---:          |     :---:        |  :---:  |
-| int            | BlackChocolateSupplies     | get, set   |
-| int        | WhiteChocolateSupplies      | get, set    |
-| int            | AlmondMilkChocolateSupplies        | get, set    |
-| int            | HazelnutMilkChocolateSupplies        | get, set    |
-| int            | ExperimentalChocolateSupplies        | get, set    |
-
-
 
 ## 🔨Services ##
+
 - CustomerService
 - SupplierService
 - RandomGenerator
 
 
 ## ⏏️Interfaces ##
-(loading....)
-- IDeparmentModel
-- IFactoryModel
-- IHumanModel
-- IMaterialModel
+
+All the builded interfaces: 
+- IDepartment
+- IFactory
+- IHuman
+- IMaterial
 - IOfferModel
 - IOrderModel
-- IProductModel
-
-## 🏢Company ##
-
-| Type           | Properties       | Methods |
-| :---:          |     :---:        |  :---:  |
-
+- IProduct
 
 ## 📉Business Logic Diagram ##
 ------------------------------------------------------------------------------------------
@@ -274,17 +282,14 @@
 ![Business Logic](https://github.com/zafeirisdimi/ChocoFactory/blob/master/img/MicrosoftTeams-image%20(1).png)
 
 ------------------------------------------------------------------------------------------
+
 ## 🎖️Tasks ##
 ### Project status ###
-
+- [x] Analysis
 - [x] Design
-- [x] Mockups
 - [x] Development
 - [x] Unit testing
-- [ ] QA
-- [ ] Stage
-- [ ] Beta Testing
-- [ ] Production
+- [x] Mockup Data  
 
 ## 🖥️Technologies + recourses ##
 
