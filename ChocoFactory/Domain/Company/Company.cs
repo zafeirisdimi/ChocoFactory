@@ -26,8 +26,9 @@ namespace ChocoFactory.Domain
         public Company()
         {
             Factory factory = new Factory(this);
+            factory.OpeningActions();
             Factories.Add(factory);
-          
+                 
             Shop shop = new Shop(this, factory);
             shop.RefillStock();
             Shops.Add(shop);

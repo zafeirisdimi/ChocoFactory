@@ -1,5 +1,4 @@
-﻿using ChocoFactory.Interfaces;
-using ChocoFactory.Services;
+﻿using ChocoFactory.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -88,7 +87,7 @@ namespace ChocoFactory.Domain
             for (int i = 0; i < Products.Count; i++)
             {
                 product = (IChocolate)Products[i];
-                if (product.ExpirationDate > currentDate)
+                if (DateTime.Compare(product.ExpirationDate, currentDate) < 0)
                 {
                     ProductQuantity[product.Description]--;
                     Products.Remove(product);
