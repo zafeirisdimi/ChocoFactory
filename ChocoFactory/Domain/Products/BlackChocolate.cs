@@ -1,5 +1,4 @@
-﻿using ChocoFactory.Interfaces;
-using System;
+﻿using System;
 
 namespace ChocoFactory.Domain
 {

@@ -1,6 +1,4 @@
-﻿using ChocoFactory.Interfaces;
-
-using ChocoFactory.Services;
+﻿using ChocoFactory.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
