@@ -38,7 +38,14 @@ namespace ChocoFactory.Domain.Tests
         }
 
         [TestMethod()]
-        public void IsDicountDayTest()
+        public void DiscountDay_IsDicountDayTest()
+        {
+
+
+        }
+
+        [TestMethod()]
+        public void NotDiscountDay_IsDicountDayTest()
         {
 
 
@@ -54,9 +61,21 @@ namespace ChocoFactory.Domain.Tests
         {
             Company company = new Company();
             Factory factory = new Factory(company);
+            factory.Warehouse.GetProduct(productName);
             Shop shop = new Shop(company, factory);
 
+            PrivateObject privateObject = new PrivateObject(shop);
 
+            privateObject.Invoke("ReceiveProduct", productName);
+            IProduct product = shop.Products[0];
+
+            shop.SellProduct(productName);
+
+            int counter = shop.DailyProductsSold[productName];
+            Assert.AreEqual(1, counter);
+
+            Assert.AreEqual(product.Price, shop.DailyEarnings);
+            Assert.AreEqual(0, shop.Products.Count);
         }
 
         [TestMethod()]
@@ -68,13 +87,107 @@ namespace ChocoFactory.Domain.Tests
         [TestMethod()]
         public void SendDailyEarningsTests()
         {
+            Company company = new Company();
+            Factory factory = new Factory(company);
+            Shop shop = new Shop(company, factory)
+            {
+                DailyEarnings = 100
+            };
+            decimal revenueInit = company.Revenue;
+            PrivateObject privateObject = new PrivateObject(shop);
 
+            privateObject.Invoke("SendDailyEarnings");
+
+            Assert.AreEqual(revenueInit + 100, company.Revenue);
+            Assert.AreEqual(0, shop.DailyEarnings);
         }
 
-        [TestMethod()]
-        public void IsProductQuantityLowTests()
+        [DataTestMethod()]
+        [DataRow("WhiteChocolate")]
+        [DataRow("BlackChocolate")]
+        [DataRow("PlainMilkChocolate")]
+        [DataRow("AlmondMilkChocolate")]
+        [DataRow("HazelnutMilkChocolate")]
+        public void NotLowQuantity_IsProductQuantityLowTests(string productName)
         {
+            Company company = new Company();
+            Factory factory = new Factory(company);
+            factory.Warehouse.GetDailyProducts();
+            Shop shop = new Shop(company, factory);
 
+            int stockProducts = 0;
+            switch (productName)
+            {
+                case "BlackChocolate":
+                    stockProducts = (int)Math.Floor(company.CompanyPolicy.Shop.ShopStockSize * company.CompanyPolicy.Production.BlackChocolatePercent);
+                    break;
+                case "WhiteChocolate":
+                    stockProducts = (int)Math.Floor(company.CompanyPolicy.Shop.ShopStockSize * company.CompanyPolicy.Production.WhiteChocolatePercent);
+                    break;
+                case "PlainMilkChocolate":
+                    stockProducts = (int)Math.Floor(company.CompanyPolicy.Shop.ShopStockSize * company.CompanyPolicy.Production.MilkChocolatePercent);
+                    break;
+                case "AlmondMilkChocolate":
+                    stockProducts = (int)Math.Floor(company.CompanyPolicy.Shop.ShopStockSize * company.CompanyPolicy.Production.AlmondMilkChocolatePercent);
+                    break;
+                case "HazelnutMilkChocolate":
+                    stockProducts = (int)Math.Floor(company.CompanyPolicy.Shop.ShopStockSize * company.CompanyPolicy.Production.HazelnutMilkChocolatePercent);
+                    break;
+                default:
+                    break;
+            }
+            PrivateObject privateObject = new PrivateObject(shop);
+
+            for (int i = 0; i < stockProducts; i++)
+            {
+                privateObject.Invoke("ReceiveProduct", productName);
+            }
+
+            Assert.IsFalse((bool)privateObject.Invoke("IsProductQuantityLow", productName), "The product quantity was low.");
+        }
+
+        [DataTestMethod()]
+        [DataRow("WhiteChocolate")]
+        [DataRow("BlackChocolate")]
+        [DataRow("PlainMilkChocolate")]
+        [DataRow("AlmondMilkChocolate")]
+        [DataRow("HazelnutMilkChocolate")]
+        public void LowQuantity_IsProductQuantityLowTests(string productName)
+        {
+            Company company = new Company();
+            Factory factory = new Factory(company);
+            factory.Warehouse.GetDailyProducts();
+            Shop shop = new Shop(company, factory);
+
+            int stockProducts = 0;
+            switch (productName)
+            {
+                case "BlackChocolate":
+                    stockProducts = (int)Math.Floor(company.CompanyPolicy.Shop.ShopStockSize * company.CompanyPolicy.Production.BlackChocolatePercent);
+                    break;
+                case "WhiteChocolate":
+                    stockProducts = (int)Math.Floor(company.CompanyPolicy.Shop.ShopStockSize * company.CompanyPolicy.Production.WhiteChocolatePercent);
+                    break;
+                case "PlainMilkChocolate":
+                    stockProducts = (int)Math.Floor(company.CompanyPolicy.Shop.ShopStockSize * company.CompanyPolicy.Production.MilkChocolatePercent);
+                    break;
+                case "AlmondMilkChocolate":
+                    stockProducts = (int)Math.Floor(company.CompanyPolicy.Shop.ShopStockSize * company.CompanyPolicy.Production.AlmondMilkChocolatePercent);
+                    break;
+                case "HazelnutMilkChocolate":
+                    stockProducts = (int)Math.Floor(company.CompanyPolicy.Shop.ShopStockSize * company.CompanyPolicy.Production.HazelnutMilkChocolatePercent);
+                    break;
+                default:
+                    break;
+            }
+            PrivateObject privateObject = new PrivateObject(shop);
+
+            for (int i = 0; i < stockProducts - 1; i++)
+            {
+                privateObject.Invoke("ReceiveProduct", productName);
+            }
+
+            Assert.IsTrue((bool)privateObject.Invoke("IsProductQuantityLow", productName), "The product quantity was not low.");
         }
 
         [DataTestMethod()]
@@ -87,7 +200,7 @@ namespace ChocoFactory.Domain.Tests
         {
             Company company = new Company();
             Factory factory = new Factory(company);
-            factory.Warehouse.GetProduct(productName);
+            factory.Warehouse.GetDailyProducts();
             Shop shop = new Shop(company, factory);
 
             int productMaxCapacity = 0;
@@ -113,9 +226,11 @@ namespace ChocoFactory.Domain.Tests
                     break;
             }
 
-            
+            PrivateObject privateObject = new PrivateObject(shop);
 
-            //Assert.AreEqual(productMaxCapacity, );
+            privateObject.Invoke("RefillProduct", productName);
+
+            Assert.AreEqual(productMaxCapacity, shop.Products.Where(x => x.Description == productName).Count());
         }
 
         [TestMethod()]
@@ -137,7 +252,6 @@ namespace ChocoFactory.Domain.Tests
             factory.Warehouse.GetProduct(productName);
             Shop shop = new Shop(company, factory);
 
-
             PrivateObject privateObject = new PrivateObject(shop);
 
             privateObject.Invoke("ReceiveProduct", productName);
@@ -146,11 +260,58 @@ namespace ChocoFactory.Domain.Tests
             Assert.AreEqual(productName, shop.Products[0].Description);
         }
 
-        [TestMethod()]
-        public void RemoveExpiredProducts()
+        [DataTestMethod]
+        [DataRow("WhiteChocolate")]
+        [DataRow("BlackChocolate")]
+        [DataRow("PlainMilkChocolate")]
+        [DataRow("AlmondMilkChocolate")]
+        [DataRow("HazelnutMilkChocolate")]
+        public void DontRemove_NotExpiredProductsTest(string productName)
         {
+            DateTime today = DateTime.Today;
+            DateTime yesterday = today.AddDays(-1);
 
+            Company company = new Company();
+            Factory factory = new Factory(company);
+            factory.Warehouse.GetProduct(productName);
+            Shop shop = new Shop(company, factory);
+
+            PrivateObject privateObject = new PrivateObject(shop);
+
+            privateObject.Invoke("ReceiveProduct", productName);
+            privateObject.Invoke("RemoveExpiredProducts", yesterday);
+
+            Assert.AreEqual(productName, shop.Products[0].Description);
         }
+
+        [DataTestMethod()]
+        [DataRow("WhiteChocolate")]
+        [DataRow("BlackChocolate")]
+        [DataRow("PlainMilkChocolate")]
+        [DataRow("AlmondMilkChocolate")]
+        [DataRow("HazelnutMilkChocolate")]
+        public void RemoveExpiredProducts(string productName)
+        {
+            DateTime today = DateTime.Today;
+            DateTime farFuture = today.AddDays(10000);
+
+            Company company = new Company();
+            Factory factory = new Factory(company);
+            factory.Warehouse.GetProduct(productName);
+            Shop shop = new Shop(company, factory);
+
+            PrivateObject privateObject = new PrivateObject(shop);
+
+            privateObject.Invoke("ReceiveProduct", productName);
+            privateObject.Invoke("RemoveExpiredProducts", farFuture);
+
+            int counter = shop.DailyProductsSold[productName];
+
+            Assert.AreEqual(0, counter);
+            Assert.AreEqual(0, shop.Products.Count);
+        }
+
+
 
 
 

@@ -219,7 +219,7 @@ namespace ChocoFactory.Domain
 
                 if (product is IChocolate chocolate)
                 {
-                    if (chocolate.ExpirationDate > currentDate)
+                    if (DateTime.Compare(chocolate.ExpirationDate, currentDate) < 0)
                     {
                         Products.Remove(product);
                     }
