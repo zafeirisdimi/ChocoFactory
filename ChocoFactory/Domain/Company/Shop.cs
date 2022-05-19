@@ -72,15 +72,24 @@ namespace ChocoFactory.Domain
 
         private bool IsDiscountDay(DateTime currentDate)
         {
-            if (currentDate.DayOfWeek == Company.CompanyPolicy.Shop.DiscountDay)
-                discountDayOccurences++;
+            if (!(currentDate.DayOfWeek == Company.CompanyPolicy.Shop.DiscountDay))
+            {
+                return false;
+            }
+            else
+            {
+                int weekInMonth = 0;
+                DateTime dateTime = currentDate;
+                
+                do
+                {
+                    weekInMonth++;
+                    dateTime = dateTime.AddDays(-7);
 
-            bool isDiscountDay = (discountDayOccurences == Company.CompanyPolicy.Shop.DiscountDayOccurence);
+                } while (dateTime.Month == currentDate.Month);
 
-            if (isDiscountDay || currentDate.Day == 1) // Reset counter every start of the month or every discount day.
-                discountDayOccurences = 0;
-
-            return isDiscountDay;
+                return weekInMonth == Company.CompanyPolicy.Shop.DiscountDayOccurence;
+            }
         }
 
         public decimal SellProduct(string productName)
