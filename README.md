@@ -1,6 +1,6 @@
 ----------------------------------------------------------------------------------------------------------------------------------------
 
-![Logo](https://github.com/zafeirisdimi/ChocoFactory/blob/master/img/choco.png "First Object Approach")
+![Logo](https://github.com/zafeirisdimi/ChocoFactory/blob/master/img/choco.png "Logo")
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------
@@ -71,7 +71,7 @@
 <!--te-->
                                                                                                                
 
-![factorydiagram](https://github.com/zafeirisdimi/ChocoFactory/blob/master/img/ChocoFactoryDiagram.drawio.png "Object diagram")
+![factorydiagram](https://github.com/zafeirisdimi/ChocoFactory/blob/master/img/ChocoFactoryDiagram.drawio.png "First Approach Diagram")
 ------------------------------------------------------------------------------------------------------------------------------
 
 # /Domain/ #
