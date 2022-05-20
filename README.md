@@ -49,11 +49,12 @@
       * [Shop](#shop)
    * [Human](#human)
       * [IHuman](#ihuman)
-      * [IEmployee](#iemployee)
+      * [IEmployee](#%EF%B8%8Fiemployee)
       * [Employee](#employee)
       * [Supplier](#supplier)
    * [Products](#products)
       * [IProduct](#iproduct)
+   * [Offer-Order](#offer-order)
    * [Policy](#policy)
       * [CompanyPolicy](#companypolicy)
       * [PricePolicy](#pricepolicy)
@@ -61,7 +62,8 @@
       * [FactoryPolicy](#factorypolicy)
       * [ShopPolicy](#shoppolicy)
    * [Services](#services)
-   * [Tasks](#tasks)
+   * [Business Logic Diagramm](#business-logic-diagram)
+   * [Tasks](%EF%B8%8Ftasks)
    * [Technologies](#technologies)
    * [Team](#team)
    
@@ -186,9 +188,9 @@
 
 | Extra Methods         |      Description                                                      |
 | ----------------- | ------------------------------------------------------------------ |
-| _OpeningActions()_ | set the opening actions of factory|
-| _DailyActions(DateTime currentDate)_ | set the daily actions of factory|
-| _YearlyActions()_ | set the yearly actions of factory |
+| _OpeningActions()_ | Set the opening actions of factory|
+| _DailyActions(DateTime currentDate)_ | Set the daily actions of factory|
+| _YearlyActions()_ | Set the yearly actions of factory |
 
 
 ##### [Back to >Top<](#chocofactory) #####
@@ -291,7 +293,7 @@
 - AlmondMilkChocolate
 - HazelnutMilkChocolate
 
-# Offer #
+# Offer-Order #
 
 | Type           | Properties       | Methods |
 | :---:          |     :---:        |  :---:  |
@@ -300,6 +302,9 @@
 | int           | Quantity         | get, set    |
 | decimal           | TotalCost          | get, set    |
 | Supplier              | Supplier          | get, set    |
+| _Factory_             | Factory          | get, set    | only for __Order__
+
+
 
 ##### [Back to >Top<](#chocofactory) #####
 
@@ -367,9 +372,14 @@
 
 ## 🔨Services ##
 
-- CustomerService
-- SupplierService
-- RandomGenerator
+| Title         |      Description                                                      |
+| ----------------- | ------------------------------------------------------------------ |
+| _ICustomerService_| Interface for CustomerService |
+| _ISupplierService_ | Interface for SupplierService|
+| _CustomerService_|  |
+| _SupplierService_ | |
+| _RandomGenerator_| Create random data for different processes|
+| _ImportJsonHelper_ | Import data from json to list of object|
 
 
 ## 📈Business Logic Diagram ##
