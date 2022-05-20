@@ -77,7 +77,11 @@ namespace ChocoFactory.Domain
         {
             int quality = (int)offer.Quality;
             double pricePerKilo = (double)offer.PricePerKilo;
-            return quality / pricePerKilo;
+
+            if (pricePerKilo == 0 && offer.Quantity !=0)
+                return double.MaxValue;
+            else
+                return quality / pricePerKilo;
         }
     }
 }
