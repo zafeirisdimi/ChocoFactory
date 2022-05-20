@@ -410,6 +410,7 @@
 ### Recourses ###
 - [Download Visual Studio](https://visualstudio.microsoft.com/downloads/)
 - [Official documentation](https://docs.microsoft.com/en-us/)
+- [Facoty-Design-Pattern](https://dotnettutorials.net/lesson/factory-design-pattern-csharp/)
 
 
 ##### [Back to >Top<](#chocofactory) ####
