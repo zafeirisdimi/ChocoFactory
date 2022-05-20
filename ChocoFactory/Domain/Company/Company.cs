@@ -1,4 +1,5 @@
-﻿using ChocoFactory.Services;
+﻿using ChocoFactory.Service;
+using ChocoFactory.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace ChocoFactory.Domain
 {
 
 
-    public class Company : ICompany
+    public class Company : ICompany ,IActions
 
     {
         private readonly ISupplierService _supplierService;
@@ -18,7 +19,7 @@ namespace ChocoFactory.Domain
         public decimal Revenue { get; set; }
         public List<Factory> Factories { get; set; } = new List<Factory>();
         public List<Shop> Shops { get; set; } = new List<Shop>();
-        public List<IEmployeeModel> Employees { get; set; } = new List<IEmployeeModel>();
+        public List<IEmployee> Employees { get; set; } = new List<IEmployee>();
         public CompanyPolicy CompanyPolicy { get; set; } = new CompanyPolicy();
         public bool RevenueGoalAchieved
         {
@@ -81,6 +82,17 @@ namespace ChocoFactory.Domain
             Console.WriteLine($"Number of Shops: {Shops.Count}");
             Capital += Revenue;
             Revenue = 0;
+        }
+
+        public void PrintMockEmployeesData() 
+        {
+            var List = ImportJsonHelper.MockEmployeeList();
+            foreach (var employee in List)
+            {
+                Console.WriteLine($"|ID: {employee.ID }|\t|Salary: {employee.Salary }|\t|DeparmentId: {employee.DeparmentId }" +
+                    $"|\t|ManagerId: {employee.ManagerId }|\t|Firstname: {employee.Firstname }|\t" +
+                    $"|Lastname: {employee.Lastname }|\t|Email: {employee.Email }|\t|Email: {employee.Phone }|");
+            }
         }
     }
 }

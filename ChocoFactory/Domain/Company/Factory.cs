@@ -7,7 +7,7 @@ using ChocoFactory.Services;
 
 namespace ChocoFactory.Domain
 {
-    public class Factory
+    public class Factory : IActions
     {
         //properties
         public Company Company { get; set; }

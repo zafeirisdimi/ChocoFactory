@@ -18,7 +18,7 @@ namespace ChocoFactory.Domain
 
         public string Description { get; }
         public Factory Factory { get; set; }
-        public List<IEmployeeModel> Employees { get; set; } = new List<IEmployeeModel>();//list of possible employees of this deparment.
+        public List<IEmployee> Employees { get; set; } = new List<IEmployee>();//list of possible employees of this deparment.
         public List<Offer> AvailableOffers { get; set; } = new List<Offer>();// list of available offers of possible suppliers
         public Offer BestOffer
         {

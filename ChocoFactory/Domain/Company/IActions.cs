@@ -1,5 +1,4 @@
-﻿using ChocoFactory.Domain;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace ChocoFactory.Domain
 {
-    public interface IHumanModel
+    interface IActions
     {
-        string FirstName { get; }
-        string LastName { get; }
-
+        void DailyActions(DateTime date);
+        void YearlyActions();
     }
 }

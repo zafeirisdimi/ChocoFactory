@@ -9,10 +9,10 @@ namespace ChocoFactory.Services
     {
         private static Random rnd = new Random();
 
-        public static decimal PricePerKilo(Quality quality)  //create a random Quality indicator with limits[1-20]
+        public static decimal PricePerKilo(Quality quality)  //create a random Quality indicator 
         {
             Thread.Sleep(1);
-            decimal number = rnd.Next(1, 2);
+            decimal number = rnd.Next(1, 3);
             return number * (int)quality;
         }
 
@@ -24,7 +24,7 @@ namespace ChocoFactory.Services
             return (Quality)values.GetValue(index);
         }
 
-        public static int Quantity()       //create a random Quantity number with limitis [300-1000]
+        public static int Quantity()       //create a random Quantity number with limitis 
         {
             Thread.Sleep(1);
             int num = rnd.Next(10000, 30001);

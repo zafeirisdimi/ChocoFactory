@@ -17,7 +17,7 @@ namespace ChocoFactory.Domain
         public double Discount { get; set; } = 0;
         public List<IProduct> Products { get; set; } = new List<IProduct>();
 
-        public List<IEmployeeModel> Employees { get; set; }
+        public List<Employee> Sellers { get; set; } = ImportJsonHelper.MockEmployeeList();
 
         public Dictionary<string, int> DailyProductsSold { get; set; } = new Dictionary<string, int>()
         {
@@ -43,6 +43,8 @@ namespace ChocoFactory.Domain
             _customerService = customerService;
             Company = company;
             Factory = factory;
+
+            Sellers = ImportJsonHelper.MockEmployeeList();
         }
 
         //methods
@@ -240,6 +242,8 @@ namespace ChocoFactory.Domain
                     }
                 }
             }
+
+           
         }
 
 

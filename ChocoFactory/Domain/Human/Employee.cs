@@ -8,30 +8,32 @@ using LINQtoCSV;
 namespace ChocoFactory.Domain
 
 {
-    [Serializable]
-    public class Employee : IEmployeeModel
+    
+    public class Employee : IEmployee
     {
 
         //properties
-        [CsvColumn(Name = "ID", FieldIndex = 1)]
-        public int EmployeeID { get; set; }
+        
+        public int ID { get; set; }
 
-        [CsvColumn(Name = "Salary", FieldIndex = 2)]
+        
         public decimal Salary { get; set; }
 
-        [CsvColumn(Name = "DeparmentId", FieldIndex = 3)]
+        
         public int DeparmentId { get; set; }
 
-        [CsvColumn(Name = "ManagerId", FieldIndex = 4)]
+        
         public int ManagerId { get; set; }
 
-        public string FirstName { get; private set; }
+        public string Firstname { get; set; }
 
-        public string LastName { get; private set; }
+        public string Lastname { get; set; }
 
-        public string EmailAddres { get; private set; }
+        public string Email { get; set; }
 
-        public double Phone ;
+        public double Phone { get; set; }
+
+        
 
         //default constructor
 
