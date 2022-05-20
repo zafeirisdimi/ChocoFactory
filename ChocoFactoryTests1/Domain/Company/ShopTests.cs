@@ -349,7 +349,7 @@ namespace ChocoFactory.Domain.Tests
         [DataRow("PlainMilkChocolate")]
         [DataRow("AlmondMilkChocolate")]
         [DataRow("HazelnutMilkChocolate")]
-        public void ReceiveProductTest(string productName)
+        public void IfWarehouseHasProduct_ReceiveProductTest(string productName)
         {
             // Arrange
             ISupplierService serviceProvider = new SupplierService();
@@ -368,6 +368,31 @@ namespace ChocoFactory.Domain.Tests
             // Assert
             Assert.AreEqual(1, shop.Products.Count);
             Assert.AreEqual(productName, shop.Products[0].Description);
+        }
+
+        [DataTestMethod()]
+        [DataRow("WhiteChocolate")]
+        [DataRow("BlackChocolate")]
+        [DataRow("PlainMilkChocolate")]
+        [DataRow("AlmondMilkChocolate")]
+        [DataRow("HazelnutMilkChocolate")]
+        public void IfWarehouseHasNoProduct_DontReceiveProductTest(string productName)
+        {
+            // Arrange
+            ISupplierService serviceProvider = new SupplierService();
+            ICustomerService customerProvider = new CustomerService();
+
+            Company company = new Company(serviceProvider, customerProvider);
+            Factory factory = new Factory(company, serviceProvider);
+            Shop shop = new Shop(company, factory, customerProvider);
+
+            PrivateObject privateObject = new PrivateObject(shop);
+
+            // Act
+            privateObject.Invoke("ReceiveProduct", productName);
+
+            // Assert
+            Assert.AreEqual(0, shop.Products.Count);
         }
 
         [DataTestMethod]

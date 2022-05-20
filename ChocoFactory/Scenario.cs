@@ -52,7 +52,7 @@ namespace ChocoFactory
 
                 currentDate = Calendar.AddDays(CurrentDate, 1); // Advance Time by one day.
 
-                Console.WriteLine($"End of day {currentDate}\n");
+                Console.WriteLine($"End of day {currentDate.ToShortDateString()}\n");
             }
         }
 

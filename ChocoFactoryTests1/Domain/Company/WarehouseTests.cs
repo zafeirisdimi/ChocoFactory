@@ -13,18 +13,6 @@ namespace ChocoFactory.Domain.Tests
     public class WarehouseTests
     {
         [TestMethod()]
-        public void WarehouseTest()
-        {
-
-        }
-
-        [TestMethod()]
-        public void DailyActionsTest()
-        {
-
-        }
-
-        [TestMethod()]
         public void GetSuppliesTest()
         {
             // Arrange
