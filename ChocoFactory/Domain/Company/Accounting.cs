@@ -60,12 +60,8 @@ namespace ChocoFactory.Domain
 
         public Order SendOrder(Offer offer)
         {
-
-
-
             Order order = new Order(offer, Factory);
             
-
             order.Supplier.SendSupplies(order);
 
             Factory.Company.Revenue -= order.TotalCost;

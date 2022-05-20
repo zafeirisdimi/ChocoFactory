@@ -84,6 +84,11 @@ namespace ChocoFactory.Domain
             Revenue = 0;
         }
 
+        public void ReceiveMoney(decimal money)
+        {
+            Revenue += money;
+        }
+
         public void PrintMockEmployeesData() 
         {
             var List = ImportJsonHelper.MockEmployeeList();

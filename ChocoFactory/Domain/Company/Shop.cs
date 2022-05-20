@@ -1,4 +1,5 @@
-﻿using ChocoFactory.Services;
+﻿using ChocoFactory.Service;
+using ChocoFactory.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -144,7 +145,7 @@ namespace ChocoFactory.Domain
 
         private void SendDailyEarnings()
         {
-            Company.Revenue += DailyEarnings;
+            Company.ReceiveMoney(DailyEarnings);
             DailyEarnings = 0;
         }
 
