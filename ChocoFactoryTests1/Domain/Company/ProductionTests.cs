@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ChocoFactory.Domain;
+using ChocoFactory.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,76 +15,105 @@ namespace ChocoFactory.Domain.Tests
         [TestMethod()]
         public void CreateProductTestWhite() // Test for white chocolate
         {
-            Company company = new Company();
-            Factory factory = new Factory(company);
+            // Arrange
+            ISupplierService serviceProvider = new SupplierService();
+            ICustomerService customerProvider = new CustomerService();
+
+            Company company = new Company(serviceProvider, customerProvider);
+            Factory factory = new Factory(company, serviceProvider);
             Production production = new Production(factory);
 
             string productName = "WhiteChocolate";
 
-            Product productCreated = production.CreateProduct(productName);
+            // Act
+            IChocolate productCreated = (IChocolate)production.CreateProduct(productName);
 
             Assert.AreEqual(productName, productCreated.Description);
-            Assert.AreEqual(production.Factory.Company.CompanyPolicy.WhiteChocolatePrice, productCreated.Price);
+            Assert.AreEqual(production.Factory.Company.CompanyPolicy.Pricing.WhiteChocolatePrice, productCreated.Price);
         }
 
         [TestMethod()]
         public void CreateProductTestBlack() // Test for black chocolate
         {
-            Company company = new Company();
-            Factory factory = new Factory(company);
+            // Arrange
+            ISupplierService serviceProvider = new SupplierService();
+            ICustomerService customerProvider = new CustomerService();
+
+            Company company = new Company(serviceProvider, customerProvider);
+            Factory factory = new Factory(company, serviceProvider);
             Production production = new Production(factory);
 
             string productName = "BlackChocolate";
 
-            Product productCreated = production.CreateProduct(productName);
+            // Act
+            IChocolate productCreated = (IChocolate)production.CreateProduct(productName);
 
+            // Assert
             Assert.AreEqual(productName, productCreated.Description);
-            Assert.AreEqual(production.Factory.Company.CompanyPolicy.BlackChocolatePrice, productCreated.Price);
+            Assert.AreEqual(production.Factory.Company.CompanyPolicy.Pricing.BlackChocolatePrice, productCreated.Price);
         }
 
         [TestMethod()]
         public void CreateProductTestMilk() // Test for milk chocolate
         {
-            Company company = new Company();
-            Factory factory = new Factory(company);
+            // Arrange
+            ISupplierService serviceProvider = new SupplierService();
+            ICustomerService customerProvider = new CustomerService();
+
+            Company company = new Company(serviceProvider, customerProvider);
+            Factory factory = new Factory(company, serviceProvider);
             Production production = new Production(factory);
 
             string productName = "PlainMilkChocolate";
 
-            Product productCreated = production.CreateProduct(productName);
+            // Act
+            IChocolate productCreated = (IChocolate)production.CreateProduct(productName);
 
+            // Assert
             Assert.AreEqual(productName, productCreated.Description);
-            Assert.AreEqual(production.Factory.Company.CompanyPolicy.MilkChocolatePrice, productCreated.Price);
+            Assert.AreEqual(production.Factory.Company.CompanyPolicy.Pricing.MilkChocolatePrice, productCreated.Price);
         }
 
         [TestMethod()]
         public void CreateProductTestAlmondMilk() // Test for almond milk chocolate
         {
-            Company company = new Company();
-            Factory factory = new Factory(company);
+            // Arrange
+            ISupplierService serviceProvider = new SupplierService();
+            ICustomerService customerProvider = new CustomerService();
+
+            Company company = new Company(serviceProvider, customerProvider);
+            Factory factory = new Factory(company, serviceProvider);
             Production production = new Production(factory);
 
             string productName = "AlmondMilkChocolate";
 
-            Product productCreated = production.CreateProduct(productName);
+            // Act
+            IChocolate productCreated = (IChocolate)production.CreateProduct(productName);
 
+            // Assert
             Assert.AreEqual(productName, productCreated.Description);
-            Assert.AreEqual(production.Factory.Company.CompanyPolicy.AlmondMilkChocolatePrice, productCreated.Price);
+            Assert.AreEqual(production.Factory.Company.CompanyPolicy.Pricing.AlmondMilkChocolatePrice, productCreated.Price);
         }
 
         [TestMethod()]
         public void CreateProductTestHazelnutMilk() // Test for halzenut milk chocolate
         {
-            Company company = new Company();
-            Factory factory = new Factory(company);
+            // Arrange
+            ISupplierService serviceProvider = new SupplierService();
+            ICustomerService customerProvider = new CustomerService();
+
+            Company company = new Company(serviceProvider, customerProvider);
+            Factory factory = new Factory(company, serviceProvider);
             Production production = new Production(factory);
 
             string productName = "HazelnutMilkChocolate";
 
-            Product productCreated = production.CreateProduct(productName);
+            // Act
+            IChocolate productCreated = (IChocolate)production.CreateProduct(productName);
 
+            // Assert
             Assert.AreEqual(productName, productCreated.Description);
-            Assert.AreEqual(production.Factory.Company.CompanyPolicy.HazelnutMilkChocolatePrice, productCreated.Price);
+            Assert.AreEqual(production.Factory.Company.CompanyPolicy.Pricing.HazelnutMilkChocolatePrice, productCreated.Price);
         }
     }
 }

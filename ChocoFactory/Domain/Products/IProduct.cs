@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ChocoFactory.Interfaces
+namespace ChocoFactory.Domain
 {
     public interface IProduct
     {

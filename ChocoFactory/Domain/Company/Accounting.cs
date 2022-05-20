@@ -77,7 +77,7 @@ namespace ChocoFactory.Domain
             return order;
         }
 
-        public double OfferValue(Offer offer)
+        private double OfferValue(Offer offer)
         {
             int quality = (int)offer.Quality;
             double pricePerKilo = (double)offer.PricePerKilo;

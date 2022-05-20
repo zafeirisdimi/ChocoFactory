@@ -19,7 +19,7 @@
             MilkChocolatePrice = 10;
             AlmondMilkChocolatePrice = 16;
             HazelnutMilkChocolatePrice = 16;
-            ExperimentalChocolatePrice = 16;
+            ExperimentalChocolatePrice = 0;
         }
     }
 }

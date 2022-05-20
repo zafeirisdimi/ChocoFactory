@@ -28,6 +28,9 @@ namespace ChocoFactory.Domain
 
         public Company(ISupplierService supplierService,ICustomerService customerService)
         {
+            _supplierService = supplierService;
+            _customerService = customerService;
+
             Factory factory = new Factory(this, supplierService);
             Factories.Add(factory);
             factory.OpeningActions();
@@ -38,6 +41,12 @@ namespace ChocoFactory.Domain
             factory.Shops.Add(shop);
         }
 
+        public void OpeningActions()
+        {
+            Factories[0].OpeningActions();
+            Shops[0].RefillStock();
+        }
+        
 
         public void DailyActions(DateTime currentDate)
         {
@@ -70,6 +79,7 @@ namespace ChocoFactory.Domain
                 Console.WriteLine("NEW SHOP!!");
             }
 
+            Console.WriteLine($"Number of Shops: {Shops.Count}");
             Capital += Revenue;
             Revenue = 0;
         }

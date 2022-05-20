@@ -1,6 +1,4 @@
-﻿using ChocoFactory.Interfaces;
-using ChocoFactory.Service;
-using ChocoFactory.Services;
+﻿using ChocoFactory.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +11,6 @@ namespace ChocoFactory.Domain
     {
         //properties
         private readonly ICustomerService _customerService;
-        private int discountDayOccurences = 0;
 
         public Company Company { get; set; }
         public Factory Factory { get; set; }
@@ -46,7 +43,7 @@ namespace ChocoFactory.Domain
             _customerService = customerService;
             Company = company;
             Factory = factory;
-            RefillStock();
+
             Sellers = ImportJsonHelper.MockEmployeeList();
         }
 
@@ -76,24 +73,38 @@ namespace ChocoFactory.Domain
 
         private bool IsDiscountDay(DateTime currentDate)
         {
-            if (currentDate.DayOfWeek == Company.CompanyPolicy.Shop.DiscountDay)
-                discountDayOccurences++;
+            if (!(currentDate.DayOfWeek == Company.CompanyPolicy.Shop.DiscountDay))
+            {
+                return false;
+            }
+            else
+            {
+                int weekInMonth = 0;
+                DateTime dateTime = currentDate;
+                
+                do
+                {
+                    weekInMonth++;
+                    dateTime = dateTime.AddDays(-7);
 
-            bool isDiscountDay = (discountDayOccurences == Company.CompanyPolicy.Shop.DiscountDayOccurence);
+                } while (dateTime.Month == currentDate.Month);
 
-            if (isDiscountDay || currentDate.Day == 1) // Reset counter every start of the month or every discount day.
-                discountDayOccurences = 0;
-
-            return isDiscountDay;
+                return weekInMonth == Company.CompanyPolicy.Shop.DiscountDayOccurence;
+            }
         }
 
         public decimal SellProduct(string productName)
         {
             IProduct productToSell = Products.Find(x => x.Description == productName);
-            decimal productPrice = productToSell.Price;
-            DailyEarnings += productPrice;
-            Products.Remove(productToSell);
-            DailyProductsSold[productName]++;
+
+            decimal productPrice = 0;
+            if (productToSell != null)
+            {
+                productPrice = productToSell.Price - productToSell.Price * (decimal)Discount;
+                DailyEarnings += productPrice;
+                Products.Remove(productToSell);
+                DailyProductsSold[productName]++;
+            }
 
             return productPrice;
         }
@@ -105,9 +116,9 @@ namespace ChocoFactory.Domain
             {
                 try
                 {
-                    totalCost += SellProduct(product);
+                        totalCost += SellProduct(product);
                 }
-                catch (Exception)
+                catch (NullReferenceException)
                 {
                     //Console.WriteLine("The shop did not have the product.");
                 }
@@ -115,7 +126,7 @@ namespace ChocoFactory.Domain
 
             if (HasExperimentalProduct && totalCost >= Company.CompanyPolicy.Shop.GiftMinimumPrice)
             {
-                Products.Remove(Products.Find(x=>x.Description=="ExperimentalProduct"));
+                Products.Remove(Products.Find(x=>x.Description == "ExperimentalProduct"));
             }
             return totalCost;
         }
@@ -190,7 +201,7 @@ namespace ChocoFactory.Domain
                     break;
             }
 
-            int productsInStock = Products.Where(x => x.Description == productName).Count();
+            int productsInStock = Products.Count(x => x.Description == productName);
             while (productsInStock < productMaxCapacity)
             {
                 ReceiveProduct(productName);
@@ -212,7 +223,8 @@ namespace ChocoFactory.Domain
         private void ReceiveProduct(string productName)
         {
             IProduct newProduct = Factory.Warehouse.SendProduct(productName);
-            Products.Add(newProduct);          
+            if (newProduct != null)
+                Products.Add(newProduct);          
         }
 
         private void RemoveExpiredProducts(DateTime currentDate)
@@ -224,7 +236,7 @@ namespace ChocoFactory.Domain
 
                 if (product is IChocolate chocolate)
                 {
-                    if (chocolate.ExpirationDate > currentDate)
+                    if (DateTime.Compare(chocolate.ExpirationDate, currentDate) < 0)
                     {
                         Products.Remove(product);
                     }
@@ -233,5 +245,7 @@ namespace ChocoFactory.Domain
 
            
         }
+
+
     }
 }
