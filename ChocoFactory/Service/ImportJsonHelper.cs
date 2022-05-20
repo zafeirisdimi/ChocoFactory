@@ -13,9 +13,11 @@ namespace ChocoFactory.Service
     {
         public static List<Employee> MockEmployeeList()
         {
-            string json = File.ReadAllText(@"C:\Users\trika\source\repos\ChocoFactoryLast\ChocoFactory\Service\MockEmployeesFile.json");
+            string json = File.ReadAllText(@"..\..\Service\MockEmployeesFile.json");
             List<Employee> Employees = JsonConvert.DeserializeObject<List<Employee>>(json);
             return Employees;
         }
     }
+
+   
 }
