@@ -2,13 +2,13 @@
 
 namespace ChocoFactory.Domain
 {
-    public interface IEmployeeModel : IHumanModel
+    public interface IEmployee : IHuman
     {
-        int EmployeeID { get; }
+        int ID { get; }
         int DeparmentId { get; }
         int ManagerId { get; }
         decimal Salary { get; }
 
-        string EmailAddres { get; }
+        string Email { get; }
     }
 }

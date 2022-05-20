@@ -79,8 +79,9 @@
     <Compile Include="Domain\Company\Accounting.cs" />
     <Compile Include="Domain\Company\ICompany.cs" />
     <Compile Include="Domain\Human\Employee.cs" />
+    <Compile Include="Domain\Company\IActions.cs" />
     <Compile Include="Domain\Products\IChocolate.cs" />
-    <Compile Include="Domain\Human\IEmployeeModel.cs" />
+    <Compile Include="Domain\Human\IEmployee.cs" />
     <Compile Include="Domain\Products\ExperimentalProduct.cs" />
     <Compile Include="Domain\Products\WhiteChocolate.cs" />
     <Compile Include="Enum.cs" />
@@ -97,7 +98,7 @@
     <Compile Include="Domain\Company\Warehouse.cs" />
     <Compile Include="IScenario.cs" />
     <Compile Include="Domain\Company\IFactory.cs" />
-    <Compile Include="Domain\Human\IHumanModel.cs" />
+    <Compile Include="Domain\Human\IHuman.cs" />
     <Compile Include="Domain\Company\IDepartment.cs" />
     <Compile Include="Domain\Products\IMilkChocolateModel.cs" />
     <Compile Include="Domain\Products\IProduct.cs" />
@@ -110,6 +111,7 @@
     <Compile Include="Service\CustomerService.cs" />
     <Compile Include="Policy\ProductionPolicy.cs" />
     <Compile Include="Service\ICustomerService.cs" />
+    <Compile Include="Service\ImportJsonHelper.cs" />
     <Compile Include="Service\ISupplierService.cs" />
     <Compile Include="Service\RandomGenerator.cs" />
     <Compile Include="Scenario.cs" />
@@ -118,6 +120,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Service\MockEmployeesFile.json" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

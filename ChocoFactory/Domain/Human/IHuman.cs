@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace ChocoFactory.Interfaces
 {
-    public interface IHumanModel
+    public interface IHuman
     {
-        string FirstName { get; }
-        string LastName { get; }
+        string Firstname { get; }
+        string Lastname { get; }
 
     }
 }

@@ -2,16 +2,16 @@
 
 namespace ChocoFactory.Domain
 {
-    public class Supplier : IHumanModel
+    public class Supplier : IHuman
     {
         //properties
         public int ID { get; set; }// SupplierID
 
-        public string FirstName { get; private set; }
+        public string Firstname { get; set; }
 
-        public string LastName { get; private set; }
+        public string Lastname { get; set; }
 
-        public double PhoneNumber { get; private set; }
+        public double Phone { get; set; }
 
         //methods
         public void SendSupplies(Order order)

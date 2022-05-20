@@ -1,5 +1,5 @@
 ﻿using ChocoFactory.Interfaces;
-
+using ChocoFactory.Service;
 using ChocoFactory.Services;
 using System;
 using System.Collections.Generic;
@@ -20,7 +20,7 @@ namespace ChocoFactory.Domain
         public double Discount { get; set; } = 0;
         public List<IProduct> Products { get; set; } = new List<IProduct>();
 
-        public List<IEmployeeModel> Employees { get; set; }
+        public List<Employee> Sellers { get; set; } = ImportJsonHelper.MockEmployeeList();
 
         public Dictionary<string, int> DailyProductsSold { get; set; } = new Dictionary<string, int>()
         {
@@ -47,6 +47,7 @@ namespace ChocoFactory.Domain
             Company = company;
             Factory = factory;
             RefillStock();
+            Sellers = ImportJsonHelper.MockEmployeeList();
         }
 
         //methods
@@ -229,6 +230,8 @@ namespace ChocoFactory.Domain
                     }
                 }
             }
+
+           
         }
     }
 }

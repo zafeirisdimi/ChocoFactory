@@ -1,5 +1,7 @@
 ﻿using Autofac;
+using Newtonsoft.Json;
 using ChocoFactory.Domain;
+using ChocoFactory.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +20,7 @@ namespace ChocoFactory
                 IScenario scenario = scope.Resolve<IScenario>();
                 scenario.Start();
             }
+
             
 
         }
