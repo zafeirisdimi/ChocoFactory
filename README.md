@@ -1,6 +1,6 @@
 ----------------------------------------------------------------------------------------------------------------------------------------
 
-![Logo](https://github.com/zafeirisdimi/ChocoFactory/blob/master/img/choco.png "Chocofactory logo")
+![Logo](https://github.com/zafeirisdimi/ChocoFactory/blob/master/img/choco.png "First Object Approach")
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------
